@@ -2,7 +2,7 @@
   "name": "counter-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://goodccat46.github.io/counter-app/",
+  "homepage": "https://goodcat46.github.io/counter-app/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
