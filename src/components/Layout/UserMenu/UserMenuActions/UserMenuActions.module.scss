@@ -1,0 +1,78 @@
+.actionItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+
+  width: 100%;
+  // color: #fff;
+  // fill: #fff;
+
+  background-color: inherit;
+
+  &:hover {
+    background-color: var(--brand_clr__1);
+  }
+}
+.actionItemDbl {
+  display: flex;
+  align-items: center;
+
+  text-align: left;
+
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+
+  width: 100%;
+  // color: #fff;
+  // fill: #fff;
+
+  background-color: inherit;
+}
+.actionBtn {
+  justify-content: flex-start;
+  width: 100%;
+  padding: 8px;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+.exitLink {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+
+  width: 100%;
+  padding: 8px;
+}
+.gridChangeBtn,
+.gridChangeBtnActive {
+  justify-content: start;
+  width: 100%;
+  padding: 8px;
+
+  width: fit-content;
+}
+.gridChangeBtn {
+}
+.title {
+  flex-grow: 1;
+  flex-basis: 50px;
+
+  height: 36px;
+
+  padding: 8px;
+}
+.gridChangeBtnActive {
+  background-color: var(--brand_clr__1);
+  &:hover {
+    background-color: var(--brand_clr__1);
+  }
+}

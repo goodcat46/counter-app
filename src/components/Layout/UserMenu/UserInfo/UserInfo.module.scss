@@ -1,0 +1,57 @@
+.userInfo {
+}
+.userName {
+  color: #fff;
+}
+.userId {
+}
+.userInfoList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+
+  padding: 4px;
+
+  background-color: rgba(254, 254, 254, 0.1);
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #fff;
+  padding: 4px;
+}
+.admin {
+  text-transform: uppercase;
+  color: var(--brand_clr__1);
+}
+.BlockedBonuses {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 100%;
+
+  color: rgb(255, 116, 116);
+  padding: 4px;
+  & .list {
+    width: 100%;
+  }
+  & .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+.ActiveBonuses {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  color: rgb(122, 255, 140);
+  padding: 4px;
+}

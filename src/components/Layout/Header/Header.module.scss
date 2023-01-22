@@ -1,0 +1,40 @@
+.header {
+  display: grid;
+  grid-template-columns: min-content 1fr repeat(2, 30px);
+  grid-template-rows: 30px;
+  align-items: center;
+  justify-items: center;
+  gap: 8px;
+
+  position: sticky;
+  top: -1px;
+  left: 0;
+  z-index: 1001;
+
+  width: 100%;
+
+  padding: 0 8px;
+}
+.logo {
+  &Link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+    height: 100%;
+    min-width: 28px;
+    padding: 8px;
+
+    background-color: var(--brand_clr__1);
+  }
+  &Text {
+    text-align: center;
+    font-family: 'Ralaway', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: 0.09em;
+    // color: var(--brand_clr__2);
+  }
+}

@@ -1,0 +1,24 @@
+.DesktopFooter {
+  display: grid;
+  grid-template-columns: 30px repeat(10, 1fr) 30px;
+  grid-template-rows: 30px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  z-index: 1000;
+
+  color: #fff;
+
+  width: 100%;
+
+  background-color: var(--brand_clr__2);
+  @media screen and (min-height: 160px) {
+    position: sticky;
+    bottom: -1px;
+    left: 0;
+  }
+}
+.gridMenu {
+  grid-column: 12/13;
+}

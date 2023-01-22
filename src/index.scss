@@ -1,0 +1,186 @@
+@import './sass/utils/root';
+@import './sass/utils/breakPoints';
+@import './sass/utils/theme';
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+html {
+  box-sizing: border-box;
+  /* відміняє синій фон при дотику по обєктах на тачскірінах */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-family: 'Roboto', sans-serif;
+  color: #212121;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+
+  background-color: #ffffff;
+  margin: 0;
+}
+.NotScroll {
+  overflow: hidden;
+}
+.outline {
+  outline: var(--testing-brdr-wght) solid var(--testing-brdr-clr);
+}
+
+/* ----------------- НОРМАЛІЗАЦІЯ -------------- */
+/*  ЗАГОЛОВКИ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+/* ПАРАГРАФИ  */
+p {
+  margin: 0;
+}
+/* ТАБЛИЦі */
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 0;
+}
+th,
+tr {
+  border: 0;
+  padding: 0;
+  margin: 0;
+
+  user-select: none;
+}
+/* СПИСКИ */
+ul {
+  list-style: none;
+  padding-inline-start: 0px;
+  margin: 0px;
+}
+/* ПОСИЛАННЯ */
+a {
+  text-decoration: none;
+  color: inherit;
+
+  outline-color: var(--brand_clr__1);
+}
+/* АДРЕСИ */
+address {
+  font-style: normal;
+}
+/* ЗОБРАЖЕННЯ */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+/* КНОПКИ */
+button {
+  user-select: none;
+
+  &:focus,
+  &:focus-visible {
+    outline-color: var(--brand_clr__1);
+  }
+}
+/* ----------------- СКРИТІ ЕЛЕМЕНТИ */
+.visually-hidden {
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+/* ----------------- SCROLLBAR */
+@media screen and (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  ::-webkit-scrollbar-button {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background-color: var(--brand_clr__1);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--brand_clr__1);
+  }
+  ::-webkit-scrollbar-corner {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.Dark {
+  color: #fff;
+  fill: #fff;
+
+  & .theme {
+    color: #fff;
+    fill: #fff;
+    background-color: var(--brand_clr__2);
+  }
+  & .listRow {
+    color: #fff;
+    fill: #fff;
+    background-color: var(--brand_clr__4);
+  }
+}
+.Light {
+  color: var(--brand_clr__2);
+  fill: var(--brand_clr__2);
+  background-color: #fff;
+  & .theme {
+    color: var(--brand_clr__2);
+    fill: var(--brand_clr__2);
+    background-color: var(--brand_clr__2_light);
+  }
+  & .listRow {
+    color: var(--brand_clr__2);
+    fill: var(--brand_clr__2);
+    background-color: #fff;
+  }
+  & .slick-prev:before,
+  & .slick-next:before {
+    color: var(--brand_clr__2);
+  }
+}
+
+// & .slick-prev:before,
+// & .slick-next:before {
+// }
+/* // bimp
+// --scrollbar-top-offset: 0px;
+// --scrollbar-bottom-offset: 0px;
+// --scrollbar-left-offset: 0px;
+// --scrollbar-right-offset: 0px; */
+.css-1ptx2yq-MuiInputBase-root-MuiInput-root:after {
+  border-bottom: 2px solid var(--brand_clr__1);
+}

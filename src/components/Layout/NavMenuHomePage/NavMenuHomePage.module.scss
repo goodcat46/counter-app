@@ -1,0 +1,34 @@
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+}
+.navList {
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  grid-auto-rows: auto;
+  gap: 16px;
+
+  min-width: 230px;
+  max-width: 270px;
+  padding: 8px;
+  border-radius: 6px;
+
+  // box-shadow: var(--header-shadow);
+
+  background-color: transparent;
+
+  transition: all var(--timing-function__main);
+
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(4, min-content);
+    width: fit-content;
+    max-width: 90%;
+  }
+}
