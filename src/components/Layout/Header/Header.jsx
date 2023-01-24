@@ -1,7 +1,6 @@
 import React from 'react';
 
 import UserMenu from '../UserMenu/UserMenu';
-import Notifications from 'components/Notify/Notifications/Notifications';
 import PrivateComponent from 'components/PrivateComponent/PrivateComponent';
 import { Link } from 'react-router-dom';
 
@@ -16,8 +15,6 @@ const Header = () => {
       <div></div>
 
       <PrivateComponent>
-        <Notifications />
-
         <UserMenu />
       </PrivateComponent>
     </header>
