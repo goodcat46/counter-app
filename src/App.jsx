@@ -1,15 +1,17 @@
 import { Suspense } from 'react';
 import Layout from 'components/Layout/Layout';
-import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
 import AppRoutes from 'components/AppRoutes/AppRoutes';
 import { useModal } from 'components/ModalCustom/ModalComponent';
+import FormTransaction from 'components/FormTransaction/FormTransaction';
+import { Button } from '@mui/material';
 
 import s from './App.module.scss';
+import SvgIcon from 'components/SvgIcon/SvgIcon';
 
 const App = () => {
   const modal = useModal();
 
-  const modalContent = <div>Модалка</div>;
+  const modalContent = <FormTransaction />;
 
   return (
     <>
@@ -18,13 +20,14 @@ const App = () => {
           <Layout>
             <AppRoutes />
 
-            <div style={{ margin: 'auto' }}>
-              <ButtonIcon
-                styleType="BrandClrBtn"
+            <div style={{ margin: '8px auto' }}>
+              <Button
+                variant="contained"
                 onClick={ev => modal.handleToggleModal(ev, modalContent, { defaultBtn: true })}
               >
-                Відкрити модалку
-              </ButtonIcon>
+                <SvgIcon iconId="plus" />
+                <span style={{ margin: 'auto 8px' }}>Створити транзакції</span>
+              </Button>
             </div>
           </Layout>
         </Suspense>

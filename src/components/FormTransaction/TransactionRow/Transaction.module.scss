@@ -1,0 +1,44 @@
+.inputs {
+  display: grid;
+  grid-template-columns: repeat(2, 125px) 135px repeat(9, minmax(150px, 1fr)) 200px 135px;
+  align-items: end;
+  gap: 4px;
+  padding: 8px;
+
+  min-width: max-content;
+}
+.rowContainer {
+  display: flex;
+
+  width: max-content;
+
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border-style: none;
+
+  border-bottom: 2px solid var(--tr-brdr-clr__primary);
+}
+.rowActions {
+  display: flex;
+
+  position: sticky;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+
+  padding: 8px;
+
+  overflow: hidden;
+
+  background-color: #fff;
+}
+.actionsList {
+  display: flex;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transform: translateX(-100%);
+}
