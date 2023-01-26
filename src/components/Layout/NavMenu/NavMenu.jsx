@@ -6,7 +6,7 @@ import MenuNavLink from './MenuNavLink/MenuNavLink';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getUserData } from 'redux/selectors';
-import { pagesRoutes } from 'data/pagesRoutes';
+// import { pagesRoutes } from 'data/pagesRoutes';
 
 import s from './NavMenu.module.scss';
 
@@ -40,9 +40,9 @@ const NavMenu = ({ size = '30px' }) => {
   }
 
   useEffect(() => {
-    const pagesRoutesArr = pagesRoutes.filter(el => el?.roles.includes(user?.role) && el?.status.includes(user?.status));
+    // const pagesRoutesArr = pagesRoutes.filter(el => el?.roles.includes(user?.role) && el?.status.includes(user?.status));
 
-    setNavLinks(pagesRoutesArr);
+    setNavLinks([]);
   }, [user?.role, user?.status]);
   return (
     <div className={isOpen ? s.menuOpen : s.menu}>

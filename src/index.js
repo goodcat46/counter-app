@@ -8,19 +8,22 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import ModalComponent from 'components/ModalCustom/ModalComponent';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <BrowserRouter basename="/counter-app">
+  // <React.StrictMode>
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <BrowserRouter basename="/counter-app">
+        <ModalComponent>
           <App />
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>
+        </ModalComponent>
+      </BrowserRouter>
+    </PersistGate>
+  </Provider>
+  // {/* </React.StrictMode> */}
 );
 
 // If you want to start measuring performance in your app, pass a function
