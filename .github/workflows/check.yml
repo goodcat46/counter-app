@@ -1,4 +1,4 @@
-name: Build and deploy to GitHub Pages
+name: Install dependencies an Lint check
 
 on:
   push:
@@ -13,4 +13,5 @@ jobs:
 
       - name: Lint 🔧
         run: |
+          npm install
           npm run lint:js
