@@ -1,0 +1,68 @@
+.rowContainer {
+  display: grid;
+  grid-template-columns: 0px max-content;
+
+  position: relative;
+
+  width: fit-content;
+
+  height: 100%;
+
+  background-color: inherit;
+
+  &:hover {
+    background-color: rgba(103, 202, 255, 0.15);
+  }
+
+  &.selected {
+    background-color: rgba(103, 202, 255, 0.3);
+  }
+}
+.rowContainer,
+.thRow {
+  min-width: 100%;
+}
+.thRow,
+.row {
+  display: grid;
+  position: relative;
+
+  width: fit-content;
+
+  cursor: default;
+}
+.thRow {
+  font-size: 14px;
+  font-weight: 700;
+
+  min-height: 30px;
+
+  color: #fff;
+  background-color: rgb(96, 96, 96);
+}
+.row {
+  font-size: 12px;
+  font-weight: 400;
+
+  min-height: 28px;
+
+  background-color: inherit;
+  border-bottom: 1px solid var(--tr-brdr-clr__primary);
+  // transition: all var(--timing-function__main);
+}
+.rowStickyEl {
+  display: grid;
+  grid-template-columns: 40px 40px;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+
+  background-color: inherit;
+  @media print {
+    width: 0;
+    overflow: hidden;
+  }
+}

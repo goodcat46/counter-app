@@ -1,0 +1,74 @@
+.statusBox {
+  display: flex;
+  align-items: flex-end;
+
+  gap: 4px;
+
+  font-size: 12px;
+  padding: 4px 4px;
+
+  min-width: 100%;
+  height: 100%;
+
+  border: 2px solid transparent;
+  border-radius: 8px;
+
+  cursor: default;
+}
+.inner {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.new,
+.available,
+.visible,
+.success,
+.approved,
+.accepted,
+.orderSuccess {
+  fill: var(--clr-success);
+  // border-color: var(--clr-success);
+  color: var(--clr-success);
+}
+.fullRefund,
+.needRefund,
+.pendingRefund,
+.hidden,
+.awaitingOnStock,
+.isCommission,
+.pending,
+.resolving,
+.mixed {
+  fill: var(--clr-warning);
+  // border-color: var(--clr-warning);
+  color: var(--clr-warning);
+}
+.notAvailable,
+.rejected,
+.problem {
+  fill: var(--clr-error);
+  // border-color: var(--clr-error);
+  color: var(--clr-error);
+}
+.inWork,
+.inRoad,
+.accepted,
+.curier,
+.express,
+.isStandart,
+.doneRefund,
+.standart,
+.iban,
+.card,
+.payAfter {
+  // border-color: var(--clr-info);
+  fill: var(--clr-info);
+  color: var(--clr-info);
+}
+.failed,
+.default {
+  // border-color: var(--clr-default);
+  fill: var(--clr-default);
+  color: var(--clr-default);
+}

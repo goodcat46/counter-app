@@ -1,10 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import { actionLogInUser, actionLogOutUser, actionSetCurrentUser } from './authActions';
-import { registerUserThunk, registerUserByAdminThunk, logInUserThunk, logOutUserThunk, getCurrentUserThunk } from './authThunks';
+import {
+  registerUserThunk,
+  registerUserByAdminThunk,
+  logInUserThunk,
+  logOutUserThunk,
+  getCurrentUserThunk,
+} from './authThunks';
 
 const initialState = {
   user: [],
-  token: '',
+  token: 'token',
   isLoading: false,
   isLoggedIn: true,
   error: null,
