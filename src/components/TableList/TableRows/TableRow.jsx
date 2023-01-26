@@ -82,7 +82,7 @@ const TableRow = props => {
 
               return (
                 <Cell key={item.dataKey} title={item} idx={idx}>
-                  <CellComp title={item} idx={idx} onClick={handleOnRowClick} />
+                  <CellComp title={item} idx={idx} />
                 </Cell>
               );
             }
@@ -90,7 +90,7 @@ const TableRow = props => {
             CellComp = CellText;
             return (
               <Cell key={item.dataKey} title={item} idx={idx}>
-                <CellComp title={item} idx={idx} onClick={handleOnRowClick} />
+                <CellComp title={item} idx={idx} />
               </Cell>
             );
           })}
