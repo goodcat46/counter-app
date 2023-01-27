@@ -1,40 +1,32 @@
 import { useEffect, useState } from 'react';
-import { TextField, Autocomplete } from '@mui/material';
+import { TextField, Button } from '@mui/material';
+import Select from 'components/Select/Select';
+import { useModal } from 'components/ModalContent/Modal';
 
 import s from './Transaction.module.scss';
 
 const inputs = [
-  { name: 'date', label: '', type: 'date' },
-  { name: 'time', label: '', type: 'time' },
-  { name: 'value', label: 'Сума', type: 'number' },
-  { name: 'counterParty', label: 'Контрагент', type: 'text' },
-  { name: 'document', label: 'Документ', type: 'text' },
-  { name: 'comment', label: 'Коментар', type: 'text' },
+  { name: 'date', label: '', type: 'date', variant: 'standard' },
+  { name: 'time', label: '', type: 'time', variant: 'standard' },
+  { name: 'value', label: 'Сума', type: 'number', variant: 'standard' },
+  { name: 'comment', label: 'Коментар', type: 'text', variant: 'standard' },
 ];
 const selects = [
-  {
-    name: 'type',
-    label: 'Тип',
-    type: '',
-    options: [
-      { label: 'Дохід', value: 'income' },
-      { label: 'Витрата', value: 'expense' },
-      { label: 'Переказ', value: 'transfer' },
-    ],
-  },
-  { name: 'countIn', label: 'Рахунок - ДТ', type: '', options: [{ label: 'Рахунок' }] },
-  { name: 'subCountIn', label: 'Суб-рахунок - ДТ', type: '', options: [] },
-  { name: 'countOut', label: 'Рахунок - КТ', type: '', options: [] },
-  { name: 'subCountOut', label: 'Суб-рахунок - КТ', type: '', options: [] },
-  { name: 'category', label: 'Категорія', type: '', options: [] },
-  { name: 'subCategory', label: 'Під-категорія', type: '', options: [] },
+  { name: 'type' },
+  { name: 'countIn' },
+  { name: 'subCountIn' },
+  { name: 'countOut' },
+  { name: 'subCountOut' },
+  { name: 'category' },
+  { name: 'counterParty' },
+  { name: 'provider' },
+  { name: 'customer' },
+  { name: 'subCategory' },
+  { name: 'status' },
 ];
-
-const initialState = {
+export const initialTransactionState = {
   date: '',
   time: '',
-  value: '',
-  comment: '',
   type: '',
   countIn: '',
   subCountIn: '',
@@ -42,17 +34,15 @@ const initialState = {
   subCountOut: '',
   category: '',
   subCategory: '',
+  value: '',
+  customer: '',
+  provider: '',
+  document: '',
+  comment: '',
 };
-const Transaction = ({
-  disabled = true,
-  data,
-  idx,
-  onCreateTransaction,
-  onDeleteTransaction,
-  onEditTransaction,
-  onCopyTransaction,
-}) => {
-  const [transactionData, setTransactionData] = useState(initialState);
+const Transaction = ({ data, idx, disabled = false, onAddNewTransaction, onEditTransaction, onCopyTransaction }) => {
+  const [transactionData, setTransactionData] = useState(data || initialTransactionState);
+  const modal = useModal();
 
   function onChange(ev) {
     const { name, value } = ev.target;
@@ -63,6 +53,17 @@ const Transaction = ({
   }
   function onSelect(ev, value, reason, details) {
     console.log({ ev, value, reason, details });
+
+    setTransactionData(prev => {
+      return { ...prev, [value?.name]: value?.value };
+    });
+  }
+  function onSubmit(ev) {
+    console.log('transactionData', transactionData);
+    onAddNewTransaction && onAddNewTransaction({ ev, data: transactionData });
+    onEditTransaction && onEditTransaction({ ev, data: transactionData });
+    onCopyTransaction && onCopyTransaction({ ev, data: transactionData });
+    modal.handleToggleModal();
   }
 
   useEffect(() => {
@@ -74,54 +75,34 @@ const Transaction = ({
 
   return (
     <>
-      <fieldset className={s.rowContainer}>
-        {/* <div className={s.rowActions}>
-          <Button>
-            <SvgIcon iconId="actions-h" style={{ fill: '#000' }} />
-          </Button>
-          <div className={s.actionsList}>
-            <Button>
-              <SvgIcon iconId="close" style={{ fill: '#000' }} />
-            </Button>
-            <Button>
-              <SvgIcon iconId="copy" style={{ fill: '#000' }} />
-            </Button>
-            <Button>
-              <SvgIcon iconId="delete" style={{ fill: '#000' }} />
-            </Button>
-          </div>
-        </div> */}
-
-        <div className={s.inputs}>
-          <TextField variant="outlined" {...inputs[0]} onChange={onChange} disabled />
-          <TextField variant="outlined" {...inputs[1]} onChange={onChange} disabled />
-
-          {selects.map(item => (
-            <Autocomplete
-              key={item.name}
-              disablePortal
-              id={item.name}
-              options={item?.options}
-              onChange={onSelect}
-              renderInput={params => <TextField {...params} label={item.label} />}
-              disabled
-            />
-          ))}
-          <TextField variant="outlined" {...inputs[2]} onChange={onChange} disabled />
-          <TextField variant="outlined" {...inputs[3]} onChange={onChange} disabled />
-          <TextField variant="outlined" {...inputs[4]} onChange={onChange} disabled />
-          <TextField variant="outlined" {...inputs[5]} onChange={onChange} disabled />
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            isOptionEqualToValue={inputs[3].value}
-            options={[]}
-            onChange={onSelect}
-            disabled
-            renderInput={params => <TextField {...params} label="Статус" />}
-          />
+      <form className={s.subForm} onSubmit={onSubmit} onReset={modal.handleToggleModal}>
+        <div className={s.header}>
+          {onAddNewTransaction && <span>{`Нова транзакція`}</span>}
+          {onEditTransaction && <span>{`Змінити транзакцію`}</span>}
+          {onCopyTransaction && <span>{`Копія транзакції`}</span>}
         </div>
-      </fieldset>
+        <div className={s.scroll}>
+          <div className={s.inputs}>
+            <TextField variant="outlined" {...{ ...inputs[0], onChange, disabled }} />
+            <TextField variant="outlined" {...{ ...inputs[1], onChange, disabled }} />
+
+            {selects.map((item, idx) => (
+              <Select key={item?.name || idx} {...{ onSelect, disabled, name: item?.name }} />
+            ))}
+
+            <TextField variant="outlined" {...{ ...inputs[2], onChange, disabled }} />
+            <TextField variant="outlined" {...{ ...inputs[3], onChange, disabled }} />
+          </div>
+        </div>
+        <div className={s.btns}>
+          <Button variant="contained" type="submit">
+            Прийняти
+          </Button>
+          <Button variant="outlined" type="reset">
+            Скасувати
+          </Button>
+        </div>
+      </form>
     </>
   );
 };

@@ -11,12 +11,14 @@ export const useTable = () => useContext(TableCNTXT);
 
 const TableContext = ({ children, value }) => {
   const { tableTitles = [], tableData = [], prepeareRowData, rowActions = true } = value;
-  const prevRowRef = useRef();
+  const rowRef = useRef();
 
   const rowGrid = {
     display: 'grid',
 
-    gridTemplateColumns: rowActions ? `min-content repeat(${tableTitles.length}, min-content)` : `repeat(${tableTitles.length}, min-content)`,
+    gridTemplateColumns: rowActions
+      ? `min-content repeat(${tableTitles.length}, min-content)`
+      : `repeat(${tableTitles.length}, min-content)`,
   };
 
   return (
@@ -27,7 +29,7 @@ const TableContext = ({ children, value }) => {
         tableData,
         tableTitles,
         prepeareRowData,
-        prevRowRef,
+        rowRef,
         ...value,
       }}
     >

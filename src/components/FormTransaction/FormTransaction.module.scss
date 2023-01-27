@@ -39,7 +39,9 @@
   flex-direction: column;
   justify-content: flex-end;
 }
-
+.active {
+  background-color: var(--tr-bckrnd-clr__hover);
+}
 .actions,
 .formBtns {
   display: flex;
@@ -61,4 +63,15 @@
 .actions {
   border-style: none;
   margin: 0;
+}
+.subForm {
+  overflow: auto;
+
+  width: 98vw;
+  max-width: 480px;
+  min-height: 250px;
+  height: 98vh;
+  max-height: 100%;
+
+  background-color: #fff;
 }

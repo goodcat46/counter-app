@@ -1,18 +1,14 @@
 import { Suspense } from 'react';
+import SvgIcon from 'components/SvgIcon/SvgIcon';
 import Layout from 'components/Layout/Layout';
 import AppRoutes from 'components/AppRoutes/AppRoutes';
-import { useModal } from 'components/ModalCustom/ModalComponent';
 import FormTransaction from 'components/FormTransaction/FormTransaction';
 import { Button } from '@mui/material';
+import ModalContent from 'components/ModalContent/ModalContent';
 
 import s from './App.module.scss';
-import SvgIcon from 'components/SvgIcon/SvgIcon';
 
 const App = () => {
-  const modal = useModal();
-
-  const modalContent = <FormTransaction />;
-
   return (
     <>
       <div className={s.app}>
@@ -21,13 +17,16 @@ const App = () => {
             <AppRoutes />
 
             <div style={{ margin: '8px auto' }}>
-              <Button
-                variant="contained"
-                onClick={ev => modal.handleToggleModal(ev, modalContent, { defaultBtn: true })}
+              <ModalContent
+                trigger={props => (
+                  <Button variant="contained" {...props}>
+                    <SvgIcon iconId="plus" />
+                    <span style={{ margin: 'auto 8px' }}>Створити транзакції</span>
+                  </Button>
+                )}
               >
-                <SvgIcon iconId="plus" />
-                <span style={{ margin: 'auto 8px' }}>Створити транзакції</span>
-              </Button>
+                <FormTransaction />
+              </ModalContent>
             </div>
           </Layout>
         </Suspense>

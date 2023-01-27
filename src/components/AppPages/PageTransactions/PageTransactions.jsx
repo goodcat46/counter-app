@@ -1,6 +1,7 @@
 import React from 'react';
 import TableList from 'components/TableList/TableList';
 import { transactionsTableTitles, transactionsTableData as tableData } from 'data';
+// import { useSelector } from 'react-redux';
 
 import s from './PageTransactions.module.scss';
 
