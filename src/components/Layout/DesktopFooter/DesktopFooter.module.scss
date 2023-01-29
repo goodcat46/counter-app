@@ -1,10 +1,10 @@
 .DesktopFooter {
-  display: grid;
-  grid-template-columns: 30px repeat(10, 1fr) 30px;
-  grid-template-rows: 30px;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  // display: grid;
+  // grid-template-columns: 30px repeat(9, 1fr) 30px 30px;
+  // grid-template-rows: 30px;
+  // align-items: center;
+  // justify-content: center;
+  // gap: 8px;
 
   z-index: 1000;
 
@@ -21,4 +21,17 @@
 }
 .gridMenu {
   grid-column: 12/13;
+}
+.wrapper {
+  // grid-column: 11/12;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+
+  // display: flex;
+  // justify-content: flex-start;
+  // flex-wrap: wrap;
+  gap: 8px;
+
+  padding: 8px;
 }

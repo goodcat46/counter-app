@@ -38,8 +38,9 @@ const selects = [
   },
 ];
 
-const Select = ({ name, onSelect, disabled, ...props }) => {
+const Select = ({ name, onSelect, disabled, data = {}, ...props }) => {
   let select = selects.find(el => el.name === name);
+  const { label = null } = select;
 
   if (!select) {
     return null;
@@ -47,8 +48,11 @@ const Select = ({ name, onSelect, disabled, ...props }) => {
 
   let settings = {
     ...select,
+    // isOptionEqualToValue()
+    // defaultValue: select?.options.find(el => el.value === data[name])?.label || null,
     options: select?.options || [],
   };
+  // console.log('settings', settings.defaultValue, 'data', data);
 
   return (
     <Autocomplete
@@ -57,7 +61,7 @@ const Select = ({ name, onSelect, disabled, ...props }) => {
       disablePortal
       onChange={onSelect}
       disabled={disabled}
-      renderInput={params => <TextField variant="standard" {...params} {...select} />}
+      renderInput={params => <TextField variant="standard" {...params} {...{ label }} />}
     />
   );
 };

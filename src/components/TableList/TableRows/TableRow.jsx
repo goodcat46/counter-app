@@ -11,30 +11,13 @@ import { useTable } from '../TableContext';
 import s from './TableRow.module.scss';
 
 const TableRow = props => {
-  const { tableTitles = [], rowGrid, rowActions = true, onRowClick, rowRef } = useTable();
+  const { tableTitles = [], rowGrid, rowActions = true } = useTable();
   const [isActionsOpen, setIsActionsOpen] = useState(false);
 
   const styles = {
     ...rowGrid,
   };
 
-  function handleOnRowClick(ev) {
-    const { currentTarget } = ev;
-    const { rowData } = props;
-    onRowClick({ ev, data: rowData });
-
-    if (!rowRef.current) {
-      rowRef.current = currentTarget;
-      rowRef.current.classList.add([s.selected]);
-      return;
-    }
-
-    if (currentTarget !== rowRef.current) {
-      rowRef.current.classList.remove([s.selected]);
-      rowRef.current = currentTarget;
-    }
-    rowRef.current.classList.toggle([s.selected]);
-  }
   function handleToggleActions(ev) {
     setIsActionsOpen(!isActionsOpen);
   }
@@ -49,23 +32,9 @@ const TableRow = props => {
     handleCloseActions,
   };
 
-  // useEffect(() => {
-  //   function CloseRowActions(ev) {
-  //     const { target } = ev;
-
-  //     if (!target.closest(`#row${props.idx}`)) {
-  //       setIsActionsOpen(false);
-  //       window.removeEventListener('click', CloseRowActions);
-  //     }
-  //   }
-  //   window.addEventListener('click', CloseRowActions);
-  //   return () => {
-  //     window.removeEventListener('click', CloseRowActions);
-  //   };
-  // }, [isActionsOpen, props.idx]);
   return (
     <RowContext value={ctxValue}>
-      <div className={s.rowContainer} id={`row${props.idx}`} {...{ onClick: onRowClick && handleOnRowClick }}>
+      <div className={s.rowContainer} data="row" id={props?.rowData?._id || null}>
         <RowActions />
 
         <div style={styles} className={s.row}>
