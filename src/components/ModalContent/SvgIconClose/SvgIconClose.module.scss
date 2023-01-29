@@ -1,0 +1,17 @@
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  fill: inherit;
+
+  width: 100%;
+  height: 100%;
+}
+.svg {
+  width: 100%;
+  height: 100%;
+
+  fill: inherit;
+  pointer-events: none;
+  transition: all var(--timing-function__main);
+}

@@ -22,4 +22,10 @@
   grid-auto-rows: 40px;
   min-width: 100%;
   position: relative;
+  & .selected {
+    background-color: var(--tr-bckrnd-clr__selected);
+    &:hover {
+      background-color: var(--tr-bckrnd-clr__selected);
+    }
+  }
 }

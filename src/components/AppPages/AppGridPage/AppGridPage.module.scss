@@ -3,6 +3,9 @@
 // .orders,
 .admin,
 .pageGrid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+
   height: 100%;
   max-height: 100%;
   max-width: 100%;

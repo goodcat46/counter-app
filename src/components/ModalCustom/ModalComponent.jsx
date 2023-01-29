@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import ModalPortal from './ModalPortal/ModalPortal';
+import React, { useState, useEffect } from 'react';
+
 import SvgIconClose from './SvgIconClose/SvgIconClose';
 
 import s from './ModalCustom.module.scss';
@@ -8,8 +7,6 @@ import s from './ModalCustom.module.scss';
 //* ""handleToggle"" функція яка тоглить стейт модалки
 //* ""defaultBtn"" BOOLEAN чи потрібна дефолтна кнопка закриття
 //* ""children"" вміст модалки
-export const ModalContext = createContext();
-export const useModal = () => useContext(ModalContext);
 
 const modalInitialSettings = {
   style: null,
@@ -17,83 +14,51 @@ const modalInitialSettings = {
   backdropStyle: null,
   modalClass: s.Modal,
   modalStyle: null,
-  defaultBtn: false,
+  closeBtnClass: '',
+  closeBtnStyle: null,
+  closeBtn: true,
 };
 
-const ModalComponent = ({ children, portal = 'modal' }) => {
-  const [modalSettins, setModalSettings] = useState(modalInitialSettings);
-  const [modalContent, setModalContent] = useState(null);
-
-  function handleToggleModal(ev, content, settings) {
-    if (!content) {
-      setModalSettings(modalInitialSettings);
-      setModalContent(null);
-      return;
-    }
-    setModalSettings({ ...modalSettins, ...settings });
-    setModalContent(content);
-  }
-  function handleCloseModalBackdrop(evt) {
-    let { target, currentTarget } = evt;
-
-    if (target === currentTarget) {
-      handleToggleModal();
-    }
-  }
+const ModalComponent = ({ idx, children, settings, handleCloseModalBackdrop, handleToggleModal }) => {
+  const [modalSettins] = useState(settings || modalInitialSettings);
 
   useEffect(() => {
-    window.addEventListener('keydown', handleToggleModalByEsc);
-
     function handleToggleModalByEsc(evt) {
       let { code } = evt;
-
       if (code === 'Escape') {
-        setModalSettings(modalInitialSettings);
-        setModalContent(null);
+        handleToggleModal(idx);
+
         console.log('Escape');
         document.querySelector('body').classList.remove('NotScroll');
         window.removeEventListener('keydown', handleToggleModalByEsc);
       }
     }
 
-    if (modalContent) {
+    if (children) {
       document.querySelector('body').classList.add('NotScroll');
+      window.addEventListener('keydown', handleToggleModalByEsc);
     }
 
     return () => {
       document.querySelector('body').classList.remove('NotScroll');
       window.removeEventListener('keydown', handleToggleModalByEsc);
     };
-  }, [modalContent]);
+  }, [children, handleToggleModal, idx]);
 
   return (
     <>
-      <ModalContext.Provider value={{ modalContent, modalSettins, handleToggleModal }}>
-        <>{children}</>
-        <ModalPortal portal={portal}>
-          {modalContent && (
-            <div className={modalSettins?.backdropClass} onClick={handleCloseModalBackdrop}>
-              <div className={modalSettins?.modalClass} style={modalSettins?.modalStyle}>
-                {modalSettins.defaultBtn && (
-                  <button className={s.closeModal} onClick={handleToggleModal}>
-                    <SvgIconClose size={'100%'} />
-                  </button>
-                )}
-                {modalContent}
-              </div>
-            </div>
+      <div key={idx} className={modalSettins?.backdropClass} onClick={handleCloseModalBackdrop}>
+        <div className={modalSettins?.modalClass} style={modalSettins?.modalStyle}>
+          {modalSettins.defaultBtn && (
+            <button className={s.closeModal} onClick={handleToggleModal}>
+              <SvgIconClose size={'100%'} />
+            </button>
           )}
-        </ModalPortal>
-      </ModalContext.Provider>
+          {children}
+        </div>
+      </div>
     </>
   );
-};
-
-ModalComponent.propTypes = {
-  isOpenModal: PropTypes.bool,
-  handleToggle: PropTypes.func,
-  defaultBtn: PropTypes.bool,
-  // ! children: PropTypes.typeOf([]),
 };
 
 export default ModalComponent;

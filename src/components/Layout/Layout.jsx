@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header/Header';
+import DesktopFooter from 'components/Layout/DesktopFooter/DesktopFooter';
 
 // import PropTypes from 'prop-types';
 
@@ -9,6 +10,7 @@ const Layout = ({ children }) => {
     <>
       <Header />
       {children}
+      <DesktopFooter />
     </>
   );
 };

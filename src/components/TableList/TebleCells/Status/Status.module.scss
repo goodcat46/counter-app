@@ -26,6 +26,7 @@
 .success,
 .approved,
 .accepted,
+.income,
 .orderSuccess {
   fill: var(--clr-success);
   // border-color: var(--clr-success);
@@ -45,6 +46,7 @@
   color: var(--clr-warning);
 }
 .notAvailable,
+.expense,
 .rejected,
 .problem {
   fill: var(--clr-error);
@@ -61,6 +63,7 @@
 .standart,
 .iban,
 .card,
+.transfer,
 .payAfter {
   // border-color: var(--clr-info);
   fill: var(--clr-info);

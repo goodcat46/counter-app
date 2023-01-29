@@ -52,8 +52,8 @@
   z-index: 150;
 
   font-size: 16px;
-  color: #fff;
-  fill: #fff;
+  color: rgba(0, 0, 0, 0.1);
+  fill: rgba(0, 0, 0, 0.5);
 
   width: 30px;
   height: 30px;
@@ -62,9 +62,9 @@
   border-style: none;
   border: 1px solid transparent;
 
-  background-color: rgba(254, 254, 254, 0.1);
+  background-color: rgba(0, 0, 0, 0);
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.2);
   }
 }
 @keyframes BackdropAnimation {
@@ -77,9 +77,11 @@
 }
 @keyframes ModalAnimation {
   from {
-    transform: translate(-50%, -50%) scale(0.2);
+    transform: translate(-50%, -50%) scale(0.8);
+    // transform: translate(-50%, -50%);
   }
   to {
     transform: translate(-50%, -50%) scale(1);
+    // transform: translate(-50%, -50%);
   }
 }

@@ -13,11 +13,7 @@
   &:hover {
     background-color: rgba(103, 202, 255, 0.15);
   }
-
-  &.selected {
-    background-color: rgba(103, 202, 255, 0.3);
-  }
-}
+} //var(--tr-backgrnd-clr__hover);
 .rowContainer,
 .thRow {
   min-width: 100%;

@@ -1,0 +1,50 @@
+.subForm {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 33px 1fr max-content;
+
+  width: 320px;
+  max-width: 100%;
+  height: 98vh;
+  max-height: 100%;
+
+  color: #212121;
+  background-color: #fff;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 8px;
+
+  color: inherit;
+  background-color: inherit;
+
+  border-bottom: 3px solid var(--tr-brdr-clr__primary);
+}
+.inputs {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content;
+  gap: 8px;
+
+  padding: 8px;
+  width: 100%;
+}
+.scroll {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.btns {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  gap: 8px;
+
+  padding: 8px;
+
+  color: inherit;
+  background-color: inherit;
+
+  border-top: 3px solid var(--tr-brdr-clr__primary);
+}

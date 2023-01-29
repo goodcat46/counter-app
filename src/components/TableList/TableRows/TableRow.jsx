@@ -5,31 +5,19 @@ import CellText from '../TebleCells/CellText';
 import CellActions from '../TebleCells/CellActions';
 import CellCheckBox from '../TebleCells/CellCheckBox';
 import { CellsMap } from '../TebleCells';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useTable } from '../TableContext';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getAppPageSettings } from 'redux/selectors';
 
 import s from './TableRow.module.scss';
 
 const TableRow = props => {
   const { tableTitles = [], rowGrid, rowActions = true } = useTable();
   const [isActionsOpen, setIsActionsOpen] = useState(false);
-  const { indexPage } = useSelector(getAppPageSettings);
-  const navigate = useNavigate();
 
   const styles = {
     ...rowGrid,
   };
 
-  function handleOnRowClick(ev) {
-    const { rowData } = props;
-    if (rowData?._id) {
-      console.log(rowData);
-      navigate(`/${indexPage}/${rowData?._id}`);
-    }
-  }
   function handleToggleActions(ev) {
     setIsActionsOpen(!isActionsOpen);
   }
@@ -44,23 +32,9 @@ const TableRow = props => {
     handleCloseActions,
   };
 
-  useEffect(() => {
-    function CloseRowActions(ev) {
-      const { target } = ev;
-
-      if (!target.closest(`#row${props.idx}`)) {
-        setIsActionsOpen(false);
-        window.removeEventListener('click', CloseRowActions);
-      }
-    }
-    window.addEventListener('click', CloseRowActions);
-    return () => {
-      window.removeEventListener('click', CloseRowActions);
-    };
-  }, [isActionsOpen, props.idx]);
   return (
     <RowContext value={ctxValue}>
-      <div className={s.rowContainer} id={`row${props.idx}`}>
+      <div className={s.rowContainer} data="row" id={props?.rowData?._id || null}>
         <RowActions />
 
         <div style={styles} className={s.row}>
@@ -82,7 +56,7 @@ const TableRow = props => {
 
               return (
                 <Cell key={item.dataKey} title={item} idx={idx}>
-                  <CellComp title={item} idx={idx} onClick={handleOnRowClick} />
+                  <CellComp title={item} idx={idx} />
                 </Cell>
               );
             }
@@ -90,7 +64,7 @@ const TableRow = props => {
             CellComp = CellText;
             return (
               <Cell key={item.dataKey} title={item} idx={idx}>
-                <CellComp title={item} idx={idx} onClick={handleOnRowClick} />
+                <CellComp title={item} idx={idx} />
               </Cell>
             );
           })}
