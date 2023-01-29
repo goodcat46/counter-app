@@ -1,123 +1,118 @@
-import React, { useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
-import Transaction from './TransactionRow/Transaction';
-// import { initialTransactionState } from './TransactionRow/Transaction';
-import { nanoid } from '@reduxjs/toolkit';
-import SvgIcon from 'components/SvgIcon/SvgIcon';
+import Select from 'components/Select/Select';
+import Input from 'components/Input/Input';
 import { useModal } from 'components/ModalContent/Modal';
 
 import s from './FormTransaction.module.scss';
-import ModalContent from 'components/ModalContent/ModalContent';
-import TableList from 'components/TableList/TableList';
 
-import { transactionsTableTitles as tableTitles } from 'data';
+const inputs = [
+  { name: 'date', label: '', type: 'date', variant: 'standard' },
+  { name: 'time', label: '', type: 'time', variant: 'standard' },
+  { name: 'value', label: 'Сума', type: 'number', variant: 'standard' },
+  { name: 'comment', label: 'Коментар', type: 'text', variant: 'standard' },
+];
+const selects = [
+  { name: 'type' },
+  { name: 'countIn' },
+  { name: 'subCountIn' },
+  { name: 'countOut' },
+  { name: 'subCountOut' },
+  { name: 'category' },
+  { name: 'counterParty' },
+  { name: 'provider' },
+  { name: 'customer' },
+  { name: 'subCategory' },
+  { name: 'status' },
+];
+export const initialTransactionState = {
+  date: '',
+  time: '',
+  type: '',
+  countIn: '',
+  subCountIn: '',
+  countOut: '',
+  subCountOut: '',
+  category: '',
+  subCategory: '',
+  value: '',
+  customer: '',
+  provider: '',
+  document: '',
+  comment: '',
+};
 
-// export default FormInputsRow
+const FormTransaction = ({
+  data,
+  idx,
+  disabled = false,
+  onAddNewTransaction,
+  onEditTransaction,
+  onCopyTransaction,
+}) => {
+  const [transactionData, setTransactionData] = useState(data || initialTransactionState);
+  const modal = useModal();
 
-const FormTransaction = ({ onCloseModal }) => {
-  const { handleToggleModal } = useModal();
-  const [formData, setFormData] = useState([]);
-  const [selectedTr, setSelectedTr] = useState(null);
-  const currentTrRef = useRef(null);
-
-  // function onCreateTransaction(obj) {
-  //   setFormData(prevState => [...prevState, { ...obj, id: nanoid(8) }]);
-  // }
-  function onDeleteTransaction(id) {
-    if (!selectedTr) return;
-    setFormData(prevState => prevState.filter(el => el._id !== selectedTr));
+  function onChange(ev) {
+    const { name, value } = ev.target;
+    setTransactionData(prevState => {
+      return { ...prevState, [name]: value };
+    });
+    console.log(transactionData);
   }
-  function onEditTransaction({ ev, data }) {
-    // if (isSubFormActive) {
-    // }
-    // if (!isSubFormActive) {
-    // }
-    // setSubFormActive(!isSubFormActive);
-    // setFormData(prevState => {
-    //   const index = prevState.indexOf(el => el._id === newObj._id);
-    //   return prevState.splice(index, 1, newObj);
-    // });
-  }
-  function onCopyTransaction({ ev, data }) {
-    if (!selectedTr) {
-      return;
-    }
-    setFormData(prevState => {
-      console.log('setFormData', prevState);
-      const index = prevState.indexOf(el => el._id === selectedTr);
-      const itemCopy = prevState[index];
+  function onSelect(ev, value, reason, details) {
+    console.log({ ev, value, reason, details });
 
-      return prevState.splice(index, 0, { ...itemCopy, id: nanoid(8) });
+    setTransactionData(prev => {
+      return { ...prev, [value?.name]: value?.value };
     });
   }
-  function onAddNewTransaction({ ev, data }) {
-    const newTr = { _id: nanoid(8), ...data };
-    setFormData(prevState => [...prevState, newTr]);
-  }
-  function onTransactionClick({ ev, data }) {
-    console.log(data);
-    setSelectedTr(data?._id);
-  }
   function onSubmit(ev) {
-    ev.preventDefault();
-    // console.table(formData);
+    console.log('transactionData', transactionData);
+    onAddNewTransaction && onAddNewTransaction({ ev, data: transactionData });
+    onEditTransaction && onEditTransaction({ ev, data: transactionData });
+    onCopyTransaction && onCopyTransaction({ ev, data: transactionData });
+    modal.handleToggleModal();
   }
-  function onReset(ev) {}
+
+  useEffect(() => {
+    if (!data) {
+      return;
+    }
+    setTransactionData(data);
+  }, [data]);
 
   return (
-    <form className={s.form} onSubmit={onSubmit} onReset={onReset}>
-      <div className={s.header}>Створити транзакції</div>
-
-      <div className={s.scroll}>
-        <TableList {...{ tableTitles, tableData: formData, onRowClick: onTransactionClick }} />
-      </div>
-
-      <div className={s.footer}>
-        <fieldset className={s.actions}>
-          <ModalContent
-            trigger={props => (
-              <Button variant="outlined" {...props}>
-                <SvgIcon iconId="plus" style={{ fill: '#000' }} />
-              </Button>
-            )}
-          >
-            <Transaction {...{ onAddNewTransaction }} />
-          </ModalContent>
-
-          <ModalContent
-            trigger={props => (
-              <Button variant="outlined" {...props} disabled={!currentTrRef.current}>
-                <SvgIcon iconId="edit" style={{ fill: '#000' }} />
-              </Button>
-            )}
-          >
-            <Transaction {...{ onEditTransaction }} />
-          </ModalContent>
-
-          <ModalContent
-            trigger={props => (
-              <Button variant="outlined" {...props} disabled={!currentTrRef.current}>
-                <SvgIcon iconId="copy" style={{ fill: '#000' }} />
-              </Button>
-            )}
-          >
-            <Transaction {...{ onCopyTransaction }} />
-          </ModalContent>
-
-          <Button variant="outlined" disabled={!currentTrRef.current} onClick={onDeleteTransaction}>
-            <SvgIcon iconId="delete" style={{ fill: '#000' }} />
-          </Button>
-        </fieldset>
-
-        <div className={s.formBtns}>
-          <Button variant="contained" type="submit">
-            Підтвердити
-          </Button>
-
-          <Button onClick={handleToggleModal}>Закрити</Button>
+    <>
+      <form className={s.subForm} onSubmit={onSubmit} onReset={modal.handleToggleModal}>
+        <div className={s.header}>
+          {onAddNewTransaction && <span>{`Нова транзакція`}</span>}
+          {onEditTransaction && <span>{`Змінити транзакцію`}</span>}
+          {onCopyTransaction && <span>{`Копія транзакції`}</span>}
         </div>
-      </div>
-    </form>
+        <div className={s.scroll}>
+          <div className={s.inputs}>
+            <Input {...{ ...inputs[0], onChange, disabled, data: transactionData }} />
+            <Input {...{ ...inputs[1], onChange, disabled, data: transactionData }} />
+
+            {selects.map((item, idx) => (
+              <Select key={item?.name || idx} {...{ onSelect, disabled, name: item?.name, data: transactionData }} />
+            ))}
+
+            <Input {...{ ...inputs[2], onChange, disabled, data: transactionData }} />
+            <Input {...{ ...inputs[3], onChange, disabled, data: transactionData }} />
+          </div>
+        </div>
+        <div className={s.btns}>
+          <Button variant="contained" type="submit">
+            Прийняти
+          </Button>
+          <Button variant="outlined" type="reset">
+            Скасувати
+          </Button>
+        </div>
+      </form>
+    </>
   );
 };
 

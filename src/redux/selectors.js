@@ -32,3 +32,7 @@ export const getRefundById =
 
 export const categoriesSelector = state => state.categories;
 export const getAllCategories = state => state.categories.categories;
+
+export const transactionsSelector = state => state.transactions;
+export const countsSelector = state => state.counts;
+export const documentsSelector = state => state.documents;
