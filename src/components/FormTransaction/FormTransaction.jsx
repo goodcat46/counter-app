@@ -53,7 +53,7 @@ export const initialTransactionState = {
 };
 
 const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTransaction, onCopyTransaction }) => {
-  const [transactionData, setTransactionData] = useState(data || initialTransactionState);
+  const [formData, setFormData] = useState(data || initialTransactionState);
   const { categories = [] } = useSelector(categoriesSelector);
   const { counts = [] } = useSelector(countsSelector);
   console.log(categories, 'categories =====================>>>>>>>>>>>');
@@ -63,38 +63,38 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
   // function onFormStateChange({ ev, data }) {
   //   if (ev) {
   //     const { name, value } = ev.target;
-  //     setTransactionData(prevState => {
+  //     setFormData(prevState => {
   //       return { ...prevState, [name]: value };
   //     });
   //     return;
   //   }
   //   if (data) {
-  //     setTransactionData(prevState => {
+  //     setFormData(prevState => {
   //       return { ...prevState, ...data };
   //     });
   //   }
   // }
   function onChange(ev) {
     const { name, value } = ev.target;
-    setTransactionData(prevState => {
-      return { ...prevState, [name]: value };
+    setFormData(prev => {
+      return { ...prev, [name]: value };
     });
-    // console.log('onChange', transactionData);
+    // console.log('onChange', formData);
   }
   function onSelect(_ev, value, _reason, _details) {
-    // console.log({ _ev, value, _reason, _details });
+    console.log({ _ev, value, _reason, _details });
 
-    setTransactionData(prev => {
+    setFormData(prev => {
       return { ...prev, [value?.name]: value?.value };
     });
   }
   function onSubmit(ev) {
     ev.preventDefault();
-    console.log('transactionData ===========>>>>>>>>>>', transactionData);
+    console.log('formData ===========>>>>>>>>>>', formData);
 
-    onAddNewTransaction && onAddNewTransaction({ ev, data: transactionData });
-    onEditTransaction && onEditTransaction({ ev, data: transactionData });
-    onCopyTransaction && onCopyTransaction({ ev, data: transactionData });
+    onAddNewTransaction && onAddNewTransaction({ ev, data: formData });
+    onEditTransaction && onEditTransaction({ ev, data: formData });
+    onCopyTransaction && onCopyTransaction({ ev, data: formData });
 
     modal.handleToggleModal();
   }
@@ -102,7 +102,7 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
     if (!data) {
       return;
     }
-    setTransactionData(data);
+    setFormData(data);
   }, [data]);
 
   return (
@@ -110,21 +110,21 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
       <form className={s.subForm} onSubmit={onSubmit} onReset={modal.handleToggleModal}>
         <div className={s.header}>
           {onAddNewTransaction && <span>{`Нова транзакція`}</span>}
-          {onEditTransaction && <span>{`Змінити транзакцію ${transactionData?._id}`}</span>}
-          {onCopyTransaction && <span>{`Копія транзакції ${transactionData?._id}`}</span>}
+          {onEditTransaction && <span>{`Змінити транзакцію ${formData?._id}`}</span>}
+          {onCopyTransaction && <span>{`Копія транзакції ${formData?._id}`}</span>}
         </div>
         <div className={s.scroll}>
           <div className={s.inputs}>
-            <Input {...{ ...inputs.date, onChange, disabled, data: transactionData }} />
+            <Input {...{ ...inputs.date, onChange, disabled, data: formData }} />
 
-            <Select {...{ onSelect, disabled, name: 'type', data: transactionData }} />
+            <Select {...{ onSelect, disabled, name: 'type', data: formData }} />
 
             <SelectDbl
               options={counts}
               onSelect={onSelect}
               parentName="countIn"
               childName="subCountIn"
-              formData={transactionData}
+              formData={formData}
             />
 
             <SelectDbl
@@ -132,22 +132,22 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
               onSelect={onSelect}
               parentName="countOut"
               childName="subCountOut"
-              formData={transactionData}
+              formData={formData}
             />
 
             <SelectDbl
-              options={categories.filter(option => option?.type === transactionData?.type)}
+              options={categories.filter(option => option?.type === formData?.type)}
               onSelect={onSelect}
               parentName="category"
               childName="subCategory"
-              formData={transactionData}
+              formData={formData}
             />
-            <Select {...{ onSelect, disabled, name: 'project', data: transactionData }} />
-            <Select {...{ onSelect, disabled, name: 'document', data: transactionData }} />
-            <Select {...{ onSelect, disabled, name: 'mark', data: transactionData }} />
+            <Select {...{ onSelect, disabled, name: 'project', data: formData }} />
+            <Select {...{ onSelect, disabled, name: 'document', data: formData }} />
+            <Select {...{ onSelect, disabled, name: 'mark', data: formData }} />
 
-            <Input {...{ ...inputs.value, onChange, disabled, data: transactionData }} />
-            <Input {...{ ...inputs.comment, onChange, disabled, data: transactionData }} />
+            <Input {...{ ...inputs.value, onChange, disabled, data: formData }} />
+            <Input {...{ ...inputs.comment, onChange, disabled, data: formData }} />
           </div>
         </div>
         <div className={s.btns}>

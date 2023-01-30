@@ -1,36 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import Select from './Select';
 
-function getParentOptions(options) {
+function getParentOptions(parentName, options) {
   if (!options) return [];
   const filteredOptions = options.filter(option => !option?.owner);
 
   const parentOptions = filteredOptions.map(option => {
-    return { label: option?.name, value: option?._id };
+    return { label: option?.name, value: option?._id, name: parentName };
   });
   return parentOptions || [];
 }
-// function prepeareOptions(options) {}
 
-function getChildOptions(ownerId = null, ownerOption = []) {
+function getChildOptions(childName, ownerId = null, ownerOption = []) {
   if (ownerId || ownerOption) return [];
 
-  console.log('getChildOptions', { ownerId, ownerOption });
   const filteredOptions = ownerOption.filter(option => option?.value === ownerId);
 
-  // const options = filteredOptions.map(option => {
-  //   return { label: option?.name, value: option?._id };
-  // });
+  const childOptions = filteredOptions.map(option => {
+    return { label: option?.name, value: option?._id, name: childName };
+  });
 
-  return filteredOptions || [];
+  return childOptions || [];
 }
+
 const SelectDbl = ({ options = [], onSelect, parentName, childName, formData = {} }) => {
   const [parentOptions, setParentOptions] = useState([]);
   const [childOptions, setChildOptions] = useState([]);
 
   useEffect(() => {
     if (options.length === 0) return;
-    const parentOptions = getParentOptions(options);
+    const parentOptions = getParentOptions(parentName, options);
     if (parentOptions.length === 0) return;
 
     setParentOptions(parentOptions);
@@ -40,12 +39,12 @@ const SelectDbl = ({ options = [], onSelect, parentName, childName, formData = {
     if (parentOptions.length === 0) {
       return;
     }
-    const options = getChildOptions(formData?.category, parentOptions);
+    const options = getChildOptions(childName, formData?.category, parentOptions);
 
     if (options.length === 0) return;
 
     setChildOptions(options);
-  }, [formData, parentName, parentOptions]);
+  }, [childName, formData, parentName, parentOptions]);
 
   return (
     <>
