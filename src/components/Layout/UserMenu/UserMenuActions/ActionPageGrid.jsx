@@ -3,7 +3,7 @@ import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
 import { MinTabletXl } from 'components/DeviceTypeInformer/DeviceTypeController';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionSetPageGrid } from 'redux/page/pageActions';
-import { getAppPageSettings } from 'redux/selectors';
+import { getAppPageSettings } from 'redux/selectors.store.';
 
 import s from './UserMenuActions.module.scss';
 

@@ -4,43 +4,36 @@ const selects = [
   {
     name: 'type',
     label: 'Тип',
-    type: '',
     options: [
-      { label: 'Дохід', value: 'income', name: 'type' },
-      { label: 'Витрата', value: 'expense', name: 'type' },
-      { label: 'Переказ', value: 'transfer', name: 'type' },
+      { label: 'Дохід', value: 'INCOME', name: 'type' },
+      { label: 'Витрата', value: 'EXPENSE', name: 'type' },
+      { label: 'Переказ', value: 'TRANSFER', name: 'type' },
     ],
     required: true,
   },
-  { name: 'countIn', label: 'Рахунок - ДТ', type: '', options: [{ label: 'Рахунок', value: 'countIn' }] },
-  { name: 'subCountIn', label: 'Суб-рахунок - ДТ', type: '', options: [] },
-  { name: 'countOut', label: 'Рахунок - КТ', type: '', options: [] },
-  { name: 'subCountOut', label: 'Суб-рахунок - КТ', type: '', options: [] },
-  { name: 'category', label: 'Категорія', type: '', options: [] },
-  { name: 'counterParty', label: 'Контрагент', type: '', options: [] },
-  { name: 'provider', label: 'Постачальник', type: '', options: [] },
-  { name: 'customer', label: 'Клієнт', type: '', options: [] },
-  {
-    name: 'subCategory',
-    label: 'Під-категорія',
-    type: '',
-    options: [],
-  },
+  { name: 'countIn', label: 'Рахунок/IN' },
+  { name: 'subCountIn', label: 'Суб-рахунок/IN' },
+  { name: 'countOut', label: 'Рахунок/OUT' },
+  { name: 'subCountOut', label: 'Суб-рахунок/OUT' },
+  { name: 'category', label: 'Категорія' },
+  { name: 'subCategory', label: 'Під-категорія' },
+  { name: 'contractor', label: 'Контрагент' },
+  { name: 'document', label: 'Документ' },
+  { name: 'mark', label: 'Мітка' },
+
   {
     name: 'status',
     label: 'Статус',
-    type: '',
     options: [
-      { label: 'Перевірено', value: 'approved', name: 'status' },
-      { label: 'Узгоджено', value: 'ok', name: 'status' },
+      { label: 'Перевірено', value: 'checked', name: 'status' },
+      { label: 'Узгоджено', value: 'approved', name: 'status' },
       { label: 'Проблема', value: 'problem', name: 'status' },
     ],
   },
 ];
 
-const Select = ({ name, onSelect, disabled, data = {}, ...props }) => {
+const Select = ({ name, onSelect, options, disabled, defaultValue, data = {}, ...props }) => {
   let select = selects.find(el => el.name === name);
-  const { label = null } = select;
 
   if (!select) {
     return null;
@@ -48,20 +41,20 @@ const Select = ({ name, onSelect, disabled, data = {}, ...props }) => {
 
   let settings = {
     ...select,
-    // isOptionEqualToValue()
-    // defaultValue: select?.options.find(el => el.value === data[name])?.label || null,
-    options: select?.options || [],
+    options: options || select?.options || [],
   };
-  // console.log('settings', settings.defaultValue, 'data', data);
 
   return (
     <Autocomplete
       {...settings}
       {...props}
+      isOptionEqualToValue={(option, value) => option.value === value.value}
       disablePortal
       onChange={onSelect}
       disabled={disabled}
-      renderInput={params => <TextField variant="standard" {...params} {...{ label }} />}
+      renderInput={params => (
+        <TextField variant="standard" defaultValue={defaultValue} {...params} label={select?.label} />
+      )}
     />
   );
 };

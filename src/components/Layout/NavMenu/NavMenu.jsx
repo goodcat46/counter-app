@@ -5,7 +5,7 @@ import MenuNavLink from './MenuNavLink/MenuNavLink';
 
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { getUserData } from 'redux/selectors';
+import { getUserData } from 'redux/selectors.store.';
 // import { pagesRoutes } from 'data/pagesRoutes';
 
 import s from './NavMenu.module.scss';
