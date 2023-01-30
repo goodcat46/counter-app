@@ -5,7 +5,7 @@ import baseApi from '../../api/baseApi';
 
 export const getAllCategoriesThunk = createAsyncThunk('categories/getAllCategoriesThunk', async (obj, thunkAPI) => {
   try {
-    const response = await baseApi.get(`/category/getAll`);
+    const response = await baseApi.get(`/directories/categories/getAll`);
 
     obj?.onSuccess();
 
@@ -23,7 +23,7 @@ export const getCategoriesByParentIdThunk = createAsyncThunk(
   'categories/getCategoriesByParentIdThunk',
   async (obj, thunkAPI) => {
     try {
-      const response = await baseApi.get(`/category/getByOwnerId/${obj.submitData.id}`);
+      const response = await baseApi.get(`/directories/categories/getByOwnerId/${obj.submitData.id}`);
       console.log(response.data);
 
       obj.onSuccess();
@@ -41,7 +41,7 @@ export const getCategoriesByParentIdThunk = createAsyncThunk(
 
 export const addCategoryThunk = createAsyncThunk('categories/addCategoryThunk', async (obj, thunkAPI) => {
   try {
-    const response = await baseApi.post(`/category/create`, obj.submitData);
+    const response = await baseApi.post(`/directories/categories/create`, obj.submitData);
     console.log(response.data);
 
     obj.onSuccess();
@@ -58,7 +58,7 @@ export const addCategoryThunk = createAsyncThunk('categories/addCategoryThunk', 
 
 export const deleteCategoryThunk = createAsyncThunk('categories/deleteCategoryThunk', async (obj, thunkAPI) => {
   try {
-    const response = await baseApi.delete(`/category/${obj.submitData.id}`);
+    const response = await baseApi.delete(`/directories/categories/delete/${obj.submitData.id}`);
     console.log(response.data);
 
     obj.onSuccess();
@@ -75,7 +75,7 @@ export const deleteCategoryThunk = createAsyncThunk('categories/deleteCategoryTh
 
 export const editCategoryThunk = createAsyncThunk('categories/editCategoryThunk', async (obj, thunkAPI) => {
   try {
-    const response = await baseApi.patch(`/category/${obj.submitData.id}`, obj.submitData.updateData);
+    const response = await baseApi.patch(`/directories/categories/${obj.submitData.id}`, obj.submitData.updateData);
 
     obj.onSuccess(response.data.data);
 

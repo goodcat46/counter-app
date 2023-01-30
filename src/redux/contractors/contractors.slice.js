@@ -5,21 +5,21 @@ import {
   addCategoryThunk,
   deleteCategoryThunk,
   editCategoryThunk,
-} from 'redux/categories/categoriesThunks';
+} from 'redux/contractors/contractorsThunks';
 const initialState = {
   isLoading: false,
   error: null,
-  categories: [],
+  contractors: [],
 };
 
-export const categoriesSlice = createSlice({
-  name: 'categories',
+export const contractorsSlice = createSlice({
+  name: 'contractors',
   initialState,
   extraReducers: {
     [getAllCategoriesThunk.fulfilled]: (state, action) => {
       state.isLoading = false;
 
-      state.categories = action.payload.data;
+      state.contractors = action.payload.data;
     },
     [getAllCategoriesThunk.pending]: (state, action) => {
       state.isLoading = true;
@@ -35,7 +35,7 @@ export const categoriesSlice = createSlice({
 
     [addCategoryThunk.fulfilled]: (state, action) => {
       state.isloading = false;
-      state.categories.push(action.payload.data);
+      state.contractors.push(action.payload.data);
     },
     [addCategoryThunk.pending]: (state, action) => {
       state.isloading = true;
@@ -51,15 +51,15 @@ export const categoriesSlice = createSlice({
 
     [editCategoryThunk.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      const index = state.categories.findIndex(el => el._id === payload.data._id);
+      const index = state.contractors.findIndex(el => el._id === payload.data._id);
 
-      state.categories[index] = { ...payload.data };
+      state.contractors[index] = { ...payload.data };
 
-      console.log(index, state.categories[index].isArchived);
+      console.log(index, state.contractors[index].isArchived);
     },
     [editCategoryThunk.pending]: (state, action) => {},
     [editCategoryThunk.rejected]: (state, action) => {},
   },
 });
 
-export const categoriesReducer = categoriesSlice.reducer;
+export const contractorsReducer = contractorsSlice.reducer;

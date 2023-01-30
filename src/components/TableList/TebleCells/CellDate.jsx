@@ -10,10 +10,10 @@ const CellDate = ({ title, className, onClick }) => {
   const content = rowData[title?.dataKey];
   const actionClassName = content ? s[title?.action] : s.empty;
   const classNames = [s.coll, s.collDate, actionClassName, className].join(' ');
-
+  console.log(rowData[title?.dataKey]);
   return (
     <div className={classNames} onClick={onClick}>
-      <DateInfo dateInfo={title?.title && rowData[title?.title]} />
+      <DateInfo dateInfo={title?.dataKey && rowData[title?.dataKey]} />
     </div>
   );
 };

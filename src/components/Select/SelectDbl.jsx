@@ -2,7 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Select from './Select';
 import { getParentOptions, getChildOptions } from './select.utils';
 
-const SelectDbl = ({ options = [], onSelect, parentName = '', childName = '', formData = {}, disabled = false }) => {
+const SelectDbl = ({
+  options = [],
+  onSelect,
+  parentName = '',
+  childName = '',
+  formData = {},
+  reset = false,
+  disabled = false,
+}) => {
   const [parentOptions, setParentOptions] = useState([]);
   const [childOptions, setChildOptions] = useState([]);
   const [parentId, setParentId] = useState(null);
@@ -34,6 +42,7 @@ const SelectDbl = ({ options = [], onSelect, parentName = '', childName = '', fo
           options: parentOptions,
           name: parentName,
           onSelect,
+          reset,
         }}
       />
       <Select
@@ -42,6 +51,7 @@ const SelectDbl = ({ options = [], onSelect, parentName = '', childName = '', fo
           name: childName,
           onSelect,
           disabled: childOptions.length === 0,
+          reset,
         }}
       />
     </>
