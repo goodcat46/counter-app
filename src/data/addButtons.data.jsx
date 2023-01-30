@@ -1,6 +1,6 @@
 import FormTransaction from 'components/FormTransaction/FormTransaction';
 import FormTransactions from 'components/FormTransactions/FormTransactions';
-
+import CreateTransactionComp from 'components/CreateTransactionComp/CreateTransactionComp';
 const addButtons = [
   { title: 'Документ', ModalChildren: () => null, modalChildrenProps: null },
   { title: 'Проект', ModalChildren: () => null, modalChildrenProps: null },
@@ -11,7 +11,7 @@ const addButtons = [
   { title: 'Мітка', ModalChildren: () => null, modalChildrenProps: null },
   {
     title: 'Транзакція',
-    ModalChildren: FormTransaction,
+    ModalChildren: CreateTransactionComp,
     modalChildrenProps: {
       onAddNewTransaction: data => {
         console.log(data);

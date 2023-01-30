@@ -7,7 +7,7 @@ import SvgIcon from 'components/SvgIcon/SvgIcon';
 import ModalContent from 'components/ModalContent/ModalContent';
 import TableList from 'components/TableList/TableList';
 import { nanoid } from '@reduxjs/toolkit';
-import { transactionsSelector } from 'redux/selectors';
+import { transactionsSelector } from 'redux/selectors.store.';
 
 import s from './FormTransactions.module.scss';
 

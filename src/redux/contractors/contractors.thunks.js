@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import baseApi from '../../services/baseApi';
+import baseApi from '../../api/baseApi';
 // import { token } from '../../services/baseApi';
 
 export const getAllCategoriesThunk = createAsyncThunk('categories/getAllCategoriesThunk', async (obj, thunkAPI) => {
@@ -19,22 +19,25 @@ export const getAllCategoriesThunk = createAsyncThunk('categories/getAllCategori
   }
 });
 
-export const getCategoriesByParentIdThunk = createAsyncThunk('categories/getCategoriesByParentIdThunk', async (obj, thunkAPI) => {
-  try {
-    const response = await baseApi.get(`/category/getByOwnerId/${obj.submitData.id}`);
-    console.log(response.data);
+export const getCategoriesByParentIdThunk = createAsyncThunk(
+  'categories/getCategoriesByParentIdThunk',
+  async (obj, thunkAPI) => {
+    try {
+      const response = await baseApi.get(`/category/getByOwnerId/${obj.submitData.id}`);
+      console.log(response.data);
 
-    obj.onSuccess();
+      obj.onSuccess();
 
-    return response.data;
-  } catch (error) {
-    // console.log(error);
+      return response.data;
+    } catch (error) {
+      // console.log(error);
 
-    obj.onError();
+      obj.onError();
 
-    return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const addCategoryThunk = createAsyncThunk('categories/addCategoryThunk', async (obj, thunkAPI) => {
   try {
