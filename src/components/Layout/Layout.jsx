@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { getAllCategoriesThunk } from 'redux/categories/categoriesThunks';
 import { getAllCountsThunk } from 'redux/counts/counts.thunks';
 import { getAllTransactionsThunk } from 'redux/transactions/transactions.thunks';
+import { toast } from 'react-toastify';
 
 // import s from './Layout.module.scss';
 const Layout = ({ children }) => {
@@ -13,10 +14,18 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     if (window.location.hostname === 'localhost') {
+      const payload = thunkName => {
+        return {
+          onSuccess: response => {},
+          onError: error => {
+            toast.error(`${thunkName} - ${error.message}`);
+          },
+        };
+      };
       baseURL.setLocalhost();
-      dispatch(getAllCategoriesThunk());
-      dispatch(getAllCountsThunk());
-      dispatch(getAllTransactionsThunk());
+      dispatch(getAllCategoriesThunk(payload('categories')));
+      dispatch(getAllCountsThunk(payload('counts')));
+      dispatch(getAllTransactionsThunk(payload('transactions')));
     }
   }, [dispatch]);
   return (

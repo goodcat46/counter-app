@@ -1,66 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import Select from './Select';
+import { getParentOptions, getChildOptions } from 'data';
 
-function getParentOptions(parentName, options) {
-  if (!options) return [];
-  const filteredOptions = options.filter(option => !option?.owner);
-
-  const parentOptions = filteredOptions.map(option => {
-    return { label: option?.name, value: option?._id, name: parentName };
-  });
-  return parentOptions || [];
-}
-
-function getChildOptions(childName, ownerId = null, ownerOption = []) {
-  if (ownerId || ownerOption) return [];
-
-  const filteredOptions = ownerOption.filter(option => option?.value === ownerId);
-
-  const childOptions = filteredOptions.map(option => {
-    return { label: option?.name, value: option?._id, name: childName };
-  });
-
-  return childOptions || [];
-}
-
-const SelectDbl = ({ options = [], onSelect, parentName, childName, formData = {} }) => {
+const SelectDbl = ({
+  options = [],
+  onSelect,
+  parentName = '',
+  childName = '',
+  formData = {},
+  reset = false,
+  disabled = false,
+}) => {
   const [parentOptions, setParentOptions] = useState([]);
   const [childOptions, setChildOptions] = useState([]);
+  const [parentId, setParentId] = useState(null);
 
   useEffect(() => {
-    if (options.length === 0) return;
+    if (disabled || options.length === 0) return;
+
     const parentOptions = getParentOptions(parentName, options);
-    if (parentOptions.length === 0) return;
 
+    if (parentOptions.length === 0) return;
     setParentOptions(parentOptions);
-  }, [options]);
+    setParentId(formData[parentName]);
+  }, [childName, disabled, formData, options, parentId, parentName]);
 
   useEffect(() => {
-    if (parentOptions.length === 0) {
-      return;
-    }
-    const options = getChildOptions(childName, formData?.category, parentOptions);
+    if (disabled || !parentId) return;
 
-    if (options.length === 0) return;
-
-    setChildOptions(options);
-  }, [childName, formData, parentName, parentOptions]);
+    const childOptions = getChildOptions({ childName, parentId, options });
+    // console.log('childFilterOptions', { childName, parentId, options });
+    setChildOptions(childOptions);
+    // console.log('childOptions', childOptions);
+  }, [childName, parentId, options, disabled]);
 
   return (
     <>
       <Select
         {...{
+          disabled,
           options: parentOptions,
           name: parentName,
           onSelect,
+          reset,
         }}
       />
       <Select
         {...{
-          // options: childOptions,
+          options: childOptions,
           name: childName,
           onSelect,
           disabled: childOptions.length === 0,
+          reset,
         }}
       />
     </>

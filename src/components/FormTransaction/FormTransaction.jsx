@@ -14,11 +14,10 @@ const inputs = {
     name: 'transactionDate',
     label: '',
     type: 'datetime-local',
-    value: new Date().toLocaleDateString(),
     variant: 'standard',
   },
   time: { name: 'time', label: '', type: 'time', variant: 'standard' },
-  value: { name: 'value', label: 'Сума', type: 'number', variant: 'standard' },
+  amount: { name: 'amount', label: 'Сума', type: 'number', variant: 'standard' },
   comment: { name: 'comment', label: 'Коментар', type: 'text', variant: 'standard' },
 };
 // const selects = [
@@ -36,28 +35,34 @@ const inputs = {
 // ];
 export const initialTransactionState = {
   transactionDate: '',
-  type: '',
-  countIn: '',
-  subCountIn: '',
-  countOut: '',
-  subCountOut: '',
-  category: '',
-  subCategory: '',
-  value: '',
-  contractor: '',
-  document: '',
-  project: '',
-  mark: '',
+  type: null,
+  countIn: null,
+  subCountIn: null,
+  countOut: null,
+  subCountOut: null,
+  category: null,
+  subCategory: null,
+  value: null,
+  contractor: null,
+  document: null,
+  project: null,
+  mark: null,
   tags: [],
-  comment: '',
+  comment: null,
 };
 
 const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTransaction, onCopyTransaction }) => {
-  const [formData, setFormData] = useState(data || initialTransactionState);
+  const [formData, setFormData] = useState(data || {});
   const { categories = [] } = useSelector(categoriesSelector);
   const { counts = [] } = useSelector(countsSelector);
-  console.log(categories, 'categories =====================>>>>>>>>>>>');
-  console.log(counts, 'counts =====================>>>>>>>>>>>');
+  // const { contractors = [] } = useSelector(contractorsSelector);
+  // const { documents = [] } = useSelector(documentsSelector);
+
+  // console.log(categories, 'categories =====================>>>>>>>>>>>');
+  // console.log(counts, 'counts =====================>>>>>>>>>>>');
+
+  // console.log(contractors, 'categories =====================>>>>>>>>>>>');
+  // console.log(documents, 'counts =====================>>>>>>>>>>>');
   const modal = useModal();
 
   // function onFormStateChange({ ev, data }) {
@@ -74,6 +79,7 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
   //     });
   //   }
   // }
+
   function onChange(ev) {
     const { name, value } = ev.target;
     setFormData(prev => {
@@ -81,11 +87,11 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
     });
     // console.log('onChange', formData);
   }
-  function onSelect(_ev, value, _reason, _details) {
-    console.log({ _ev, value, _reason, _details });
+  function onSelect({ ev, data, reason, details }) {
+    // console.log({ ev, data, reason, details });
 
     setFormData(prev => {
-      return { ...prev, [value?.name]: value?.value };
+      return { ...prev, [data?.name]: data?.value };
     });
   }
   function onSubmit(ev) {
@@ -122,31 +128,35 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
             <SelectDbl
               options={counts}
               onSelect={onSelect}
-              parentName="countIn"
-              childName="subCountIn"
+              parentName="countIdIn"
+              childName="subCountIdIn"
               formData={formData}
+              disabled={formData.type === 'EXPENSE'}
             />
 
             <SelectDbl
               options={counts}
               onSelect={onSelect}
-              parentName="countOut"
-              childName="subCountOut"
+              parentName="countIdOut"
+              childName="subCountIdOut"
               formData={formData}
+              disabled={formData.type === 'INCOME'}
             />
 
             <SelectDbl
               options={categories.filter(option => option?.type === formData?.type)}
               onSelect={onSelect}
-              parentName="category"
-              childName="subCategory"
+              parentName="categoryId"
+              childName="subCategoryId"
               formData={formData}
+              disabled={!formData.type}
             />
+            <Input {...{ ...inputs.amount, onChange, disabled, data: formData }} />
+
             <Select {...{ onSelect, disabled, name: 'project', data: formData }} />
             <Select {...{ onSelect, disabled, name: 'document', data: formData }} />
             <Select {...{ onSelect, disabled, name: 'mark', data: formData }} />
 
-            <Input {...{ ...inputs.value, onChange, disabled, data: formData }} />
             <Input {...{ ...inputs.comment, onChange, disabled, data: formData }} />
           </div>
         </div>

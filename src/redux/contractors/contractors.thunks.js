@@ -1,89 +1,97 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-import baseApi from '../../api/baseApi';
+import { baseApi } from 'api';
 // import { token } from '../../services/baseApi';
 
-export const getAllCategoriesThunk = createAsyncThunk('categories/getAllCategoriesThunk', async (obj, thunkAPI) => {
-  try {
-    const response = await baseApi.get(`/category/getAll`);
-
-    obj?.onSuccess();
-
-    return response.data;
-  } catch (error) {
-    // console.log(error);
-
-    obj?.onError();
-
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
-export const getCategoriesByParentIdThunk = createAsyncThunk(
-  'categories/getCategoriesByParentIdThunk',
-  async (obj, thunkAPI) => {
+export const getAllContractorsThunk = createAsyncThunk(
+  'contractors/getAllContractorsThunk',
+  async (payload, thunkAPI) => {
     try {
-      const response = await baseApi.get(`/category/getByOwnerId/${obj.submitData.id}`);
-      console.log(response.data);
+      const response = await baseApi.get(`/directories/contractors/getAll`);
 
-      obj.onSuccess();
+      payload?.onSuccess(response);
 
       return response.data;
     } catch (error) {
-      // console.log(error);
+      console.log(error);
 
-      obj.onError();
+      payload?.onError(error);
 
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const addCategoryThunk = createAsyncThunk('categories/addCategoryThunk', async (obj, thunkAPI) => {
-  try {
-    const response = await baseApi.post(`/category/create`, obj.submitData);
-    console.log(response.data);
+export const getContractorsByParentIdThunk = createAsyncThunk(
+  'contractors/getContractorsByParentIdThunk',
+  async (payload, thunkAPI) => {
+    try {
+      const response = await baseApi.get(`/directories/contractors/getByOwnerId/${payload?.submitData._id}`);
+      console.log(response.data);
 
-    obj.onSuccess();
+      payload?.onSuccess(response);
 
-    return response.data;
-  } catch (error) {
-    // console.log(error);
+      return response.data;
+    } catch (error) {
+      console.log(error);
 
-    obj.onError();
+      payload?.onError(error);
 
-    return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
-export const deleteCategoryThunk = createAsyncThunk('categories/deleteCategoryThunk', async (obj, thunkAPI) => {
+export const addContractorThunk = createAsyncThunk('contractors/addContractorThunk', async (payload, thunkAPI) => {
   try {
-    const response = await baseApi.delete(`/category/${obj.submitData.id}`);
+    const response = await baseApi.post(`/directories/contractors/create`, payload?.submitData);
     console.log(response.data);
 
-    obj.onSuccess();
+    payload?.onSuccess(response);
 
     return response.data;
   } catch (error) {
     console.log(error);
 
-    obj.onError();
+    payload?.onError(error);
 
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-export const editCategoryThunk = createAsyncThunk('categories/editCategoryThunk', async (obj, thunkAPI) => {
-  try {
-    const response = await baseApi.patch(`/category/${obj.submitData.id}`, obj.submitData.updateData);
+export const deleteContractorThunk = createAsyncThunk(
+  'contractors/deleteContractorThunk',
+  async (payload, thunkAPI) => {
+    try {
+      const response = await baseApi.delete(`/directories/contractors/delete/${payload?.submitData._id}`);
+      console.log(response.data);
 
-    obj.onSuccess(response.data.data);
+      payload?.onSuccess(response);
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+
+      payload?.onError(error);
+
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editContractorThunk = createAsyncThunk('contractors/editContractorThunk', async (payload, thunkAPI) => {
+  try {
+    const response = await baseApi.patch(
+      `/directories/contractors/${payload?.submitData._id}`,
+      payload?.submitData.updateData
+    );
+
+    payload?.onSuccess(response.data.data);
 
     return response.data;
   } catch (error) {
     console.log(error);
 
-    obj.onError();
+    payload?.onError(error);
 
     return thunkAPI.rejectWithValue(error.message);
   }

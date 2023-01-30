@@ -9,13 +9,13 @@ export const getAllTransactionsThunk = createAsyncThunk(
     try {
       const response = await baseApi.get(`/transactions/getAll`);
 
-      payload?.onSuccess();
+      payload?.onSuccess(response);
 
       return response.data;
     } catch (error) {
-      // console.log(error);
+      console.log(error);
 
-      payload?.onError();
+      payload?.onError(error);
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -29,13 +29,13 @@ export const getTransactionsByParentIdThunk = createAsyncThunk(
       const response = await baseApi.get(`/transactions/getByOwnerId/${payload.submitData.id}`);
       console.log(response.data);
 
-      payload.onSuccess();
+      payload?.onSuccess(response);
 
       return response.data;
     } catch (error) {
-      // console.log(error);
+      console.log(error);
 
-      payload.onError();
+      payload?.onError(error);
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -45,15 +45,15 @@ export const getTransactionsByParentIdThunk = createAsyncThunk(
 export const addTransactionThunk = createAsyncThunk('transactions/addTransactionThunk', async (payload, thunkAPI) => {
   try {
     const response = await baseApi.post(`/transactions/create`, payload.submitData);
-    console.log(response.data);
+    console?.log(response.data);
 
-    payload.onSuccess();
+    payload?.onSuccess(response);
 
     return response.data;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
 
-    payload.onError();
+    payload?.onError(error);
 
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -66,13 +66,13 @@ export const addManyTransactionsThunk = createAsyncThunk(
       const response = await baseApi.post(`/transactions/createMany`, payload.submitData);
       console.log(response.data);
 
-      payload.onSuccess();
+      payload?.onSuccess(response);
 
       return response.data;
     } catch (error) {
-      // console.log(error);
+      console.log(error);
 
-      payload.onError();
+      payload?.onError(error);
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -86,13 +86,13 @@ export const deleteTransactionThunk = createAsyncThunk(
       const response = await baseApi.delete(`/transactions/${payload.submitData.id}`);
       console.log(response.data);
 
-      payload.onSuccess();
+      payload?.onSuccess();
 
       return response.data;
     } catch (error) {
       console.log(error);
 
-      payload.onError();
+      payload?.onError();
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -103,13 +103,13 @@ export const editTransactionThunk = createAsyncThunk('transactions/editTransacti
   try {
     const response = await baseApi.patch(`/transactions/${payload.submitData.id}`, payload.submitData.updateData);
 
-    payload.onSuccess(response.data.data);
+    payload?.onSuccess(response.data.data);
 
     return response.data;
   } catch (error) {
     console.log(error);
 
-    payload.onError();
+    payload?.onError();
 
     return thunkAPI.rejectWithValue(error.message);
   }
