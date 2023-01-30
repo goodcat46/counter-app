@@ -11,10 +11,10 @@ function getParentOptions(parentName, options) {
   return parentOptions || [];
 }
 
-function getChildOptions(childName, ownerId = null, ownerOption = []) {
-  if (ownerId || ownerOption) return [];
-
-  const filteredOptions = ownerOption.filter(option => option?.value === ownerId);
+function getChildOptions({ childName, parentId, options }) {
+  if (!childName || !parentId || !options) return [];
+  console.log('getChildOptions', { childName, parentId, options });
+  const filteredOptions = options.filter(option => option?.owner === parentId || option?.owner?._id === parentId);
 
   const childOptions = filteredOptions.map(option => {
     return { label: option?.name, value: option?._id, name: childName };
@@ -23,33 +23,37 @@ function getChildOptions(childName, ownerId = null, ownerOption = []) {
   return childOptions || [];
 }
 
-const SelectDbl = ({ options = [], onSelect, parentName, childName, formData = {} }) => {
+const SelectDbl = ({ options = [], onSelect, parentName = '', childName = '', formData = {}, disabled = false }) => {
   const [parentOptions, setParentOptions] = useState([]);
   const [childOptions, setChildOptions] = useState([]);
+  const [parentId, setParentId] = useState(null);
 
+  console.log(`${parentName}`, options);
   useEffect(() => {
+    if (disabled) return;
+
     if (options.length === 0) return;
     const parentOptions = getParentOptions(parentName, options);
     if (parentOptions.length === 0) return;
-
     setParentOptions(parentOptions);
-  }, [options]);
+    setParentId(formData[parentName]);
+  }, [childName, disabled, formData, options, parentId, parentName]);
 
   useEffect(() => {
-    if (parentOptions.length === 0) {
-      return;
-    }
-    const options = getChildOptions(childName, formData?.category, parentOptions);
+    if (disabled) return;
 
-    if (options.length === 0) return;
-
-    setChildOptions(options);
-  }, [childName, formData, parentName, parentOptions]);
+    if (!parentId) return;
+    const childOptions = getChildOptions({ childName, parentId, options });
+    console.log('childFilterOptions', { childName, parentId, options });
+    setChildOptions(childOptions);
+    console.log('childOptions', childOptions);
+  }, [childName, parentId, options, disabled]);
 
   return (
     <>
       <Select
         {...{
+          disabled,
           options: parentOptions,
           name: parentName,
           onSelect,
@@ -57,7 +61,7 @@ const SelectDbl = ({ options = [], onSelect, parentName, childName, formData = {
       />
       <Select
         {...{
-          // options: childOptions,
+          options: childOptions,
           name: childName,
           onSelect,
           disabled: childOptions.length === 0,

@@ -82,7 +82,7 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
     // console.log('onChange', formData);
   }
   function onSelect(_ev, value, _reason, _details) {
-    console.log({ _ev, value, _reason, _details });
+    // console.log({ _ev, value, _reason, _details });
 
     setFormData(prev => {
       return { ...prev, [value?.name]: value?.value };
@@ -125,6 +125,7 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
               parentName="countIn"
               childName="subCountIn"
               formData={formData}
+              disabled={formData.type === 'EXPENSE'}
             />
 
             <SelectDbl
@@ -133,6 +134,7 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
               parentName="countOut"
               childName="subCountOut"
               formData={formData}
+              disabled={formData.type === 'INCOME'}
             />
 
             <SelectDbl
@@ -141,7 +143,9 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
               parentName="category"
               childName="subCategory"
               formData={formData}
+              disabled={!formData.type}
             />
+
             <Select {...{ onSelect, disabled, name: 'project', data: formData }} />
             <Select {...{ onSelect, disabled, name: 'document', data: formData }} />
             <Select {...{ onSelect, disabled, name: 'mark', data: formData }} />
