@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import baseApi from '../../services/baseApi';
+import baseApi from '../../api/baseApi';
 // import { token } from '../../services/baseApi';
 
 export const getAllDocumentsThunk = createAsyncThunk('documents/getAllDocumentsThunk', async (payload, thunkAPI) => {

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getUserData } from 'redux/selectors';
+import { getUserData } from 'redux/selectors.store.';
 export default function PrivateRoute({ redirectTo, ...routeProps }) {
   const { isLoggedIn } = useSelector(getUserData);
 

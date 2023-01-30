@@ -20,7 +20,7 @@ export const transactionsTableTitles = [
   { id: 11, title: 'Мітка', dataKey: 'mark', action: 'string', width: '100px' },
 
   { id: 11, title: 'Теги', dataKey: 'tags', action: 'arrayOfString', width: '100px' },
-  { id: 11, title: 'Коментар', dataKey: 'comment', action: 'string', width: '100px' },
+  { id: 11, title: 'Коментар', dataKey: 'comment', action: 'string', width: '200px' },
 
   { id: 12, title: 'Створено/Оновлено', dataKey: 'createdAt/updatedAt', action: 'dateDbl', width: '180px' },
 ];
@@ -54,7 +54,7 @@ export const transactionsTestData = [
     createdAt: '',
     updatedAt: '',
     transactionDate: '21-01-2023 12:52:45',
-    type: 'income',
+    type: 'INCOME',
     countIn: 'Основна діяльність',
     subCountIn: 'Розрахунок з клієнтом',
     countOut: null,
@@ -79,7 +79,7 @@ export const transactionsTestData = [
   {
     _id: '6r5th1d6f5xfgbxfgf51hn651',
     transactionDate: '21-01-2023 12:52:45',
-    type: 'expense',
+    type: 'EXPENSE',
     countIn: null,
     subCountIn: null,
     countOut: 'Основна діяльність',
@@ -91,7 +91,7 @@ export const transactionsTestData = [
   },
   {
     _id: '6r5txdgfnbxf5g1n6df51hn651',
-    type: 'transfer',
+    type: 'TRANSFER',
     transactionDate: '21-01-2023 12:52:45',
     countIn: 'Поповнення банківськго рахунку',
     subCountIn: 'Рахунок у "ПрихватБанк"',

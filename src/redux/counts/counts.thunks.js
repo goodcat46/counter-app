@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import baseApi from '../../services/baseApi';
+import baseApi from '../../api/baseApi';
 // import { token } from '../../services/baseApi';
 
 export const getAllCountsThunk = createAsyncThunk('counts/getAllCountsThunk', async (payload, thunkAPI) => {
   try {
-    const response = await baseApi.get(`/counts/getAll`);
+    const response = await baseApi.get(`/directories/counts/getAll`);
 
     payload?.onSuccess();
 
@@ -23,7 +23,7 @@ export const getCountsByParentIdThunk = createAsyncThunk(
   'counts/getCountsByParentIdThunk',
   async (payload, thunkAPI) => {
     try {
-      const response = await baseApi.get(`/counts/getByOwnerId/${payload.submitData.id}`);
+      const response = await baseApi.get(`/directories/counts/getByOwnerId/${payload.submitData.id}`);
       console.log(response.data);
 
       payload.onSuccess();
@@ -41,7 +41,7 @@ export const getCountsByParentIdThunk = createAsyncThunk(
 
 export const addCountThunk = createAsyncThunk('counts/addCountThunk', async (payload, thunkAPI) => {
   try {
-    const response = await baseApi.post(`/counts/create`, payload.submitData);
+    const response = await baseApi.post(`/directories/counts/create`, payload.submitData);
     console.log(response.data);
 
     payload.onSuccess();
@@ -58,7 +58,7 @@ export const addCountThunk = createAsyncThunk('counts/addCountThunk', async (pay
 
 export const deleteCountThunk = createAsyncThunk('counts/deleteCountThunk', async (payload, thunkAPI) => {
   try {
-    const response = await baseApi.delete(`/counts/${payload.submitData.id}`);
+    const response = await baseApi.delete(`/directories/counts/${payload.submitData.id}`);
     console.log(response.data);
 
     payload.onSuccess();
@@ -75,7 +75,7 @@ export const deleteCountThunk = createAsyncThunk('counts/deleteCountThunk', asyn
 
 export const editCountThunk = createAsyncThunk('counts/editCountThunk', async (payload, thunkAPI) => {
   try {
-    const response = await baseApi.patch(`/counts/${payload.submitData.id}`, payload.submitData.updateData);
+    const response = await baseApi.patch(`/directories/counts/${payload.submitData.id}`, payload.submitData.updateData);
 
     payload.onSuccess(response.data.data);
 
