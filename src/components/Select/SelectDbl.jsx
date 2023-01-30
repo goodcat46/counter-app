@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Select from './Select';
-import { getParentOptions, getChildOptions } from './select.utils';
+import { getParentOptions, getChildOptions } from 'data';
 
 const SelectDbl = ({
   options = [],

@@ -3,17 +3,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseApi from '../../api/baseApi';
 // import { token } from '../../services/baseApi';
 
-export const getAllCategoriesThunk = createAsyncThunk('categories/getAllCategoriesThunk', async (obj, thunkAPI) => {
+export const getAllCategoriesThunk = createAsyncThunk('categories/getAllCategoriesThunk', async (payload, thunkAPI) => {
   try {
     const response = await baseApi.get(`/directories/categories/getAll`);
 
-    obj?.onSuccess();
+    payload?.onSuccess(response);
 
     return response.data;
   } catch (error) {
     // console.log(error);
 
-    obj?.onError();
+    payload?.onError(error);
 
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -21,69 +21,72 @@ export const getAllCategoriesThunk = createAsyncThunk('categories/getAllCategori
 
 export const getCategoriesByParentIdThunk = createAsyncThunk(
   'categories/getCategoriesByParentIdThunk',
-  async (obj, thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
-      const response = await baseApi.get(`/directories/categories/getByOwnerId/${obj.submitData.id}`);
+      const response = await baseApi.get(`/directories/categories/getByOwnerId/${payload?.submitData.id}`);
       console.log(response.data);
 
-      obj.onSuccess();
+      payload?.onSuccess(response);
 
       return response.data;
     } catch (error) {
       // console.log(error);
 
-      obj.onError();
+      payload?.onError(error);
 
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const addCategoryThunk = createAsyncThunk('categories/addCategoryThunk', async (obj, thunkAPI) => {
+export const addCategoryThunk = createAsyncThunk('categories/addCategoryThunk', async (payload, thunkAPI) => {
   try {
-    const response = await baseApi.post(`/directories/categories/create`, obj.submitData);
+    const response = await baseApi.post(`/directories/categories/create`, payload?.submitData);
     console.log(response.data);
 
-    obj.onSuccess();
+    payload?.onSuccess(response);
 
     return response.data;
   } catch (error) {
     // console.log(error);
 
-    obj.onError();
+    payload?.onError(error);
 
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-export const deleteCategoryThunk = createAsyncThunk('categories/deleteCategoryThunk', async (obj, thunkAPI) => {
+export const deleteCategoryThunk = createAsyncThunk('categories/deleteCategoryThunk', async (payload, thunkAPI) => {
   try {
-    const response = await baseApi.delete(`/directories/categories/delete/${obj.submitData.id}`);
+    const response = await baseApi.delete(`/directories/categories/delete/${payload?.submitData.id}`);
     console.log(response.data);
 
-    obj.onSuccess();
+    payload?.onSuccess(response);
 
     return response.data;
   } catch (error) {
     console.log(error);
 
-    obj.onError();
+    payload?.onError(error);
 
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-export const editCategoryThunk = createAsyncThunk('categories/editCategoryThunk', async (obj, thunkAPI) => {
+export const editCategoryThunk = createAsyncThunk('categories/editCategoryThunk', async (payload, thunkAPI) => {
   try {
-    const response = await baseApi.patch(`/directories/categories/${obj.submitData.id}`, obj.submitData.updateData);
+    const response = await baseApi.patch(
+      `/directories/categories/${payload?.submitData.id}`,
+      payload?.submitData.updateData
+    );
 
-    obj.onSuccess(response.data.data);
+    payload?.onSuccess(response);
 
     return response.data;
   } catch (error) {
     console.log(error);
 
-    obj.onError();
+    payload?.onError(error);
 
     return thunkAPI.rejectWithValue(error.message);
   }

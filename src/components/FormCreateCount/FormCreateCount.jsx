@@ -8,6 +8,7 @@ import { Button } from '@mui/material';
 import { useModal } from 'components/ModalContent/Modal';
 import { addCountThunk } from 'redux/counts/counts.thunks';
 import { toast } from 'react-toastify';
+import { selects, getOwnerOptions } from 'data';
 
 import s from './FormCreateCount.module.scss';
 
@@ -17,11 +18,6 @@ const FormCreateCount = () => {
   const dispatch = useDispatch();
   const modal = useModal();
   const { counts = [] } = useSelector(countsSelector);
-
-  let filteredCounts = counts.filter(opt => !opt?.owner);
-  let options = filteredCounts.map(opt => {
-    return { label: `${opt?.name} (${opt?.type}) (${opt?.code})`, value: opt?._id, name: 'owner', type: opt?.type };
-  });
 
   function onChange(ev) {
     const { name, value } = ev.target;
@@ -45,7 +41,7 @@ const FormCreateCount = () => {
   }
   function onSubmit(ev) {
     ev.preventDefault();
-    toast.error('error.message');
+
     const payload = {
       submitData: formData,
       onSuccess: response => {
@@ -55,8 +51,6 @@ const FormCreateCount = () => {
         // modal.handleToggleModal();
       },
       onError: error => {
-        console.log('error ==========!!!!!!', error);
-
         toast.error(error.message);
       },
     };
@@ -72,17 +66,12 @@ const FormCreateCount = () => {
           <span>Створення рахунку</span>
         </div>
         <div className={s.inputs}>
-          <Select {...{ onSelect, required: true, label: 'Батьківський рахунок', name: 'owner', options: options }} />
+          <Select {...{ onSelect, ...selects.parentCount, options: getOwnerOptions(counts) }} />
 
           <Select
             {...{
               onSelect,
-              label: 'Тип',
-              name: 'type',
-              options: [
-                { label: 'ПАСИВНИЙ', value: 'PASSIVE', name: 'type' },
-                { label: 'АКТИВНИЙ', value: 'ACTIVE', name: 'type' },
-              ],
+              ...selects.countType,
             }}
           />
 
@@ -93,7 +82,9 @@ const FormCreateCount = () => {
         </div>
         <div className={s.btns}>
           <Button type="submit">Прийняти</Button>
-          <Button type="reset">Відхилити</Button>
+          <Button type="reset" onClick={() => toast.info('sdfbfgxc')}>
+            Відхилити
+          </Button>
         </div>
       </form>
     </div>

@@ -1,45 +1,45 @@
 import { Autocomplete, TextField } from '@mui/material';
-import { selects } from './select.utils';
 
 const Select = ({
   name,
-  label,
+  label = 'Empty',
   onSelect,
-  options,
+  options = [],
   disabled = false,
   reset = false,
   defaultValue,
+  value,
   data = {},
-  required,
+  required = false,
   ...props
 }) => {
-  let select = selects.find(el => el.name === name);
-  let value = !reset && data[name] && data[name];
-  function handleSelect(ev, value, reason, details) {
+  function onChange(ev, value, reason, details) {
     onSelect && onSelect({ ev, value, reason, details });
+    !onSelect && console.log({ name, label, ev, value, reason, details });
   }
+
   return (
-    <>
-      <Autocomplete
-        options={options || select?.options || []}
-        isOptionEqualToValue={(option, value) => option.value === value.value}
-        disablePortal
-        onChange={handleSelect}
-        disabled={disabled}
-        renderInput={params => (
-          <TextField
-            variant="standard"
-            {...{
-              defaultValue,
-              value,
-              required: required || select?.required,
-              label: label || select?.label || 'empty',
-            }}
-            {...params}
-          />
-        )}
-      />
-    </>
+    <Autocomplete
+      {...{
+        isOptionEqualToValue: (option, value) => option.value === value.value,
+        disablePortal: true,
+        disabled,
+        onChange,
+        options: options || [],
+      }}
+      renderInput={params => (
+        <TextField
+          variant="standard"
+          {...{
+            defaultValue,
+            value,
+            required,
+            label,
+          }}
+          {...params}
+        />
+      )}
+    />
   );
 };
 export default Select;
