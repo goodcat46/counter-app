@@ -1,4 +1,4 @@
-import FormTransaction from 'components/FormTransaction/FormTransaction';
+import FormCreateCount from 'components/FormCreateCount/FormCreateCount';
 import FormTransactions from 'components/FormTransactions/FormTransactions';
 import CreateTransactionComp from 'components/CreateTransactionComp/CreateTransactionComp';
 const addButtons = [
@@ -7,7 +7,7 @@ const addButtons = [
   { title: 'Контрагент', ModalChildren: () => null, modalChildrenProps: null },
   { title: 'Менеджер', ModalChildren: () => null, modalChildrenProps: null },
   { title: 'Категорія', ModalChildren: () => null, modalChildrenProps: null },
-  { title: 'Рахунок', ModalChildren: () => null, modalChildrenProps: null },
+  { title: 'Рахунок', ModalChildren: FormCreateCount, modalChildrenProps: null },
   { title: 'Мітка', ModalChildren: () => null, modalChildrenProps: null },
   {
     title: 'Транзакція',

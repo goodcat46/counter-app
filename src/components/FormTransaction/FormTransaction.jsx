@@ -87,11 +87,11 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
     });
     // console.log('onChange', formData);
   }
-  function onSelect(_ev, value, _reason, _details) {
-    // console.log({ _ev, value, _reason, _details });
+  function onSelect({ ev, data, reason, details }) {
+    // console.log({ ev, data, reason, details });
 
     setFormData(prev => {
-      return { ...prev, [value?.name]: value?.value };
+      return { ...prev, [data?.name]: data?.value };
     });
   }
   function onSubmit(ev) {
