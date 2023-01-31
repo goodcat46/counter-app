@@ -4,6 +4,7 @@ import { transactionsTableTitles } from './transactions.data';
 import { transactionsTestData } from './transactions.data';
 import { trCategories } from './categories.data';
 import addButtons from './addButtons.data';
+import { iconId } from './iconsId.data';
 import { selects, getParentOptions, getChildOptions, getOwnerOptions } from './select.data';
 
 export {
@@ -14,6 +15,7 @@ export {
   addButtons,
   statusSetMap,
   selects,
+  iconId,
   getParentOptions,
   getChildOptions,
   getOwnerOptions,

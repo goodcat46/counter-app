@@ -4,7 +4,7 @@ import Select from 'components/Select/Select';
 import Input from 'components/Input/Input';
 import { useModal } from 'components/ModalContent/Modal';
 import { useSelector } from 'react-redux';
-import { categoriesSelector, countsSelector } from 'redux/selectors.store.';
+import { categoriesSelector, countsSelector } from 'redux/selectors.store';
 import SelectDbl from 'components/Select/SelectDbl';
 
 import s from './FormTransaction.module.scss';

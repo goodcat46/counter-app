@@ -2,7 +2,7 @@ import React from 'react';
 import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionChangeTheme } from 'redux/appSettings/appSettingsActions';
-import { getAppSettings } from 'redux/selectors.store.';
+import { getAppSettings } from 'redux/selectors.store';
 
 import s from './UserMenuActions.module.scss';
 

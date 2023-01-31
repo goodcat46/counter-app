@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import NavLinkHomePage from './NavLinkHomePage/NavLinkHomePage';
 import { useSelector } from 'react-redux';
-import { getUserData } from 'redux/selectors.store.';
+import { getUserData } from 'redux/selectors.store';
 import { pagesRoutes } from 'data/pagesRoutes';
 
 import s from './NavMenuHomePage.module.scss';

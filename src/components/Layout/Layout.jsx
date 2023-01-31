@@ -7,6 +7,7 @@ import { getAllCategoriesThunk } from 'redux/categories/categoriesThunks';
 import { getAllCountsThunk } from 'redux/counts/counts.thunks';
 import { getAllTransactionsThunk } from 'redux/transactions/transactions.thunks';
 import { toast } from 'react-toastify';
+import NavMenu from './SideBar/SideBar';
 
 // import s from './Layout.module.scss';
 const Layout = ({ children }) => {
@@ -30,9 +31,13 @@ const Layout = ({ children }) => {
   }, [dispatch]);
   return (
     <>
-      <Header />
-      {children}
-      <DesktopFooter />
+      <NavMenu>
+        <Header />
+
+        {children}
+
+        <DesktopFooter />
+      </NavMenu>
     </>
   );
 };

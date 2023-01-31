@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Input from 'components/Input/Input';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { countsSelector } from 'redux/selectors.store.';
+import { countsSelector } from 'redux/selectors.store';
 import Select from 'components/Select/Select';
 import { Button } from '@mui/material';
 import { useModal } from 'components/ModalContent/Modal';

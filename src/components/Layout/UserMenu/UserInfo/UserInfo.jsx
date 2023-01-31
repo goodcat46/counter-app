@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectUserData } from 'redux/selectors.store.';
+import { selectUserData } from 'redux/selectors.store';
 
 import s from './UserInfo.module.scss';
 const UserInfo = () => {

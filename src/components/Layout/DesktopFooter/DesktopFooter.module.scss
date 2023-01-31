@@ -25,12 +25,12 @@
 .wrapper {
   // grid-column: 11/12;
 
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  // display: grid;
+  // grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
 
-  // display: flex;
-  // justify-content: flex-start;
-  // flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 8px;
 
   padding: 8px;
