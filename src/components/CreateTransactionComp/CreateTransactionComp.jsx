@@ -6,16 +6,14 @@ import { addTransactionThunk } from 'redux/transactions/transactions.thunks';
 const CreateTransactionComp = props => {
   const dispatch = useDispatch();
 
-  function onAddNewTransaction({ data }) {
+  function onAddNewTransaction({ submitData, onSuccess, onError }) {
     const payload = {
-      submitData: data,
-      onSuccess: () => {},
-      onError: () => {},
+      submitData,
+      onSuccess,
+      onError,
     };
 
-    console.log(payload);
-
-    // dispatch(addTransactionThunk(payload));
+    dispatch(addTransactionThunk(payload));
   }
 
   return (

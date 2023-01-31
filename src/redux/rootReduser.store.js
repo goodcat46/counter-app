@@ -1,7 +1,7 @@
 import { persistReducer } from 'redux-persist';
 import { combineReducers } from '@reduxjs/toolkit';
 import { appPageSlice } from './page/pageSlice';
-import { authSlice } from './auth/authSlice';
+import { authSlice } from './auth/auth.slice';
 import { usersSlice } from './users/usersSlice';
 import { appSettingsSlice } from './appSettings/appSettingsSlice';
 import { transactionsSlice } from './transactions/transactions.slice';
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   [usersSlice.name]: usersSlice.reducer,
   [appSettingsSlice.name]: persistReducer(presistorConfigs.appSettings, appSettingsSlice.reducer),
   [appPageSlice.name]: persistReducer(presistorConfigs.pageSettings, appPageSlice.reducer),
-  [transactionsSlice.name]: transactionsSlice.reducer,
+  [transactionsSlice.name]: persistReducer(presistorConfigs.transactions, transactionsSlice.reducer),
   [categoriesSlice.name]: persistReducer(presistorConfigs.categories, categoriesSlice.reducer),
   [countsSlice.name]: persistReducer(presistorConfigs.counts, countsSlice.reducer),
   [documentsSlice.name]: documentsSlice.reducer,

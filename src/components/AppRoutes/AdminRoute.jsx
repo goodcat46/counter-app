@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { getUserData } from 'redux/selectors.store.';
+import { getUserData } from 'redux/selectors.store';
 
 import { useSelector } from 'react-redux';
 

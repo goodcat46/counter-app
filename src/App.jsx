@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-
+import { ToastContainer } from 'react-toastify';
 import Layout from 'components/Layout/Layout';
 import AppRoutes from 'components/AppRoutes/AppRoutes';
 
@@ -15,6 +15,20 @@ const App = () => {
           </Layout>
         </Suspense>
       </div>
+
+      <ToastContainer
+        position="bottom-left"
+        autoClose={2000}
+        limit={7}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

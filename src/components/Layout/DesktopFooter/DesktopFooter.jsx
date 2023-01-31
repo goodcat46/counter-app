@@ -2,31 +2,27 @@ import React from 'react';
 // import NavMenu from '../NavMenu/NavMenu';
 import PrivateComponent from 'components/PrivateComponent/PrivateComponent';
 // import { MinTabletXl } from 'components/DeviceTypeInformer/DeviceTypeController';
-import SvgIcon from 'components/SvgIcon/SvgIcon';
-import { addButtons } from 'data';
+
 import { Button } from '@mui/material';
-import ModalContent from 'components/ModalContent/ModalContent';
+import { useSideBar } from '../SideBar/SideBar';
 
 import s from './DesktopFooter.module.scss';
+import SvgIcon from 'components/SvgIcon/SvgIcon';
+import { iconId } from 'data';
 
 const DesktopFooter = () => {
+  const navMenu = useSideBar();
+
   return (
     <div className={[s.DesktopFooter, 'theme'].join(' ')}>
       <PrivateComponent>
         <div className={s.wrapper}>
-          {addButtons.map(({ title, ModalChildren = null, modalChildrenProps = null }) => (
-            <ModalContent
-              key={title}
-              trigger={props => (
-                <Button variant="contained" size="small" {...props}>
-                  <SvgIcon iconId="plus" />
-                  <span style={{ margin: 'auto 8px' }}>{title}</span>
-                </Button>
-              )}
-            >
-              <>{<ModalChildren {...modalChildrenProps} />}</>
-            </ModalContent>
-          ))}
+          <Button variant="text" size="small" onClick={() => navMenu.handleToggleSideBar()}>
+            <div className={s.btnInner}>
+              <SvgIcon iconId={iconId.arrowDown} size="24px" svgClass={s.svg} />
+              <span style={{ margin: 'auto 8px' }}>{'Відкрити меню'}</span>
+            </div>
+          </Button>
         </div>
         <div className={s.gridMenu}>{/* <NavMenu /> */}</div>
       </PrivateComponent>

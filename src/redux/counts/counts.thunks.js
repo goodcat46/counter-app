@@ -7,13 +7,13 @@ export const getAllCountsThunk = createAsyncThunk('counts/getAllCountsThunk', as
   try {
     const response = await baseApi.get(`/directories/counts/getAll`);
 
-    payload?.onSuccess();
+    payload?.onSuccess(response);
 
     return response.data;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
 
-    payload?.onError();
+    payload?.onError(error);
 
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -26,13 +26,13 @@ export const getCountsByParentIdThunk = createAsyncThunk(
       const response = await baseApi.get(`/directories/counts/getByOwnerId/${payload.submitData.id}`);
       console.log(response.data);
 
-      payload.onSuccess();
+      payload?.onSuccess(response);
 
       return response.data;
     } catch (error) {
-      // console.log(error);
+      console.log(error);
 
-      payload.onError();
+      payload?.onError(error);
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -44,13 +44,13 @@ export const addCountThunk = createAsyncThunk('counts/addCountThunk', async (pay
     const response = await baseApi.post(`/directories/counts/create`, payload.submitData);
     console.log(response.data);
 
-    payload.onSuccess();
+    payload?.onSuccess(response);
 
     return response.data;
   } catch (error) {
     // console.log(error);
 
-    payload.onError();
+    payload?.onError(error);
 
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -61,13 +61,13 @@ export const deleteCountThunk = createAsyncThunk('counts/deleteCountThunk', asyn
     const response = await baseApi.delete(`/directories/counts/${payload.submitData.id}`);
     console.log(response.data);
 
-    payload.onSuccess();
+    payload?.onSuccess(response);
 
     return response.data;
   } catch (error) {
     console.log(error);
 
-    payload.onError();
+    payload?.onError(error);
 
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -77,13 +77,13 @@ export const editCountThunk = createAsyncThunk('counts/editCountThunk', async (p
   try {
     const response = await baseApi.patch(`/directories/counts/${payload.submitData.id}`, payload.submitData.updateData);
 
-    payload.onSuccess(response.data.data);
+    payload?.onSuccess(response);
 
     return response.data;
   } catch (error) {
     console.log(error);
 
-    payload.onError();
+    payload?.onError(error);
 
     return thunkAPI.rejectWithValue(error.message);
   }

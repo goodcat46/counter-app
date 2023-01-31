@@ -1,0 +1,16 @@
+.navMenu {
+  display: grid;
+  grid-template-columns: 1fr;
+  // grid-template-rows: 1fr max-content;
+
+  height: fit-content;
+
+  // overflow: auto;
+}
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+
+  width: 100%;
+}

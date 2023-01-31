@@ -1,0 +1,27 @@
+.categoriesListContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+
+  height: 100%;
+
+  margin-left: 4px;
+  // @media screen and (min-width: 480px) {
+  //   margin-left: 10px;
+  // }
+}
+.categoriesList {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  gap: 8px;
+
+  padding: 0;
+  margin: 0;
+  border-style: none;
+
+  // height: 100%;
+
+  color: inherit;
+  fill: inherit;
+}

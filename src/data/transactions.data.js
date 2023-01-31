@@ -1,17 +1,30 @@
 export const transactionsTableTitles = [
-  { id: 1, title: 'Дата', dataKey: 'transactionDate', action: 'date', width: '150px' },
+  { id: 1, title: 'Дата', dataKey: 'transactionDate', action: 'date', width: '90px' },
   { id: 2, title: 'Тип', dataKey: 'type', action: 'status', width: '150px' },
 
-  { id: 3, title: 'Рахунок/IN', dataKey: 'countIn', action: 'string', width: '150px' },
-  { id: 4, title: 'Суб-рахунок/IN', dataKey: 'subCountIn', action: 'string', width: '150px' },
+  { id: 3, title: 'Рахунок/IN', dataKey: 'countIdIn', nestedKey: 'name', action: 'nested', width: '150px' },
+  { id: 4, title: 'Суб-рахунок/IN', dataKey: 'subCountIdIn', nestedKey: 'name', action: 'nested', width: '150px' },
 
-  { id: 3, title: 'Рахунок/OUT', dataKey: 'countOut', action: 'string', width: '150px' },
-  { id: 4, title: 'Суб-рахунок/OUT', dataKey: 'subCountOut', action: 'string', width: '150px' },
+  { id: 3, title: 'Рахунок/OUT', dataKey: 'countIdOut', nestedKey: 'name', action: 'nested', width: '150px' },
+  { id: 4, title: 'Суб-рахунок/OUT', dataKey: 'subCountIdOut', nestedKey: 'name', action: 'nested', width: '150px' },
 
-  { id: 6, title: 'Категорія', dataKey: 'category', action: 'string', width: '150px' },
-  { id: 7, title: 'Під-категорія', dataKey: 'subCategory', action: 'string', width: '150px' },
+  { id: 6, title: 'Категорія', dataKey: 'categoryId', nestedKey: 'name', action: 'nested', width: '150px' },
+  { id: 7, title: 'Під-категорія', dataKey: 'subCategoryId', nestedKey: 'name', action: 'nested', width: '150px' },
 
-  { id: 5, title: 'Сума', dataKey: 'value', action: 'number', width: '100px' },
+  // {
+  //   id: 7,
+  //   title: null,
+  //   dataKey: null,
+  //   nestedKey: 'name',
+  //   action: 'nestedDouble',
+  //   width: '150px',
+  //   nestedData: [
+  //     { id: 6, title: 'Категорія', dataKey: 'categoryId', nestedKey: 'name', action: 'nested', width: '150px' },
+  //     { id: 7, title: 'Під-категорія', dataKey: 'subCategoryId', nestedKey: 'name', action: 'nested', width: '150px' },
+  //   ],
+  // },
+
+  { id: 5, title: 'Сума', dataKey: 'amount', action: 'number', width: '100px' },
   { id: 8, title: 'Валюта', dataKey: 'currency', action: 'string', width: '100px' },
 
   { id: 9, title: 'Контрагент', dataKey: 'contractor', action: 'string', width: '100px' },

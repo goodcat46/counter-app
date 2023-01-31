@@ -1,0 +1,18 @@
+.raports {
+  display: grid;
+  grid-template-columns: 1fr;
+  // grid-template-rows: 1fr max-content;
+  gap: 8px;
+  padding: 8px;
+
+  height: fit-content;
+
+  // overflow: auto;
+}
+.btnInner {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+
+  width: 100%;
+}

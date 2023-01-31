@@ -26,4 +26,9 @@ export const presistorConfigs = {
     storage,
     whitelist: ['counts'],
   },
+  transactions: {
+    key: 'transactions',
+    storage,
+    whitelist: ['transactions'],
+  },
 };

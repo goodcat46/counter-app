@@ -13,7 +13,7 @@ const CellDate = ({ title, className, onClick }) => {
 
   return (
     <div className={classNames} onClick={onClick}>
-      <DateInfo dateInfo={title?.title && rowData[title?.title]} />
+      <DateInfo dateInfo={title?.dataKey && rowData[title?.dataKey]} wrap />
     </div>
   );
 };
