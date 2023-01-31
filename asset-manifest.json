@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/counter-app/static/css/main.ace881ba.css",
-    "main.js": "/counter-app/static/js/main.4e54a819.js",
+    "main.css": "/counter-app/static/css/main.94cc5436.css",
+    "main.js": "/counter-app/static/js/main.5464f9fb.js",
     "static/css/695.8fa1659a.chunk.css": "/counter-app/static/css/695.8fa1659a.chunk.css",
     "static/js/695.55769846.chunk.js": "/counter-app/static/js/695.55769846.chunk.js",
     "static/css/902.1b737f34.chunk.css": "/counter-app/static/css/902.1b737f34.chunk.css",
     "static/js/902.3596ef37.chunk.js": "/counter-app/static/js/902.3596ef37.chunk.js",
     "static/css/623.66dbe6f5.chunk.css": "/counter-app/static/css/623.66dbe6f5.chunk.css",
-    "static/js/623.61937171.chunk.js": "/counter-app/static/js/623.61937171.chunk.js",
+    "static/js/623.98fd5668.chunk.js": "/counter-app/static/js/623.98fd5668.chunk.js",
     "static/js/876.a1bd97ed.chunk.js": "/counter-app/static/js/876.a1bd97ed.chunk.js",
-    "static/media/spriteSvg.svg": "/counter-app/static/media/spriteSvg.092fffeed6652d91fcdb58ec4272225a.svg",
+    "static/media/spriteSvg.svg": "/counter-app/static/media/spriteSvg.72f096b351f0905963a504cc4c8ca3e3.svg",
     "index.html": "/counter-app/index.html",
-    "main.ace881ba.css.map": "/counter-app/static/css/main.ace881ba.css.map",
-    "main.4e54a819.js.map": "/counter-app/static/js/main.4e54a819.js.map",
+    "main.94cc5436.css.map": "/counter-app/static/css/main.94cc5436.css.map",
+    "main.5464f9fb.js.map": "/counter-app/static/js/main.5464f9fb.js.map",
     "695.8fa1659a.chunk.css.map": "/counter-app/static/css/695.8fa1659a.chunk.css.map",
     "695.55769846.chunk.js.map": "/counter-app/static/js/695.55769846.chunk.js.map",
     "902.1b737f34.chunk.css.map": "/counter-app/static/css/902.1b737f34.chunk.css.map",
     "902.3596ef37.chunk.js.map": "/counter-app/static/js/902.3596ef37.chunk.js.map",
     "623.66dbe6f5.chunk.css.map": "/counter-app/static/css/623.66dbe6f5.chunk.css.map",
-    "623.61937171.chunk.js.map": "/counter-app/static/js/623.61937171.chunk.js.map",
+    "623.98fd5668.chunk.js.map": "/counter-app/static/js/623.98fd5668.chunk.js.map",
     "876.a1bd97ed.chunk.js.map": "/counter-app/static/js/876.a1bd97ed.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ace881ba.css",
-    "static/js/main.4e54a819.js"
+    "static/css/main.94cc5436.css",
+    "static/js/main.5464f9fb.js"
   ]
 }
