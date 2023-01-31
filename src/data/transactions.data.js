@@ -1,5 +1,5 @@
 export const transactionsTableTitles = [
-  { id: 1, title: 'Дата', dataKey: 'transactionDate', action: 'date', width: '150px' },
+  { id: 1, title: 'Дата', dataKey: 'transactionDate', action: 'date', width: '90px' },
   { id: 2, title: 'Тип', dataKey: 'type', action: 'status', width: '150px' },
 
   { id: 3, title: 'Рахунок/IN', dataKey: 'countIdIn', nestedKey: 'name', action: 'nested', width: '150px' },
@@ -10,6 +10,19 @@ export const transactionsTableTitles = [
 
   { id: 6, title: 'Категорія', dataKey: 'categoryId', nestedKey: 'name', action: 'nested', width: '150px' },
   { id: 7, title: 'Під-категорія', dataKey: 'subCategoryId', nestedKey: 'name', action: 'nested', width: '150px' },
+
+  // {
+  //   id: 7,
+  //   title: null,
+  //   dataKey: null,
+  //   nestedKey: 'name',
+  //   action: 'nestedDouble',
+  //   width: '150px',
+  //   nestedData: [
+  //     { id: 6, title: 'Категорія', dataKey: 'categoryId', nestedKey: 'name', action: 'nested', width: '150px' },
+  //     { id: 7, title: 'Під-категорія', dataKey: 'subCategoryId', nestedKey: 'name', action: 'nested', width: '150px' },
+  //   ],
+  // },
 
   { id: 5, title: 'Сума', dataKey: 'amount', action: 'number', width: '100px' },
   { id: 8, title: 'Валюта', dataKey: 'currency', action: 'string', width: '100px' },

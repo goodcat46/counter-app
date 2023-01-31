@@ -25,7 +25,7 @@ const CellTextNested = ({ title, idx, className = '', onClick }) => {
   }, [rowData, title?.dataKey, title?.nestedKey]);
 
   return (
-    <div className={classNames} title={content} onClick={onClick}>
+    <div className={classNames} title={content[title?.nestedKey] || '---'} onClick={onClick}>
       <span className={s.cellInnerWrap}>{content[title?.nestedKey] || '---'}</span>
     </div>
   );

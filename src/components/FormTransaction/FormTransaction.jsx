@@ -9,6 +9,7 @@ import SelectDbl from 'components/Select/SelectDbl';
 import { selects } from 'data';
 
 import s from './FormTransaction.module.scss';
+import { toast } from 'react-toastify';
 
 const inputs = {
   date: {
@@ -66,42 +67,32 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
   // console.log(documents, 'counts =====================>>>>>>>>>>>');
   const modal = useModal();
 
-  // function onFormStateChange({ ev, data }) {
-  //   if (ev) {
-  //     const { name, value } = ev.target;
-  //     setFormData(prevState => {
-  //       return { ...prevState, [name]: value };
-  //     });
-  //     return;
-  //   }
-  //   if (data) {
-  //     setFormData(prevState => {
-  //       return { ...prevState, ...data };
-  //     });
-  //   }
-  // }
-
   function onChange(ev) {
     const { name, value } = ev.target;
     setFormData(prev => {
       return { ...prev, [name]: value };
     });
-    // console.log('onChange', formData);
   }
-  function onSelect({ data }) {
+  function onSelect({ value }) {
     setFormData(prev => {
-      return { ...prev, [data?.name]: data?.value };
+      return { ...prev, [value?.name]: value?.value };
     });
   }
+  function onSuccess(response) {
+    modal.handleToggleModal();
+  }
+  function onError(error) {
+    toast.error(`${error.message}`);
+    // modal.handleToggleModal();
+  }
+
   function onSubmit(ev) {
     ev.preventDefault();
     console.log('formData ===========>>>>>>>>>>', formData);
 
-    onAddNewTransaction && onAddNewTransaction({ ev, data: formData });
-    onEditTransaction && onEditTransaction({ ev, data: formData });
-    onCopyTransaction && onCopyTransaction({ ev, data: formData });
-
-    modal.handleToggleModal();
+    onAddNewTransaction && onAddNewTransaction({ ev, submitData: formData, onSuccess, onError });
+    onEditTransaction && onEditTransaction({ ev, submitData: formData, onSuccess, onError });
+    onCopyTransaction && onCopyTransaction({ ev, submitData: formData, onSuccess, onError });
   }
   useEffect(() => {
     if (!data) {

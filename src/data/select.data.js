@@ -4,7 +4,17 @@ export const selects = {
     label: 'Тип транзакції',
     options: [
       { label: 'Дохід', value: 'INCOME', name: 'type' },
-      { label: 'Витрата', value: 'EXPENSE', name: 'type' },
+      { label: 'Списання', value: 'EXPENSE', name: 'type' },
+      { label: 'Переказ', value: 'TRANSFER', name: 'type' },
+    ],
+    required: true,
+  },
+  categoryType: {
+    name: 'type',
+    label: 'Тип категорії',
+    options: [
+      { label: 'Дохід', value: 'INCOME', name: 'type' },
+      { label: 'Списання', value: 'EXPENSE', name: 'type' },
       { label: 'Переказ', value: 'TRANSFER', name: 'type' },
     ],
     required: true,
@@ -36,7 +46,8 @@ export const selects = {
       { label: 'АКТИВНИЙ', value: 'ACTIVE', name: 'type' },
     ],
   },
-  parentCount: { required: true, label: 'Батьківський рахунок', name: 'owner' },
+  parentCount: { label: 'Батьківський рахунок', name: 'owner' },
+  parentCategory: { label: 'Батьківська категорія', name: 'owner' },
 };
 
 export function getParentOptions(parentName, options) {

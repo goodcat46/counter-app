@@ -1,8 +1,8 @@
 import React from 'react';
 
-// import s from './DateInfo.module.scss';
+import s from './DateInfo.module.scss';
 
-const DateInfo = ({ dateInfo }) => {
+const DateInfo = ({ dateInfo, wrap = false }) => {
   let date, year, month, day, hours, minutes, seconds;
 
   if (dateInfo) {
@@ -19,8 +19,9 @@ const DateInfo = ({ dateInfo }) => {
   seconds = date.getSeconds().toString().padStart(2, 0);
 
   return (
-    <div>
-      <span>{dateInfo ? `${day}.${month}.${year}` : `00.00.0000`}</span> <span>{dateInfo ? `(${hours}:${minutes}:${seconds})` : `(00:00:00)`}</span>
+    <div className={wrap ? s.wrapper : null}>
+      <span>{dateInfo ? `${day}.${month}.${year}` : `00.00.0000`}</span>
+      <span>{dateInfo ? `(${hours}:${minutes}:${seconds})` : `(00:00:00)`}</span>
     </div>
   );
 };

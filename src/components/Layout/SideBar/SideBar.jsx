@@ -45,14 +45,18 @@ const SideBar = ({ children, size = '30px' }) => {
             <div className={s.overflow}>{isOpen && <SideBarMenu />}</div>
 
             <div className={s.footer}>
-              <Button onClick={handleToggleSideBar}>
-                <span className={s.btnName}>Сховати меню</span>
-                <SvgIcon iconId={iconId.arrowDown} size="24px" className={s.icon} />
+              <Button onClick={() => {}}>
+                <div className={s.btnInner}>
+                  <span>Вихід</span>
+                  <SvgIcon iconId={iconId.logOut} size="24px" svgClass={s.iconExit} />
+                </div>
               </Button>
 
-              <Button onClick={() => {}}>
-                <span className={s.btnName}>Вихід</span>
-                <SvgIcon iconId={iconId.logOut} size="24px" className={s.iconExit} />
+              <Button onClick={handleToggleSideBar}>
+                <div className={s.btnInner}>
+                  <span>Сховати меню</span>
+                  <SvgIcon iconId={iconId.arrowDown} size="24px" svgClass={s.arrow} />
+                </div>
               </Button>
             </div>
           </div>

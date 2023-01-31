@@ -35,3 +35,11 @@
 
   padding: 8px;
 }
+.btnInner {
+  display: flex;
+  gap: 8px;
+  & .svg {
+    fill: var(--brand_clr__1);
+    transform: rotate(90deg);
+  }
+}

@@ -7,6 +7,8 @@ import { Button } from '@mui/material';
 import { useSideBar } from '../SideBar/SideBar';
 
 import s from './DesktopFooter.module.scss';
+import SvgIcon from 'components/SvgIcon/SvgIcon';
+import { iconId } from 'data';
 
 const DesktopFooter = () => {
   const navMenu = useSideBar();
@@ -15,8 +17,11 @@ const DesktopFooter = () => {
     <div className={[s.DesktopFooter, 'theme'].join(' ')}>
       <PrivateComponent>
         <div className={s.wrapper}>
-          <Button variant="contained" size="small" onClick={() => navMenu.handleToggleSideBar()}>
-            <span style={{ margin: 'auto 8px' }}>{'Відкрити меню'}</span>
+          <Button variant="text" size="small" onClick={() => navMenu.handleToggleSideBar()}>
+            <div className={s.btnInner}>
+              <SvgIcon iconId={iconId.arrowDown} size="24px" svgClass={s.svg} />
+              <span style={{ margin: 'auto 8px' }}>{'Відкрити меню'}</span>
+            </div>
           </Button>
         </div>
         <div className={s.gridMenu}>{/* <NavMenu /> */}</div>

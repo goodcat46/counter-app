@@ -76,15 +76,16 @@
 
   border-top: 1px solid var(--tr-brdr-clr__primary);
 }
-.btnName {
-  margin-right: 8px;
-}
-.icon {
-  fill: var(--brand_clr__1);
-  transform: rotate(-90deg);
-}
-.iconExit {
-  fill: var(--brand_clr__1);
+.btnInner {
+  display: flex;
+  gap: 8px;
+  & .arrow {
+    fill: var(--brand_clr__1);
+    transform: rotate(-90deg);
+  }
+  & .iconExit {
+    fill: var(--brand_clr__1);
+  }
 }
 
 // .menu {

@@ -6,6 +6,7 @@ const SelectDbl = ({
   options = [],
   onSelect,
   parentName = '',
+  getOptions,
   parentLabel,
   childName = '',
   childLabel,
@@ -17,16 +18,22 @@ const SelectDbl = ({
   const [childOptions, setChildOptions] = useState([]);
   const [parentId, setParentId] = useState(null);
 
-  console.log({ parentName, childName });
   useEffect(() => {
-    if (disabled || options.length === 0) return;
+    if (disabled || options.length === 0) {
+      setParentOptions([]);
+      return;
+    }
+    let parentOptions = [];
+    if (getOptions) {
+      parentOptions = getParentOptions(parentName, getOptions());
+    } else {
+      parentOptions = getParentOptions(parentName, options);
+    }
 
-    const parentOptions = getParentOptions(parentName, options);
-
-    if (parentOptions.length === 0) return;
+    // if (parentOptions.length === 0) return;
     setParentOptions(parentOptions);
     setParentId(formData[parentName]);
-  }, [childName, disabled, formData, options, parentId, parentName]);
+  }, [childName, disabled, formData, getOptions, options, parentId, parentName]);
 
   useEffect(() => {
     if (disabled || !parentId) return;

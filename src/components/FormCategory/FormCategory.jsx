@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import Input from 'components/Input/Input';
+import Select from 'components/Select/Select';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { countsSelector } from 'redux/selectors.store';
-import Select from 'components/Select/Select';
+import { categoriesSelector } from 'redux/selectors.store';
 import { Button } from '@mui/material';
 import { useModal } from 'components/ModalContent/Modal';
-import { addCountThunk } from 'redux/counts/counts.thunks';
 import { toast } from 'react-toastify';
 import { selects, getOwnerOptions } from 'data';
 
-import s from './FormCreateCount.module.scss';
+import s from './FormCategory.module.scss';
+import { addCategoryThunk } from 'redux/categories/categoriesThunks';
 
-const FormCreateCount = () => {
+const FormCategory = () => {
   const [formData, setFormData] = useState({});
   const [selectedParent, setSelectedParent] = useState(null);
   const dispatch = useDispatch();
   const modal = useModal();
-  const { counts = [] } = useSelector(countsSelector);
+  const { categories = [] } = useSelector(categoriesSelector);
 
   function onChange(ev) {
     const { name, value } = ev.target;
@@ -27,11 +27,14 @@ const FormCreateCount = () => {
     });
   }
   function onSelect({ value }) {
+    // console.log(value, { [value?.name]: value?.value });
+
     setFormData(prev => {
       return { ...prev, [value?.name]: value?.value };
     });
     setSelectedParent(value);
-    console.log('value', value, selectedParent);
+
+    console.log(selectedParent);
   }
   function onReset(ev) {
     modal.handleToggleModal();
@@ -44,7 +47,7 @@ const FormCreateCount = () => {
       onSuccess: response => {
         console.log(response);
 
-        toast.success('Рахунок створено');
+        toast.success('Категорію створено');
         // modal.handleToggleModal();
       },
       onError: error => {
@@ -52,9 +55,7 @@ const FormCreateCount = () => {
       },
     };
 
-    console.log(payload);
-    dispatch(addCountThunk(payload));
-
+    dispatch(addCategoryThunk(payload));
     setFormData({});
   }
 
@@ -62,22 +63,20 @@ const FormCreateCount = () => {
     <div>
       <form className={s.subForm} onSubmit={onSubmit} onReset={onReset}>
         <div className={s.header}>
-          <span>Створення рахунку</span>
+          <span>Створення категорії</span>
         </div>
         <div className={s.inputs}>
-          <Select {...{ onSelect, ...selects.parentCount, options: getOwnerOptions(counts) }} />
+          <Select {...{ onSelect, ...selects.parentCategory, options: getOwnerOptions(categories) }} />
 
-          <Input {...{ onChange, label: 'Назва', name: 'name', required: true }} />
+          <Input {...{ onChange, label: 'Назва', name: 'name' }} />
 
           <Select
             {...{
               onSelect,
-              ...selects.countType,
+              ...selects.categoryType,
             }}
           />
 
-          <Input {...{ onChange, label: 'Код', type: 'number', name: 'code', required: true }} />
-          <Input {...{ onChange, label: 'Баланс', type: 'number', name: 'balance' }} />
           <Input {...{ onChange, label: 'Опис', name: 'descr' }} />
         </div>
         <div className={s.btns}>
@@ -91,4 +90,4 @@ const FormCreateCount = () => {
   );
 };
 
-export default FormCreateCount;
+export default FormCategory;
