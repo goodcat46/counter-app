@@ -9,9 +9,20 @@ import s from './UserMenuActions.module.scss';
 const ActionToggleAppTheme = () => {
   const dispatch = useDispatch();
   const { isDarkTheme } = useSelector(getAppSettings);
+
   function handleToggleAppTheme(params) {
     dispatch(actionChangeTheme());
+
+    const body = document.querySelector('body');
+    if (body.classList.contains('Light')) {
+      body.classList.remove('Light');
+      body.classList.add('Dark');
+      return;
+    }
+    body.classList.remove('Dark');
+    body.classList.add('Light');
   }
+
   return (
     <li className={s.actionItem}>
       <ButtonIcon

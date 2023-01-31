@@ -16,13 +16,13 @@ const CellTextNested = ({ title, idx, className = '', onClick }) => {
       if (title?.nestedKey && rowData[title?.dataKey]) {
         setContent(rowData[title?.dataKey]);
 
-        console.log(title?.nestedKey, content);
+        // console.log(title?.nestedKey, content);
         return;
       }
     } catch (error) {
       setContent('---');
     }
-  }, [content, rowData, title?.dataKey, title?.nestedKey]);
+  }, [rowData, title?.dataKey, title?.nestedKey]);
 
   return (
     <div className={classNames} title={content} onClick={onClick}>

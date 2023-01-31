@@ -6,6 +6,7 @@ import { useModal } from 'components/ModalContent/Modal';
 import { useSelector } from 'react-redux';
 import { categoriesSelector, countsSelector } from 'redux/selectors.store';
 import SelectDbl from 'components/Select/SelectDbl';
+import { selects } from 'data';
 
 import s from './FormTransaction.module.scss';
 
@@ -87,9 +88,7 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
     });
     // console.log('onChange', formData);
   }
-  function onSelect({ ev, data, reason, details }) {
-    // console.log({ ev, data, reason, details });
-
+  function onSelect({ data }) {
     setFormData(prev => {
       return { ...prev, [data?.name]: data?.value };
     });
@@ -123,13 +122,15 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
           <div className={s.inputs}>
             <Input {...{ ...inputs.date, onChange, disabled, data: formData }} />
 
-            <Select {...{ onSelect, disabled, name: 'type', data: formData }} />
+            <Select {...{ onSelect, disabled, data: formData }} {...selects.trType} />
 
             <SelectDbl
               options={counts}
               onSelect={onSelect}
-              parentName="countIdIn"
-              childName="subCountIdIn"
+              parentName={selects.countIn.name}
+              parentLabel={selects.countIn.label}
+              childName={selects.subCountIn.name}
+              childLabel={selects.subCountIn.label}
               formData={formData}
               disabled={formData.type === 'EXPENSE'}
             />
@@ -137,8 +138,10 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
             <SelectDbl
               options={counts}
               onSelect={onSelect}
-              parentName="countIdOut"
-              childName="subCountIdOut"
+              parentName={selects.countOut.name}
+              parentLabel={selects.countOut.label}
+              childName={selects.subCountOut.name}
+              childLabel={selects.subCountOut.label}
               formData={formData}
               disabled={formData.type === 'INCOME'}
             />
@@ -146,16 +149,18 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
             <SelectDbl
               options={categories.filter(option => option?.type === formData?.type)}
               onSelect={onSelect}
-              parentName="categoryId"
-              childName="subCategoryId"
+              parentName={selects.category.name}
+              parentLabel={selects.category.label}
+              childName={selects.subCategory.name}
+              childLabel={selects.subCategory.label}
               formData={formData}
               disabled={!formData.type}
             />
             <Input {...{ ...inputs.amount, onChange, disabled, data: formData }} />
 
-            <Select {...{ onSelect, disabled, name: 'project', data: formData }} />
-            <Select {...{ onSelect, disabled, name: 'document', data: formData }} />
-            <Select {...{ onSelect, disabled, name: 'mark', data: formData }} />
+            <Select {...{ onSelect, disabled, data: formData }} {...selects.project} />
+            <Select {...{ onSelect, disabled, data: formData }} {...selects.document} />
+            <Select {...{ onSelect, disabled, data: formData }} {...selects.mark} />
 
             <Input {...{ ...inputs.comment, onChange, disabled, data: formData }} />
           </div>

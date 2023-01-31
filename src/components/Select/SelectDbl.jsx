@@ -6,7 +6,9 @@ const SelectDbl = ({
   options = [],
   onSelect,
   parentName = '',
+  parentLabel,
   childName = '',
+  childLabel,
   formData = {},
   reset = false,
   disabled = false,
@@ -15,6 +17,7 @@ const SelectDbl = ({
   const [childOptions, setChildOptions] = useState([]);
   const [parentId, setParentId] = useState(null);
 
+  console.log({ parentName, childName });
   useEffect(() => {
     if (disabled || options.length === 0) return;
 
@@ -41,6 +44,7 @@ const SelectDbl = ({
           disabled,
           options: parentOptions,
           name: parentName,
+          label: parentLabel,
           onSelect,
           reset,
         }}
@@ -49,6 +53,7 @@ const SelectDbl = ({
         {...{
           options: childOptions,
           name: childName,
+          label: childLabel,
           onSelect,
           disabled: childOptions.length === 0,
           reset,

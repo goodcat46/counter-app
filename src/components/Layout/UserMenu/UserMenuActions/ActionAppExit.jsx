@@ -1,6 +1,6 @@
 import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
 import { useDispatch } from 'react-redux';
-import { logOutUserThunk } from 'redux/auth/authThunks';
+import { logOutUserThunk } from 'redux/auth/auth.thunks';
 import { actionResetAppSettings } from 'redux/appSettings/appSettingsActions';
 import { actionResetPageSettings } from 'redux/page/pageActions';
 import { toast } from 'react-toastify';

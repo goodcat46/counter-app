@@ -6,10 +6,15 @@ import {
   logInUserThunk,
   logOutUserThunk,
   getCurrentUserThunk,
-} from './authThunks';
+} from './auth.thunks';
 
 const initialState = {
-  user: [],
+  user: {
+    _id: 'sdth651g6db5fg16d',
+    name: 'Petro Lopata',
+    email: 'petroLopata@mail.com',
+    role: 'ADMIN',
+  },
   token: 'token',
   isLoading: false,
   isLoggedIn: true,
