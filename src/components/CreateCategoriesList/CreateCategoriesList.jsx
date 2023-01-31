@@ -1,37 +1,36 @@
-import { createContext, useContext, useEffect } from 'react';
+import { createContext, useContext } from 'react';
 import SectionItem from './SectionItem/SectionItem';
 import FormCreateSection from './FormCreateSection/FormCreateSection';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAppSettings } from 'redux/selectors';
-import { getAllCategoriesThunk } from 'redux/categories/categories.thunks';
+// import { useDispatch } from 'react-redux';
+// import { getAllCategoriesThunk } from 'redux/categories/categories.thunks';
 
 import s from './CreateCategoriesList.module.scss';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import AppLoader from 'components/AppLoader/AppLoader';
 
 export const SectionsListContext = createContext();
 export const useSectionsList = () => useContext(SectionsListContext);
 
 const CreateCategoriesList = ({ dataArr, isLoading, error }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const ctx = {
     parentsArr: dataArr.filter(el => !el?.owner),
     childsArr: dataArr.filter(el => el?.owner),
   };
 
-  useEffect(() => {
-    const payload = {
-      submitData: {},
-      onSuccess: data => {
-        console.log(data);
-      },
-      onError: error => {
-        toast.error(`${error.message}`);
-      },
-    };
-    dispatch(getAllCategoriesThunk(payload));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const payload = {
+  //     submitData: {},
+  //     onSuccess: data => {
+  //       console.log(data);
+  //     },
+  //     onError: error => {
+  //       toast.error(`${error.message}`);
+  //     },
+  //   };
+  //   dispatch(getAllCategoriesThunk(payload));
+  // }, [dispatch]);
 
   return (
     <>
