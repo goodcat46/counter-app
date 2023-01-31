@@ -44,8 +44,9 @@ const FormCreateCount = () => {
       onSuccess: response => {
         console.log(response);
 
-        toast.success('Рахунок створено');
-        // modal.handleToggleModal();
+        toast.success(response?.data?.message);
+
+        modal.handleToggleModal();
       },
       onError: error => {
         toast.error(error.message);

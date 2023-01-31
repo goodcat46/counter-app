@@ -14,7 +14,6 @@ import { addCategoryThunk } from 'redux/categories/categoriesThunks';
 
 const FormCategory = () => {
   const [formData, setFormData] = useState({});
-  const [selectedParent, setSelectedParent] = useState(null);
   const dispatch = useDispatch();
   const modal = useModal();
   const { categories = [] } = useSelector(categoriesSelector);
@@ -32,9 +31,6 @@ const FormCategory = () => {
     setFormData(prev => {
       return { ...prev, [value?.name]: value?.value };
     });
-    setSelectedParent(value);
-
-    console.log(selectedParent);
   }
   function onReset(ev) {
     modal.handleToggleModal();
@@ -47,8 +43,8 @@ const FormCategory = () => {
       onSuccess: response => {
         console.log(response);
 
-        toast.success('Категорію створено');
-        // modal.handleToggleModal();
+        toast.success(response?.data?.message);
+        modal.handleToggleModal();
       },
       onError: error => {
         toast.error(error.message);
@@ -66,10 +62,6 @@ const FormCategory = () => {
           <span>Створення категорії</span>
         </div>
         <div className={s.inputs}>
-          <Select {...{ onSelect, ...selects.parentCategory, options: getOwnerOptions(categories) }} />
-
-          <Input {...{ onChange, label: 'Назва', name: 'name' }} />
-
           <Select
             {...{
               onSelect,
@@ -77,8 +69,19 @@ const FormCategory = () => {
             }}
           />
 
+          <Select
+            {...{
+              onSelect,
+              ...selects.parentCategory,
+              options: getOwnerOptions(categories).filter(el => el.type === formData.type),
+            }}
+          />
+
+          <Input {...{ onChange, label: 'Назва', name: 'name' }} />
+
           <Input {...{ onChange, label: 'Опис', name: 'descr' }} />
         </div>
+
         <div className={s.btns}>
           <Button type="submit">Прийняти</Button>
           <Button type="reset" onClick={() => toast.info('sdfbfgxc')}>

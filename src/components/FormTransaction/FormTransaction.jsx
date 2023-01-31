@@ -79,10 +79,12 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
     });
   }
   function onSuccess(response) {
-    modal.handleToggleModal();
+    toast.success(response?.data?.message);
+
+    window.confirm('Закрити вікно створення?') && modal.handleToggleModal();
   }
   function onError(error) {
-    toast.error(`${error.message}`);
+    toast.error(error.message);
     // modal.handleToggleModal();
   }
 
