@@ -7,14 +7,14 @@ import { getAllCategoriesThunk } from 'redux/categories/categoriesThunks';
 import { getAllCountsThunk } from 'redux/counts/counts.thunks';
 import { getAllTransactionsThunk } from 'redux/transactions/transactions.thunks';
 import { toast } from 'react-toastify';
-import NavMenu from './SideBar/SideBar';
+import SideBar from './SideBar/SideBar';
 
 // import s from './Layout.module.scss';
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (window.location.hostname === 'localhost') {
+    if (window.location.hostname !== 'localhost') {
       const payload = thunkName => {
         return {
           onSuccess: response => {},
@@ -31,13 +31,13 @@ const Layout = ({ children }) => {
   }, [dispatch]);
   return (
     <>
-      <NavMenu>
+      <SideBar>
         <Header />
 
         {children}
 
         <DesktopFooter />
-      </NavMenu>
+      </SideBar>
     </>
   );
 };

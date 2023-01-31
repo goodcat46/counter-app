@@ -1,7 +1,7 @@
 import FormCreateCount from 'components/FormCreateCount/FormCreateCount';
 import FormTransactions from 'components/FormTransactions/FormTransactions';
 import CreateTransactionComp from 'components/CreateTransactionComp/CreateTransactionComp';
-const addButtons = [
+const createActions = [
   { title: 'Документ', ModalChildren: () => null, modalChildrenProps: null },
   { title: 'Проект', ModalChildren: () => null, modalChildrenProps: null },
   { title: 'Контрагент', ModalChildren: () => null, modalChildrenProps: null },
@@ -20,4 +20,4 @@ const addButtons = [
   },
   { title: 'Транзакції', ModalChildren: FormTransactions, modalChildrenProps: null },
 ];
-export default addButtons;
+export default createActions;
