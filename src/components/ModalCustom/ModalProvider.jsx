@@ -25,26 +25,32 @@ const modalInitialSettings = {
 };
 
 const ModalProvider = ({ children, portal = 'modal' }) => {
-  const [modalContent, setModalContent] = useState([]);
+  const [modalContent, setModalContent] = useState(null);
 
   function handleOpenModal({ ev, content, settings = modalInitialSettings }) {
+    if (!content) {
+      setModalContent(null);
+      return;
+    }
+    setModalContent(content);
     const contendId = nanoid(8);
     // if (!content) {
     //   setModalSettings(modalInitialSettings);
     //   setModalContent(prev => [...prev, { RenderItem: content, id: '' }]);
     //   return;
     // }
-    setModalContent(prev => [...prev, { RenderContent: content, id: contendId }]);
+    // setModalContent(prev => [...prev, { RenderContent: content, id: contendId }]);
     return contendId;
   }
   function handleCloseModal(id) {
     setModalContent(prev => prev.filter(el => el.id !== id));
   }
-  function handleCloseModalByBackdrop({ evt, id }) {
-    let { target, currentTarget } = evt;
+  function handleCloseModalByBackdrop({ ev, id }) {
+    let { target, currentTarget } = ev;
 
     if (target === currentTarget) {
-      setModalContent(prev => prev.filter(el => el.id !== id));
+      // setModalContent(prev => prev.filter(el => el.id !== id));
+      setModalContent(null);
     }
   }
 
@@ -77,14 +83,18 @@ const ModalProvider = ({ children, portal = 'modal' }) => {
     <>
       <ModalContext.Provider value={{ handleCloseModal, handleOpenModal, handleCloseModalByBackdrop }}>
         <>{children}</>
-        <ModalPortal portal={portal}>
-          {modalContent.length > 0 &&
+        {modalContent && (
+          <ModalPortal portal={'modal'}>
+            <ModalComponent {...{ handleCloseModalByBackdrop }}>{modalContent}</ModalComponent>
+
+            {/* {modalContent.length > 0 &&
             modalContent.map((Item, idx) => (
               <ModalComponent key={Item.id} {...{ handleCloseModal, handleOpenModal, handleCloseModalByBackdrop }}>
                 <Item />
               </ModalComponent>
-            ))}
-        </ModalPortal>
+            ))} */}
+          </ModalPortal>
+        )}
       </ModalContext.Provider>
     </>
   );

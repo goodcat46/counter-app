@@ -6,7 +6,7 @@ import { useTable } from './TableContext';
 import s from './TableList.module.scss';
 
 const TableBody = () => {
-  const { tableData, prepeareRowData, onRowClick, rowRef } = useTable();
+  const { tableData, onRowClick, rowRef } = useTable();
 
   function handleOnRowClick(ev) {
     const { target } = ev;
@@ -21,7 +21,7 @@ const TableBody = () => {
     if (onRowClick) {
       let rowData = tableData.find(el => el?._id === rowEl?.id);
 
-      onRowClick({ ev, data: rowData });
+      onRowClick({ ev, _id: rowEl?.id, data: rowData });
     }
 
     if (!rowRef.current) {
@@ -41,7 +41,7 @@ const TableBody = () => {
   return (
     <div className={s.tBody} onClick={handleOnRowClick}>
       {tableData.map((rowData, idx) => {
-        return <TableRow key={idx} {...{ rowData, idx, prepeareRowData }} />;
+        return <TableRow key={idx} {...{ rowData, idx }} />;
       })}
     </div>
   );

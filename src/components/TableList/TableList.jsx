@@ -7,22 +7,8 @@ import AppLoader from 'components/AppLoader/AppLoader';
 
 import s from './TableList.module.scss';
 
-const TableList = ({
-  rowActions = false,
-  tableTitles = [],
-  tableData = [],
-  prepeareRowData,
-  isLoading = false,
-  ...props
-}) => {
-  const ctx = {
-    rowActions,
-    tableTitles,
-    tableData,
-    prepeareRowData,
-    isLoading,
-    ...props,
-  };
+const TableList = ({ tableData = [], isLoading = false, rowActions = null, ...props }) => {
+  const ctx = { tableData, isLoading, rowActions, ...props };
 
   return (
     <TableContext value={ctx}>

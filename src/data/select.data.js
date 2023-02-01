@@ -3,9 +3,9 @@ export const selects = {
     name: 'type',
     label: 'Тип транзакції',
     options: [
-      { label: 'Дохід', value: 'INCOME', name: 'type' },
-      { label: 'Списання', value: 'EXPENSE', name: 'type' },
-      { label: 'Переказ', value: 'TRANSFER', name: 'type' },
+      { label: 'Дохід', value: 'INCOME', name: 'type', dataKey: 'type' },
+      { label: 'Списання', value: 'EXPENSE', name: 'type', dataKey: 'type' },
+      { label: 'Переказ', value: 'TRANSFER', name: 'type', dataKey: 'type' },
     ],
     required: true,
   },
@@ -13,9 +13,9 @@ export const selects = {
     name: 'type',
     label: 'Тип категорії',
     options: [
-      { label: 'Дохід', value: 'INCOME', name: 'type' },
-      { label: 'Списання', value: 'EXPENSE', name: 'type' },
-      { label: 'Переказ', value: 'TRANSFER', name: 'type' },
+      { label: 'Дохід', value: 'INCOME', name: 'type', dataKey: 'type' },
+      { label: 'Списання', value: 'EXPENSE', name: 'type', dataKey: 'type' },
+      { label: 'Переказ', value: 'TRANSFER', name: 'type', dataKey: 'type' },
     ],
     required: true,
   },
@@ -33,17 +33,17 @@ export const selects = {
     name: 'status',
     label: 'Статус',
     options: [
-      { label: 'Перевірено', value: 'checked', name: 'status' },
-      { label: 'Узгоджено', value: 'approved', name: 'status' },
-      { label: 'Проблема', value: 'problem', name: 'status' },
+      { label: 'Перевірено', value: 'checked', name: 'status', dataKey: 'status' },
+      { label: 'Узгоджено', value: 'approved', name: 'status', dataKey: 'status' },
+      { label: 'Проблема', value: 'problem', name: 'status', dataKey: 'status' },
     ],
   },
   countType: {
     label: 'Тип рахунку',
     name: 'type',
     options: [
-      { label: 'ПАСИВНИЙ', value: 'PASSIVE', name: 'type' },
-      { label: 'АКТИВНИЙ', value: 'ACTIVE', name: 'type' },
+      { label: 'ПАСИВНИЙ', value: 'PASSIVE', name: 'type', dataKey: 'type' },
+      { label: 'АКТИВНИЙ', value: 'ACTIVE', name: 'type', dataKey: 'type' },
     ],
   },
   parentCount: { label: 'Батьківський рахунок', name: 'owner' },
@@ -55,7 +55,7 @@ export function getParentOptions(parentName, options) {
   const filteredOptions = options.filter(option => !option?.owner);
 
   const parentOptions = filteredOptions.map(option => {
-    return { label: option?.name, value: option?._id, name: parentName };
+    return { ...option, label: option?.name, value: option?._id, dataKey: parentName };
   });
   return parentOptions || [];
 }
@@ -66,7 +66,7 @@ export function getChildOptions({ childName, parentId, options }) {
   const filteredOptions = options.filter(option => option?.owner === parentId || option?.owner?._id === parentId);
 
   const childOptions = filteredOptions.map(option => {
-    return { label: option?.name, value: option?._id, name: childName };
+    return { ...option, label: option?.name, value: option?._id, dataKey: childName };
   });
 
   return childOptions || [];

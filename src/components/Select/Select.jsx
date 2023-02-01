@@ -14,6 +14,7 @@ const Select = ({
   ...props
 }) => {
   function onChange(ev, value, reason, details) {
+    console.log(value);
     onSelect && onSelect({ ev, value, reason, details });
     !onSelect && console.log({ name, label, ev, value, reason, details });
   }
@@ -25,13 +26,13 @@ const Select = ({
         disablePortal: true,
         disabled,
         onChange,
+        defaultValue,
         options: options || [],
       }}
       renderInput={params => (
         <TextField
           variant="standard"
           {...{
-            defaultValue,
             value,
             required,
             label,

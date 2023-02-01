@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import Header from './Header/Header';
 import DesktopFooter from 'components/Layout/DesktopFooter/DesktopFooter';
 import SideBar from './SideBar/SideBar';
@@ -10,11 +10,27 @@ import { getAllTransactionsThunk } from 'redux/transactions/transactions.thunks'
 import { toast } from 'react-toastify';
 
 // import s from './Layout.module.scss';
+export const LayoutCTX = createContext();
+export const useLayout = () => useContext(LayoutCTX);
+
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
+  const [footerChildren, setFooterChildren] = useState(null);
+
+  function handleSetFooterContent(content) {
+    if (!content) {
+      setFooterChildren(null);
+      return;
+    }
+    setFooterChildren(content);
+  }
+
+  const CTX = {
+    handleSetFooterContent,
+  };
 
   useEffect(() => {
-    if (window.location.hostname === 'localhost') {
+    if (window.location.hostname !== 'localhost') {
       const payload = thunkName => {
         return {
           onSuccess: response => {},
@@ -31,13 +47,17 @@ const Layout = ({ children }) => {
   }, [dispatch]);
   return (
     <>
-      <SideBar>
-        <Header />
+      <LayoutCTX.Provider value={CTX}>
+        <SideBar>
+          <Header />
 
-        {children}
+          {children}
 
-        <DesktopFooter />
-      </SideBar>
+          <DesktopFooter>
+            <>{footerChildren || 'ljnkjnlkjb'}</>
+          </DesktopFooter>
+        </SideBar>
+      </LayoutCTX.Provider>
     </>
   );
 };

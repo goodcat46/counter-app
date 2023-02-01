@@ -19,9 +19,12 @@ const modalInitialSettings = {
   closeBtn: true,
 };
 
-const ModalComponent = ({ idx, children, settings, handleCloseModalBackdrop, handleToggleModal }) => {
+const ModalComponent = ({ idx, children, settings, handleCloseModalByBackdrop, handleToggleModal }) => {
   const [modalSettins] = useState(settings || modalInitialSettings);
 
+  function onBackdropClick(ev) {
+    handleCloseModalByBackdrop({ ev: ev });
+  }
   useEffect(() => {
     function handleToggleModalByEsc(evt) {
       let { code } = evt;
@@ -47,7 +50,7 @@ const ModalComponent = ({ idx, children, settings, handleCloseModalBackdrop, han
 
   return (
     <>
-      <div key={idx} className={modalSettins?.backdropClass} onClick={handleCloseModalBackdrop}>
+      <div key={idx} className={modalSettins?.backdropClass} onClick={onBackdropClick}>
         <div className={modalSettins?.modalClass} style={modalSettins?.modalStyle}>
           {modalSettins.defaultBtn && (
             <button className={s.closeModal} onClick={handleToggleModal}>

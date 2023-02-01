@@ -36,6 +36,28 @@
   height: 100%;
   overflow: auto;
 }
+.footer {
+  display: flex;
+  flex-direction: column;
+
+  color: inherit;
+  background-color: inherit;
+
+  border-top: 3px solid var(--tr-brdr-clr__primary);
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 20px;
+
+  padding: 4px 10px;
+}
+
+.clearAfterSibmit {
+}
+.closeAfterSibmit {
+}
 .btns {
   display: grid;
   grid-template-columns: 1fr min-content;
@@ -45,6 +67,4 @@
 
   color: inherit;
   background-color: inherit;
-
-  border-top: 3px solid var(--tr-brdr-clr__primary);
 }

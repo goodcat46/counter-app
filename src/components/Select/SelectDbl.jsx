@@ -10,6 +10,8 @@ const SelectDbl = ({
   parentLabel,
   childName = '',
   childLabel,
+  parentDefaultValue,
+  childDefaultValue,
   formData = {},
   reset = false,
   disabled = false,
@@ -53,6 +55,7 @@ const SelectDbl = ({
           name: parentName,
           label: parentLabel,
           onSelect,
+          defaultValue: parentDefaultValue,
           reset,
         }}
       />
@@ -62,6 +65,7 @@ const SelectDbl = ({
           name: childName,
           label: childLabel,
           onSelect,
+          defaultValue: childDefaultValue,
           disabled: childOptions.length === 0,
           reset,
         }}
