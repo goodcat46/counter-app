@@ -54,7 +54,7 @@ const Layout = ({ children }) => {
           {children}
 
           <DesktopFooter>
-            <>{footerChildren || 'ljnkjnlkjb'}</>
+            <>{footerChildren}</>
           </DesktopFooter>
         </SideBar>
       </LayoutCTX.Provider>

@@ -1,15 +1,32 @@
 import { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
 import Select from 'components/Select/Select';
 import Input from 'components/Input/Input';
 import { useModal } from 'components/ModalContent/Modal';
 import { useSelector } from 'react-redux';
 import { categoriesSelector, countsSelector } from 'redux/selectors.store';
 import SelectDbl from 'components/Select/SelectDbl';
-import { selects } from 'data';
+import { iconId, selects } from 'data';
+import { toast } from 'react-toastify';
+import FormButtons from './FormButtons/FormButtons';
 
 import s from './FormTransaction.module.scss';
-import { toast } from 'react-toastify';
+import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
+
+const adds = [
+  { item: false },
+  { item: true },
+  { item: true },
+  { item: true },
+  { item: true },
+  { item: true },
+  { item: true },
+  { item: true },
+  { item: false },
+  { item: true },
+  { item: true },
+  { item: true },
+  { item: false },
+];
 
 const inputs = {
   date: {
@@ -80,8 +97,6 @@ const FormTransaction = ({
   }
   function nandleClearAfterSubmit(ev) {
     const { checked } = ev.target;
-    console.log(ev);
-    console.log('nandleClearAfterSubmit', checked);
     setClearAfterSubmit(checked);
   }
   function onChange(ev) {
@@ -113,7 +128,7 @@ const FormTransaction = ({
   }
   function onSubmit(ev) {
     ev.preventDefault();
-    console.log('formData ===========>>>>>>>>>>', formData);
+    // console.log('formData ===========>>>>>>>>>>', formData);
 
     onAddNewTransaction && onAddNewTransaction({ ev, data: formData, onSuccess, onError });
     onEditTransaction && onEditTransaction({ ev, data: formData, onSuccess, onError });
@@ -121,11 +136,9 @@ const FormTransaction = ({
 
     if (clearAfterSubmit) {
       setFormData(initialTransactionState);
-      return;
     }
     if (closeAfterSubmit) {
       modal.handleToggleModal();
-      return;
     }
   }
 
@@ -150,6 +163,7 @@ const FormTransaction = ({
           {onEditTransaction && <span>{`Змінити транзакцію ${formData?._id}`}</span>}
           {onCopyTransaction && <span>{`Копія транзакції ${formData?._id}`}</span>}
         </div>
+
         <div className={s.scroll}>
           <div className={s.inputs}>
             <Input {...{ ...inputs.date, onChange, disabled, data: formData }} />
@@ -203,26 +217,30 @@ const FormTransaction = ({
               }}
             />
           </div>
-        </div>
-        <div className={s.footer}>
-          <div className={s.flex}>
-            <span className={s.afterSibmit}>Очистити після підтвердження</span>
-            <input type="checkbox" onChange={nandleClearAfterSubmit} checked={clearAfterSubmit} />
-          </div>
-          <div className={s.flex}>
-            <span className={s.afterSibmit}>Закрити після підтвердження</span>
-            <input type="checkbox" onChange={nandleCloseAfterSubmit} checked={closeAfterSubmit} />
-          </div>
 
-          <div className={s.btns}>
-            <Button variant="contained" type="submit">
-              Прийняти
-            </Button>
-            <Button variant="outlined" type="reset">
-              Скасувати
-            </Button>
-          </div>
+          {/* <div className={s.btns}>
+            {adds.map(el => {
+              return (
+                <>
+                  {el.item ? (
+                    <ButtonIcon styleType="BrandClrBtn" iconId={iconId.plus} styles={{ height: '100%' }} />
+                  ) : (
+                    <div></div>
+                  )}
+                </>
+              );
+            })}
+          </div> */}
         </div>
+        <FormButtons
+          {...{
+            disabled: false,
+            nandleCloseAfterSubmit,
+            closeAfterSubmit,
+            nandleClearAfterSubmit,
+            clearAfterSubmit,
+          }}
+        />
       </form>
     </>
   );
