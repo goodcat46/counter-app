@@ -5,28 +5,28 @@ import { useModal } from 'components/ModalContent/Modal';
 import { useSelector } from 'react-redux';
 import { categoriesSelector, countsSelector } from 'redux/selectors.store';
 import SelectDbl from 'components/Select/SelectDbl';
-import { iconId, selects } from 'data';
+import { selects } from 'data';
 import { toast } from 'react-toastify';
 import FormButtons from './FormButtons/FormButtons';
 
 import s from './FormTransaction.module.scss';
-import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
+// import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
 
-const adds = [
-  { item: false },
-  { item: true },
-  { item: true },
-  { item: true },
-  { item: true },
-  { item: true },
-  { item: true },
-  { item: true },
-  { item: false },
-  { item: true },
-  { item: true },
-  { item: true },
-  { item: false },
-];
+// const adds = [
+//   { item: false },
+//   { item: true },
+//   { item: true },
+//   { item: true },
+//   { item: true },
+//   { item: true },
+//   { item: true },
+//   { item: true },
+//   { item: false },
+//   { item: true },
+//   { item: true },
+//   { item: true },
+//   { item: false },
+// ];
 
 const inputs = {
   date: {
@@ -93,11 +93,21 @@ const FormTransaction = ({
 
   function nandleCloseAfterSubmit(ev) {
     const { checked } = ev.target;
+    toast.info(`Форма ${!checked ? ' не ' : ' '}закриється після підтвердження`);
     setCloseAfterSubmit(checked);
   }
   function nandleClearAfterSubmit(ev) {
     const { checked } = ev.target;
+    toast.info(`Форма${!checked ? ' не ' : ' '}очиститься після підтвердження`);
     setClearAfterSubmit(checked);
+  }
+  function afterSubmit() {
+    if (clearAfterSubmit) {
+      setFormData({});
+    }
+    if (closeAfterSubmit) {
+      modal.handleToggleModal();
+    }
   }
   function onChange(ev) {
     const { name, value } = ev.target;
@@ -111,7 +121,7 @@ const FormTransaction = ({
     });
   }
   function handleDblSelect({ value }) {
-    console.log('handleDblSelect', { [value?.dataKey]: value });
+    // console.log('handleDblSelect', { [value?.dataKey]: value });
 
     setFormData(prev => {
       return { ...prev, [value?.dataKey]: value };
@@ -119,12 +129,11 @@ const FormTransaction = ({
   }
   function onSuccess(response) {
     toast.success(response?.data?.message);
-
-    window.confirm('Закрити вікно створення?') && modal.handleToggleModal();
+    afterSubmit();
   }
   function onError(error) {
     toast.error(error.message);
-    // modal.handleToggleModal();
+    afterSubmit();
   }
   function onSubmit(ev) {
     ev.preventDefault();
@@ -133,13 +142,6 @@ const FormTransaction = ({
     onAddNewTransaction && onAddNewTransaction({ ev, data: formData, onSuccess, onError });
     onEditTransaction && onEditTransaction({ ev, data: formData, onSuccess, onError });
     onCopyTransaction && onCopyTransaction({ ev, data: formData, onSuccess, onError });
-
-    if (clearAfterSubmit) {
-      setFormData(initialTransactionState);
-    }
-    if (closeAfterSubmit) {
-      modal.handleToggleModal();
-    }
   }
 
   useEffect(() => {

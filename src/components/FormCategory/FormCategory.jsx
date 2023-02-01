@@ -4,19 +4,35 @@ import Select from 'components/Select/Select';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { categoriesSelector } from 'redux/selectors.store';
-import { Button } from '@mui/material';
 import { useModal } from 'components/ModalContent/Modal';
 import { toast } from 'react-toastify';
 import { selects, getOwnerOptions } from 'data';
 
 import s from './FormCategory.module.scss';
 import { addCategoryThunk } from 'redux/categories/categoriesThunks';
+import FormButtons from './FormButtons/FormButtons';
 
 const FormCategory = () => {
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const modal = useModal();
   const { categories = [] } = useSelector(categoriesSelector);
+
+  const [closeAfterSubmit, setCloseAfterSubmit] = useState(true);
+  const [clearAfterSubmit, setClearAfterSubmit] = useState(true);
+
+  function nandleCloseAfterSubmit(ev) {
+    const { checked } = ev.target;
+    toast.info(`Форма ${!checked ? ' не ' : ' '}закриється після підтвердження`);
+
+    setCloseAfterSubmit(checked);
+  }
+  function nandleClearAfterSubmit(ev) {
+    const { checked } = ev.target;
+    toast.info(`Форма${!checked ? ' не ' : ' '}очиститься після підтвердження`);
+
+    setClearAfterSubmit(checked);
+  }
 
   function onChange(ev) {
     const { name, value } = ev.target;
@@ -52,7 +68,13 @@ const FormCategory = () => {
     };
 
     dispatch(addCategoryThunk(payload));
-    setFormData({});
+
+    if (clearAfterSubmit) {
+      setFormData({});
+    }
+    if (closeAfterSubmit) {
+      modal.handleToggleModal();
+    }
   }
 
   return (
@@ -82,12 +104,15 @@ const FormCategory = () => {
           <Input {...{ onChange, label: 'Опис', name: 'descr' }} />
         </div>
 
-        <div className={s.btns}>
-          <Button type="submit">Прийняти</Button>
-          <Button type="reset" onClick={() => toast.info('sdfbfgxc')}>
-            Відхилити
-          </Button>
-        </div>
+        <FormButtons
+          {...{
+            disabled: false,
+            nandleCloseAfterSubmit,
+            closeAfterSubmit,
+            nandleClearAfterSubmit,
+            clearAfterSubmit,
+          }}
+        />
       </form>
     </div>
   );

@@ -24,7 +24,9 @@ const CreateActions = () => {
             </ButtonIcon>
           )}
         >
-          <>{<ModalChildren {...modalChildrenProps} />}</>
+          <>
+            <ModalChildren {...modalChildrenProps} />
+          </>
         </ModalContent>
       ))}
     </div>

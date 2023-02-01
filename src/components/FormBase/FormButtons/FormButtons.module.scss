@@ -1,0 +1,32 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+
+  color: inherit;
+  background-color: inherit;
+
+  border-top: 3px solid var(--tr-brdr-clr__primary);
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 20px;
+
+  padding: 4px 10px;
+}
+
+.clearAfterSibmit {
+}
+.closeAfterSibmit {
+}
+.btns {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  gap: 8px;
+
+  padding: 8px;
+
+  color: inherit;
+  background-color: inherit;
+}
