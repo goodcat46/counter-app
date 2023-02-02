@@ -1,0 +1,115 @@
+.isOpenItem,
+.isCloseItem {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr;
+
+  position: relative;
+
+  min-height: 44px;
+  max-height: 44px;
+  overflow: hidden;
+
+  // color: var(--brand_clr__2);
+  // fill: var(--brand_clr__2);
+
+  border-top: 1px solid var(--tr-brdr-clr__primary);
+  transition: all var(--timing-function__main);
+  &:last-child {
+    border-bottom: 1px solid var(--tr-brdr-clr__primary);
+  }
+}
+.isOpenItem {
+  overflow: visible;
+  max-height: 100%;
+  & .count {
+    // color: var(--brand_clr__2);
+    // fill: var(--brand_clr__2);
+
+    background-color: rgba(254, 254, 254, 0.5);
+  }
+  & .icon {
+    transform: rotate(0deg);
+  }
+}
+.isCloseItem {
+}
+.count {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  align-items: center;
+  gap: 8px;
+
+  overflow: hidden;
+  width: 100%;
+  height: 44px;
+
+  border-bottom: 1px solid var(--tr-brdr-clr__primary);
+}
+.info {
+  display: grid;
+  grid-template-columns: minmax(60px, 2fr) minmax(60px, 1fr) minmax(60px, 1fr);
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  & .cell {
+    padding: 4px;
+  }
+}
+
+.btn {
+  justify-content: flex-start;
+
+  width: 100%;
+  padding: 0 8px;
+
+  min-height: 32px;
+
+  width: 100%;
+  min-height: 32px;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  border-style: none;
+  border-bottom: 1px solid var(--tr-brdr-clr__primary);
+}
+
+.icon {
+  transform: rotate(-90deg);
+  transition: transform var(--timing-function__main);
+}
+.counts {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: min-content;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: all var(--timing-function__main);
+  &.shown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+
+    background-color: var(--tr-brdr-clr__primary);
+  }
+}

@@ -22,14 +22,14 @@
     color: var(--brand_clr__2);
     fill: var(--brand_clr__2);
 
-    background-color: rgba(254, 254, 254, 0.6);
+    background-color: rgba(254, 254, 254, 0.5);
   }
   & .icon {
     transform: rotate(0deg);
   }
-  // & .contentBox {
-  //   max-height: 100%;
-  // }
+  & .contentBox {
+    // max-height: 100%;
+  }
 }
 
 .isCloseItem {
@@ -49,15 +49,19 @@
 
 .btn {
   justify-content: flex-start;
+
   width: 100%;
-  padding: 4px 8px;
+  padding: 0 8px;
+
+  min-height: 32px;
+
+  width: 100%;
+  min-height: 32px;
 
   position: sticky;
   top: 0;
   left: 0;
   z-index: 10;
-
-  min-height: 32px;
 
   font-size: 14px;
   font-weight: 700;

@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import FormButtons from './FormButtons/FormButtons';
 
 import s from './FormBase.module.scss';
+import AppLoader from 'components/AppLoader/AppLoader';
 
 export const FormBaseCTX = createContext();
 export const useFormBase = () => useContext(FormBaseCTX);
@@ -19,12 +20,11 @@ const FormBase = ({
   title = 'Форма',
   CTXvalue,
   handleSubmit,
+  isLoading = false,
   ...props
 }) => {
   const [formData, setFormData] = useState(initialState || {});
-  const [settings, setSettings] = useState({
-    title,
-  });
+  const [settings, setSettings] = useState({ title });
   const [closeAfterSubmit, setCloseAfterSubmit] = useState(true);
   const [clearAfterSubmit, setClearAfterSubmit] = useState(true);
   const modal = useModal();
@@ -49,7 +49,7 @@ const FormBase = ({
     toast.info(`Форма${!checked ? ' не ' : ' '}очиститься після підтвердження`);
     setClearAfterSubmit(checked);
   }
-  function afterSubmit() {
+  function afterSubmit(error) {
     if (clearAfterSubmit) {
       setFormData();
     }
@@ -63,7 +63,7 @@ const FormBase = ({
   }
   function onError(error) {
     toast.error(error.message);
-    afterSubmit();
+    // afterSubmit();
   }
   function onSubmit(ev, data) {
     ev.preventDefault();
@@ -103,6 +103,7 @@ const FormBase = ({
   return (
     <>
       <FormBaseCTX.Provider value={CTX}>
+        <AppLoader {...{ isLoading }} />
         <form
           className={s.subForm}
           onSubmit={onSubmit}

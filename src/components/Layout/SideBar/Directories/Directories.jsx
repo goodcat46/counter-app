@@ -9,7 +9,7 @@ const Directories = () => {
   return (
     <>
       <div className={s.directories}>
-        {directories.map(({ title, ModalChildren = null, modalChildrenProps = null, iconId, disabled }) => (
+        {directories.map(({ title, ModalChildren = () => null, modalChildrenProps = null, iconId, disabled }) => (
           <ModalContent
             key={title}
             trigger={props => (

@@ -1,17 +1,17 @@
 import { iconId } from './iconsId.data';
 
 export const raports = [
-  { title: 'По рахунках', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
-  { title: 'По категоріях', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
-  { title: 'По працівниках', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
-  { title: 'По проектах', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
+  { title: 'Рух коштів', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
+  { title: 'Доходи/Витрати', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
+  // { title: 'По працівниках', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
+  { title: 'Проекти', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
   {
-    title: 'По контрагентах',
+    title: 'Контрагенти',
     iconId: iconId.info,
     ModalChildren: () => null,
     modalChildrenProps: null,
     disabled: true,
   },
-  { title: 'По мітках', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
-  { title: 'По тегах', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
+  { title: 'Мітки', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
+  { title: 'Теги', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
 ];

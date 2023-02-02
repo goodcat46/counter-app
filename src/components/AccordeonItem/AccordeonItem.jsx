@@ -4,19 +4,28 @@ import { iconId } from 'data';
 
 import s from './AccordeonItem.module.scss';
 
-const AccordeonItem = ({ children, title = 'Інформація', toggled = true, open = false }) => {
+const AccordeonItem = ({
+  children,
+  maxHeihgt = '32px',
+  title = 'Інформація',
+  toggled = true,
+  open = false,
+  className = '',
+  InnerComp = () => null,
+}) => {
   const [isOpen, setIsOpen] = useState(open);
 
   function handleToggleOpen() {
+    if (!toggled) return;
     setIsOpen(!isOpen);
   }
   return (
-    <div className={isOpen ? s.isOpenItem : s.isCloseItem}>
+    <div className={isOpen ? s.isOpenItem : s.isCloseItem} style={{ maxHeight: isOpen ? '100%' : maxHeihgt }}>
       <ButtonIcon
         iconId={toggled && iconId.arrowDown}
-        className={s.btn}
+        className={[s.btn, className].join(' ')}
         iconClassName={s.icon}
-        onClick={toggled ? handleToggleOpen : null}
+        onClick={handleToggleOpen}
         disabled={!children && true}
       >
         {title}

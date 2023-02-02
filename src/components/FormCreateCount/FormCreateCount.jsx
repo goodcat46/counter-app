@@ -1,21 +1,25 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCountThunk } from 'redux/counts/counts.thunks';
 import FormBase from 'components/FormBase/FormBase';
 import CreateCountInputs from './CreateCountInputs/CreateCountInputs';
+import { countsSelector } from 'redux/selectors.store';
 
 const FormCreateCount = () => {
   const dispatch = useDispatch();
+  const { isLoading } = useSelector(countsSelector);
 
-  function handleSubmit(payload) {
-    console.log('payload', payload);
+  function handleSubmit({ formData, onSuccess, onError }) {
+    console.log('FormCreateCount', { formData, onSuccess, onError });
+
+    const payload = { submitData: formData, onSuccess, onError };
+
     dispatch(addCountThunk(payload));
   }
 
-  useEffect(() => {}, []);
   return (
     <>
-      <FormBase title="Створення рахунку" {...{ handleSubmit }}>
+      <FormBase {...{ handleSubmit, isLoading, title: 'Створення рахунку' }}>
         <CreateCountInputs />
       </FormBase>
     </>

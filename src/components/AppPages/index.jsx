@@ -4,15 +4,11 @@ const PageNotFound = lazy(() => import('./PageNotFound/PageNotFound'));
 const PageError = lazy(() => import('./PageError/PageError'));
 const PageTransactions = lazy(() => import('./PageTransactions/PageTransactions'));
 const PageAuth = lazy(() => import('./PageAuth/PageAuth'));
+const PageCounts = lazy(() => import('./PageCounts/PageCounts'));
 
-// export { PageHome, PageNotFound, PageError, PageLogOut, PageAuth };
+const AppPages = { PageTransactions, PageNotFound, PageError, PageAuth, PageCounts };
 
-export const AppPages = {
-  PageTransactions,
-  PageNotFound,
-  PageError,
-  PageAuth,
-};
+export default AppPages;
 // export let PagesMap = {
 //   Main: PageMain,
 //   Admin: PageAdmin,
