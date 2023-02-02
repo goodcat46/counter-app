@@ -12,7 +12,9 @@ const SubCount = ({ item }) => {
   return (
     <div className={s.subCount}>
       <div className={s.info} onClick={handkeActionsShown}>
-        <div className={s.cell}>{item?.name}</div>
+        <div className={s.cell}>
+          <span className={s.cellInner}>{item?.name}</span>
+        </div>
         <div className={s.cell}>{item?.code}</div>
         <div className={s.cell}>{item?.type}</div>
       </div>

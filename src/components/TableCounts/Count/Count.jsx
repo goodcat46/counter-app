@@ -30,7 +30,7 @@ const Count = ({ counts, count }) => {
 
           <div className={s.info} onClick={handleShowActions}>
             <div className={s.cell} style={{ display: 'flex', flexDirection: 'column' }}>
-              <span>{`${count.name} / ${subCounts?.length}`}</span>
+              <span className={s.cellInner}>{`${count.name} / ${subCounts?.length}`}</span>
               {/* <span>{`${count._id}`}</span> */}
             </div>
             <div className={s.cell}>{`${count.code}`}</div>
