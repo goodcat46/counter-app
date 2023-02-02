@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
 import Select from 'components/Select/Select';
 import Input from 'components/Input/Input';
 import { useModal } from 'components/ModalContent/Modal';
@@ -7,9 +6,27 @@ import { useSelector } from 'react-redux';
 import { categoriesSelector, countsSelector } from 'redux/selectors.store';
 import SelectDbl from 'components/Select/SelectDbl';
 import { selects } from 'data';
+import { toast } from 'react-toastify';
+import FormButtons from './FormButtons/FormButtons';
 
 import s from './FormTransaction.module.scss';
-import { toast } from 'react-toastify';
+// import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
+
+// const adds = [
+//   { item: false },
+//   { item: true },
+//   { item: true },
+//   { item: true },
+//   { item: true },
+//   { item: true },
+//   { item: true },
+//   { item: true },
+//   { item: false },
+//   { item: true },
+//   { item: true },
+//   { item: true },
+//   { item: false },
+// ];
 
 const inputs = {
   date: {
@@ -22,6 +39,7 @@ const inputs = {
   amount: { name: 'amount', label: 'Сума', type: 'number', variant: 'standard' },
   comment: { name: 'comment', label: 'Коментар', type: 'text', variant: 'standard' },
 };
+const emptyObj = { name: '', _id: '', type: '' };
 // const selects = [
 //   { name: 'type' },
 //   { name: 'countIn' },
@@ -37,36 +55,60 @@ const inputs = {
 // ];
 export const initialTransactionState = {
   transactionDate: '',
-  type: null,
-  countIn: null,
-  subCountIn: null,
-  countOut: null,
-  subCountOut: null,
-  category: null,
-  subCategory: null,
-  value: null,
-  contractor: null,
-  document: null,
-  project: null,
-  mark: null,
+  type: '',
+  countIn: emptyObj,
+  subCountIn: emptyObj,
+  countOut: emptyObj,
+  subCountOut: emptyObj,
+  category: emptyObj,
+  subCategory: emptyObj,
+  amount: 0,
+  contractor: emptyObj,
+  document: emptyObj,
+  project: emptyObj,
+  mark: emptyObj,
   tags: [],
-  comment: null,
+  comment: '',
 };
 
-const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTransaction, onCopyTransaction }) => {
-  const [formData, setFormData] = useState(data || {});
+// const trTypes = {
+//   EXPENSE: 'Списання',
+//   INCOME: 'Дохід',
+//   TRANSFER: 'Переказ',
+// };
+
+const FormTransaction = ({
+  data = null,
+  disabled = false,
+  onAddNewTransaction,
+  onEditTransaction,
+  onCopyTransaction,
+}) => {
+  const [formData, setFormData] = useState(data || { ...initialTransactionState });
+  const [closeAfterSubmit, setCloseAfterSubmit] = useState(true);
+  const [clearAfterSubmit, setClearAfterSubmit] = useState(true);
   const { categories = [] } = useSelector(categoriesSelector);
   const { counts = [] } = useSelector(countsSelector);
-  // const { contractors = [] } = useSelector(contractorsSelector);
-  // const { documents = [] } = useSelector(documentsSelector);
-
-  // console.log(categories, 'categories =====================>>>>>>>>>>>');
-  // console.log(counts, 'counts =====================>>>>>>>>>>>');
-
-  // console.log(contractors, 'categories =====================>>>>>>>>>>>');
-  // console.log(documents, 'counts =====================>>>>>>>>>>>');
   const modal = useModal();
 
+  function nandleCloseAfterSubmit(ev) {
+    const { checked } = ev.target;
+    toast.info(`Форма ${!checked ? ' не ' : ' '}закриється після підтвердження`);
+    setCloseAfterSubmit(checked);
+  }
+  function nandleClearAfterSubmit(ev) {
+    const { checked } = ev.target;
+    toast.info(`Форма${!checked ? ' не ' : ' '}очиститься після підтвердження`);
+    setClearAfterSubmit(checked);
+  }
+  function afterSubmit() {
+    if (clearAfterSubmit) {
+      setFormData({});
+    }
+    if (closeAfterSubmit) {
+      modal.handleToggleModal();
+    }
+  }
   function onChange(ev) {
     const { name, value } = ev.target;
     setFormData(prev => {
@@ -75,25 +117,33 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
   }
   function onSelect({ value }) {
     setFormData(prev => {
-      return { ...prev, [value?.name]: value?.value };
+      return { ...prev, [value.name]: value?.value };
+    });
+  }
+  function handleDblSelect({ value }) {
+    // console.log('handleDblSelect', { [value?.dataKey]: value });
+
+    setFormData(prev => {
+      return { ...prev, [value?.dataKey]: value };
     });
   }
   function onSuccess(response) {
-    modal.handleToggleModal();
+    toast.success(response?.data?.message);
+    afterSubmit();
   }
   function onError(error) {
-    toast.error(`${error.message}`);
-    // modal.handleToggleModal();
+    toast.error(error.message);
+    afterSubmit();
   }
-
   function onSubmit(ev) {
     ev.preventDefault();
-    console.log('formData ===========>>>>>>>>>>', formData);
+    // console.log('formData ===========>>>>>>>>>>', formData);
 
-    onAddNewTransaction && onAddNewTransaction({ ev, submitData: formData, onSuccess, onError });
-    onEditTransaction && onEditTransaction({ ev, submitData: formData, onSuccess, onError });
-    onCopyTransaction && onCopyTransaction({ ev, submitData: formData, onSuccess, onError });
+    onAddNewTransaction && onAddNewTransaction({ ev, data: formData, onSuccess, onError });
+    onEditTransaction && onEditTransaction({ ev, data: formData, onSuccess, onError });
+    onCopyTransaction && onCopyTransaction({ ev, data: formData, onSuccess, onError });
   }
+
   useEffect(() => {
     if (!data) {
       return;
@@ -103,12 +153,19 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
 
   return (
     <>
-      <form className={s.subForm} onSubmit={onSubmit} onReset={modal.handleToggleModal}>
+      <form
+        className={s.subForm}
+        onSubmit={onSubmit}
+        onReset={() => {
+          modal.handleToggleModal();
+        }}
+      >
         <div className={s.header}>
           {onAddNewTransaction && <span>{`Нова транзакція`}</span>}
           {onEditTransaction && <span>{`Змінити транзакцію ${formData?._id}`}</span>}
           {onCopyTransaction && <span>{`Копія транзакції ${formData?._id}`}</span>}
         </div>
+
         <div className={s.scroll}>
           <div className={s.inputs}>
             <Input {...{ ...inputs.date, onChange, disabled, data: formData }} />
@@ -117,7 +174,7 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
 
             <SelectDbl
               options={counts}
-              onSelect={onSelect}
+              onSelect={handleDblSelect}
               parentName={selects.countIn.name}
               parentLabel={selects.countIn.label}
               childName={selects.subCountIn.name}
@@ -128,7 +185,7 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
 
             <SelectDbl
               options={counts}
-              onSelect={onSelect}
+              onSelect={handleDblSelect}
               parentName={selects.countOut.name}
               parentLabel={selects.countOut.label}
               childName={selects.subCountOut.name}
@@ -139,7 +196,7 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
 
             <SelectDbl
               options={categories.filter(option => option?.type === formData?.type)}
-              onSelect={onSelect}
+              onSelect={handleDblSelect}
               parentName={selects.category.name}
               parentLabel={selects.category.label}
               childName={selects.subCategory.name}
@@ -147,23 +204,45 @@ const FormTransaction = ({ data, disabled = false, onAddNewTransaction, onEditTr
               formData={formData}
               disabled={!formData.type}
             />
-            <Input {...{ ...inputs.amount, onChange, disabled, data: formData }} />
+            <Input {...{ ...inputs.amount, value: formData.amount, onChange, disabled, data: formData }} />
 
             <Select {...{ onSelect, disabled, data: formData }} {...selects.project} />
             <Select {...{ onSelect, disabled, data: formData }} {...selects.document} />
             <Select {...{ onSelect, disabled, data: formData }} {...selects.mark} />
 
-            <Input {...{ ...inputs.comment, onChange, disabled, data: formData }} />
+            <Input
+              {...{
+                ...inputs.comment,
+                onChange,
+                disabled,
+                data: formData,
+              }}
+            />
           </div>
+
+          {/* <div className={s.btns}>
+            {adds.map(el => {
+              return (
+                <>
+                  {el.item ? (
+                    <ButtonIcon styleType="BrandClrBtn" iconId={iconId.plus} styles={{ height: '100%' }} />
+                  ) : (
+                    <div></div>
+                  )}
+                </>
+              );
+            })}
+          </div> */}
         </div>
-        <div className={s.btns}>
-          <Button variant="contained" type="submit">
-            Прийняти
-          </Button>
-          <Button variant="outlined" type="reset">
-            Скасувати
-          </Button>
-        </div>
+        <FormButtons
+          {...{
+            disabled: false,
+            nandleCloseAfterSubmit,
+            closeAfterSubmit,
+            nandleClearAfterSubmit,
+            clearAfterSubmit,
+          }}
+        />
       </form>
     </>
   );

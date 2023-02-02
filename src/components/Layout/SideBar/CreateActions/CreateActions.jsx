@@ -1,27 +1,32 @@
 import React from 'react';
-import { addButtons } from 'data';
+import { addButtons, iconId } from 'data';
 import ModalContent from 'components/ModalContent/ModalContent';
-import { Button } from '@mui/material';
-import SvgIcon from 'components/SvgIcon/SvgIcon';
 
 import s from './CreateActions.module.scss';
+import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
 
 const CreateActions = () => {
   return (
     <div className={s.createActions}>
-      {addButtons.map(({ title, ModalChildren = null, modalChildrenProps = null }) => (
+      {addButtons.map(({ title, ModalChildren = null, modalChildrenProps = null, disabled }) => (
         <ModalContent
           key={title}
           trigger={props => (
-            <Button variant="contained" size="small" {...props}>
-              <div className={s.wrapper}>
-                <SvgIcon iconId="plus" />
-                <span>{title}</span>
-              </div>
-            </Button>
+            <ButtonIcon
+              {...props}
+              styleType="BrandClrBtn"
+              iconSize="20px"
+              className={s.btn}
+              iconId={iconId.plus}
+              disabled={disabled}
+            >
+              <span>{title}</span>
+            </ButtonIcon>
           )}
         >
-          <>{<ModalChildren {...modalChildrenProps} />}</>
+          <>
+            <ModalChildren {...modalChildrenProps} />
+          </>
         </ModalContent>
       ))}
     </div>

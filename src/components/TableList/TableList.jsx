@@ -7,34 +7,29 @@ import AppLoader from 'components/AppLoader/AppLoader';
 
 import s from './TableList.module.scss';
 
-const TableList = ({
-  rowActions = false,
-  tableTitles = [],
-  tableData = [],
-  prepeareRowData,
-  isLoading = false,
-  ...props
-}) => {
-  const ctx = {
-    rowActions,
-    tableTitles,
-    tableData,
-    prepeareRowData,
-    isLoading,
-    ...props,
-  };
+const TableList = ({ tableData = [], isLoading = false, rowActions = null, TableActionsComp = () => {}, ...props }) => {
+  const ctx = { tableData, isLoading, rowActions, ...props };
 
   return (
     <TableContext value={ctx}>
-      <>
-        <AppLoader isLoading={isLoading} />
+      <AppLoader isLoading={isLoading} />
 
-        <div className={[s.table]}>
-          <TableHead />
+      <div className={s.container}>
+        <div className={s.scroll}>
+          <div className={s.table}>
+            <TableHead />
 
-          {tableData.length > 0 && <TableBody />}
+            {tableData.length !== 0 && <TableBody />}
+          </div>
+
+          {tableData.length === 0 && (
+            <div className={s.empty}>
+              <div className={s.sticky}>Дані відсутні</div>
+            </div>
+          )}
         </div>
-      </>
+        <TableActionsComp />
+      </div>
     </TableContext>
   );
 };

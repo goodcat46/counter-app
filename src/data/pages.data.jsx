@@ -8,4 +8,5 @@ export const pages = [
   { title: 'Котракти', path: 'contracts', iconId: iconId.assignmentIn },
   { title: 'Документи', path: 'documents', iconId: iconId.assignment },
   { title: 'Склад', path: 'storage', iconId: iconId.storage },
+  { title: 'Довідники', path: 'directories', iconId: iconId.folder },
 ];

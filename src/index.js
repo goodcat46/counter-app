@@ -9,6 +9,7 @@ import { store } from 'redux/store.store';
 
 import './index.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import ModalProvider from 'components/ModalCustom/ModalProvider';
 
 // import reportWebVitals from './reportWebVitals';
 
@@ -18,7 +19,9 @@ root.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <BrowserRouter basename="/counter-app">
-        <App />
+        <ModalProvider>
+          <App />
+        </ModalProvider>
       </BrowserRouter>
     </PersistGate>
   </Provider>

@@ -1,25 +1,21 @@
 import React from 'react';
-import { Button } from '@mui/material';
 import ModalContent from 'components/ModalContent/ModalContent';
-import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { raports } from 'data';
 
 import s from './Raports.module.scss';
+import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
 
 const Raports = () => {
   return (
     <>
       <div className={s.raports}>
-        {raports.map(({ title, ModalChildren = null, modalChildrenProps = null, iconId }) => (
+        {raports.map(({ title, ModalChildren = null, modalChildrenProps = null, iconId, disabled }) => (
           <ModalContent
             key={title}
             trigger={props => (
-              <Button variant="contained" size="small" {...props}>
-                <div className={s.btnInner}>
-                  <SvgIcon {...{ iconId }} size="18px" />
-                  <span>{title}</span>
-                </div>
-              </Button>
+              <ButtonIcon {...props} styleType="BrandClrBtn" className={s.wrapper} iconId={iconId} disabled={disabled}>
+                <span>{title}</span>
+              </ButtonIcon>
             )}
           >
             <>{<ModalChildren {...modalChildrenProps} />}</>

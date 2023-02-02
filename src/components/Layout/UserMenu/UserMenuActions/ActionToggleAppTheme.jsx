@@ -12,7 +12,6 @@ const ActionToggleAppTheme = () => {
 
   function handleToggleAppTheme(params) {
     dispatch(actionChangeTheme());
-
     const body = document.querySelector('body');
     if (body.classList.contains('Light')) {
       body.classList.remove('Light');

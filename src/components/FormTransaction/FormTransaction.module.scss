@@ -25,26 +25,26 @@
 .inputs {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: max-content;
+  grid-auto-rows: 48px;
+  align-items: end;
   gap: 8px;
 
-  padding: 8px;
+  padding: 4px;
   width: 100%;
-}
-.scroll {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
 }
 .btns {
   display: grid;
-  grid-template-columns: 1fr min-content;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 48px;
   gap: 8px;
 
-  padding: 8px;
+  padding: 4px;
+}
+.scroll {
+  display: grid;
+  grid-template-columns: 1fr max-content;
 
-  color: inherit;
-  background-color: inherit;
-
-  border-top: 3px solid var(--tr-brdr-clr__primary);
+  width: 100%;
+  height: 100%;
+  overflow: auto;
 }

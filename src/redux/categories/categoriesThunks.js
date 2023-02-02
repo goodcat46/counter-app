@@ -11,7 +11,7 @@ export const getAllCategoriesThunk = createAsyncThunk('categories/getAllCategori
 
     return response.data;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
 
     payload?.onError(error);
 
@@ -30,7 +30,7 @@ export const getCategoriesByParentIdThunk = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      // console.log(error);
+      console.log(error);
 
       payload?.onError(error);
 
@@ -48,7 +48,7 @@ export const addCategoryThunk = createAsyncThunk('categories/addCategoryThunk', 
 
     return response.data;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
 
     payload?.onError(error);
 

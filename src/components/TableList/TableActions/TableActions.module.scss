@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+
+  border-bottom: 1px solid rgba(122, 122, 122, 0.5);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  font-size: 16px;
+  padding: 4px;
+
+  min-height: 24px;
+
+  // fill: var(--brand_clr__1);
+
+  // @media screen and (min-width: 480px) {
+  //   justify-content: flex-end;
+  // }
+}

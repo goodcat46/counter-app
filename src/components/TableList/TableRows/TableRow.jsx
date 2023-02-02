@@ -11,7 +11,7 @@ import { useTable } from '../TableContext';
 import s from './TableRow.module.scss';
 
 const TableRow = props => {
-  const { tableTitles = [], rowGrid, rowActions = true } = useTable();
+  const { tableTitles = [], rowGrid, rowActions = null, createRowData } = useTable();
   const [isActionsOpen, setIsActionsOpen] = useState(false);
 
   const styles = {
@@ -27,6 +27,7 @@ const TableRow = props => {
 
   const ctxValue = {
     ...props,
+    rowData: createRowData(props?.rowData),
     isActionsOpen,
     handleToggleActions,
     handleCloseActions,
