@@ -9,6 +9,7 @@ export const iconId = {
   copy: 'copy',
   link: 'link',
   cardOk: 'cardOk',
+  boockMarAdd: 'boockMarAdd',
   statistics: 'statistics',
   assignment: 'assignment',
   assignmentOk: 'assignmentOk',
