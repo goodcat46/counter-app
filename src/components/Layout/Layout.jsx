@@ -30,10 +30,12 @@ const Layout = ({ children }) => {
   };
 
   useEffect(() => {
-    if (window.location.hostname !== 'localhost') {
+    if (window.location.hostname === 'localhost') {
       const payload = thunkName => {
         return {
-          onSuccess: response => {},
+          onSuccess: response => {
+            console.log(response.data);
+          },
           onError: error => {
             toast.error(`${thunkName} - ${error.message}`);
           },

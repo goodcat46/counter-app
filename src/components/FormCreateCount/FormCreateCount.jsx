@@ -5,6 +5,13 @@ import FormBase from 'components/FormBase/FormBase';
 import CreateCountInputs from './CreateCountInputs/CreateCountInputs';
 import { countsSelector } from 'redux/selectors.store';
 
+// function createSubmitData(data) {
+//   const { owner } = data;
+//   const submitData = {
+//     owner,
+//   };
+//   return submitData;
+// }
 const FormCreateCount = () => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector(countsSelector);

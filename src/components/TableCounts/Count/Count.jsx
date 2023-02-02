@@ -15,7 +15,7 @@ const Count = ({ counts, count }) => {
     setIsShownActions(!isShownActions);
   }
 
-  const subCounts = counts.filter(ch => ch.owner === count._id);
+  const subCounts = counts.filter(el => el.owner === count._id || el.owner?._id === count._id);
   return (
     <>
       <div className={[isOpen ? s.isOpenItem : s.isCloseItem]} open={subCounts?.length > 0}>
