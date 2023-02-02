@@ -4,9 +4,9 @@ const PageNotFound = lazy(() => import('./PageNotFound/PageNotFound'));
 const PageError = lazy(() => import('./PageError/PageError'));
 const PageTransactions = lazy(() => import('./PageTransactions/PageTransactions'));
 const PageAuth = lazy(() => import('./PageAuth/PageAuth'));
-const PageCounts = lazy(() => import('./PageCounts/PageCounts'));
+const PageDirectories = lazy(() => import('./PageDirectories/PageDirectories'));
 
-const AppPages = { PageTransactions, PageNotFound, PageError, PageAuth, PageCounts };
+const AppPages = { PageTransactions, PageNotFound, PageError, PageAuth, PageDirectories };
 
 export default AppPages;
 // export let PagesMap = {

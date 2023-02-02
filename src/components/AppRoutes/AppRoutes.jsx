@@ -24,7 +24,11 @@ const AppRoutes = () => {
             element={<AppPages.PageTransactions path="transactions" />}
             errorElement={<PageError />}
           />
-          <Route path="counts" element={<AppPages.PageCounts path="counts" />} errorElement={<PageError />} />
+          <Route
+            path="directories"
+            element={<AppPages.PageDirectories path="directories" />}
+            errorElement={<PageError />}
+          />
         </Route>
 
         <Route path="*" element={<PageNotFound />} errorElement={<PageError />} />

@@ -24,6 +24,7 @@ export const iconId = {
   plus: 'plus',
   arrowDown: 'arrowDown',
   arrowLeft: 'arrowLeft',
+  arrowRight: 'arrowRight',
   home: 'home',
   persons: 'persons',
   person: 'person',

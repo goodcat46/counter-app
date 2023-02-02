@@ -9,6 +9,7 @@ import SvgIcon from 'components/SvgIcon/SvgIcon';
 import s from './SideBar.module.scss';
 import UserMenu from '../UserMenu/UserMenu';
 import SideBarMenu from './SideBarMenu/SideBarMenu';
+import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
 
 export const SideBarCTX = createContext();
 export const useSideBar = () => useContext(SideBarCTX);
@@ -52,13 +53,23 @@ const SideBar = ({ children, size = '30px' }) => {
                 </div>
               </Button>
 
-              <Button size="small" onClick={handleToggleSideBar}>
+              {/* <Button size="small" onClick={handleToggleSideBar}>
                 <div className={s.btnInner}>
                   <span>Сховати меню</span>
                   <SvgIcon iconId={iconId.arrowDown} size="24px" svgClass={s.arrow} />
                 </div>
-              </Button>
+              </Button> */}
             </div>
+
+            <ButtonIcon
+              styleType="BrandClrBtn"
+              // iconId={isOpen ? iconId.arrowRight : iconId.arrowLeft}
+              iconId={iconId.arrowDown}
+              className={[s.toggleMenu, isOpen && s.open].join(' ')}
+              iconClassName={isOpen ? s.iconLeft : s.iconRight}
+              iconSize="40px"
+              onClick={handleToggleSideBar}
+            ></ButtonIcon>
           </div>
         </div>
       </Portal>

@@ -11,7 +11,9 @@
   background-color: inherit;
 
   &:hover {
-    background-color: rgba(103, 202, 255, 0.15);
+    // background-color: rgba(103, 202, 255, 0.15);
+    // background-color: rgba(122, 122, 122, 0.3);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   }
 } //var(--tr-backgrnd-clr__hover);
 .rowContainer,

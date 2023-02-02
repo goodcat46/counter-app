@@ -1,12 +1,12 @@
 import React from 'react';
-
-import s from './PageCounts.module.scss';
 import TableCounts from 'components/TableCounts/TableCounts';
+
+import s from './PageDirectories.module.scss';
 
 const PageCounts = () => {
   return (
     <>
-      <div className={s.transactionsPage}>
+      <div className={s.PageDirectories}>
         <TableCounts />
       </div>
     </>

@@ -16,7 +16,7 @@ const CreateActions = () => {
               {...props}
               styleType="BrandClrBtn"
               iconSize="20px"
-              className={s.wrapper}
+              className={s.btn}
               iconId={iconId.plus}
               disabled={disabled}
             >

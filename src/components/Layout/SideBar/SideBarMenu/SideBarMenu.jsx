@@ -10,13 +10,13 @@ import Raports from '../Raports/Raports';
 const SideBarMenu = () => {
   const { handleToggleSideBar } = useSideBar();
   const renderItems = [
-    { title: 'Загальна інформація', Item: null },
-    { title: 'Навігація', Item: NavMenu },
-    { title: 'Створити', Item: CreateActions },
-    { title: 'Довідники', Item: Directories },
-    { title: 'Звіти', Item: Raports },
-    { title: 'Налаштування', Item: null },
-    { title: 'Далі буде...', Item: null },
+    { title: 'Загальна інформація', Item: null, open: false },
+    { title: 'Навігація', Item: NavMenu, open: true },
+    { title: 'Створити', Item: CreateActions, open: false },
+    { title: 'Довідники', Item: Directories, open: false },
+    { title: 'Звіти', Item: Raports, open: false },
+    { title: 'Налаштування', Item: null, open: false },
+    { title: 'Далі буде...', Item: null, open: false },
   ];
 
   useEffect(() => {
@@ -39,8 +39,8 @@ const SideBarMenu = () => {
   }, [handleToggleSideBar]);
   return (
     <>
-      {renderItems.map(({ title, Item, ...props }) => (
-        <AccordeonItem key={title} {...{ ...props, title }}>
+      {renderItems.map(({ title, Item, open, ...props }) => (
+        <AccordeonItem key={title} {...{ ...props, title, open }}>
           {Item && <Item />}
         </AccordeonItem>
       ))}
