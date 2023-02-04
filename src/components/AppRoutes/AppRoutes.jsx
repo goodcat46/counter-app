@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import AppGridPage from 'components/AppPages/AppGridPage/AppGridPage';
 // import { useSelector } from 'react-redux';
 // import { getUserData } from 'redux/selectors';
@@ -16,7 +16,7 @@ const AppRoutes = () => {
   return (
     <>
       <Routes>
-        {/* <Route index element={<Navigate to={'/'} />} errorElement={<PageError />} /> */}
+        <Route index element={<Navigate to={'transactions'} />} errorElement={<PageError />} />
         <Route path="/" element={<AppGridPage path="transactions" />} errorElement={<PageError />}>
           <Route index element={<AppPages.PageTransactions path="transactions" />} errorElement={<PageError />} />
           <Route

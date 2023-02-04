@@ -1,3 +1,65 @@
+export const transactionsColumns = [
+  { id: 1, title: 'Дата', dataKey: 'transactionDate', action: 'date', width: '120px' },
+  { id: 2, title: 'Тип', dataKey: 'type', action: 'status', width: '120px' },
+
+  {
+    id: 6,
+    title: 'Рахунок/OUT',
+    subTitle: 'Суб-рахунок/OUT',
+    action: 'nestedDbl',
+    width: '200px',
+    titles: {
+      top: { dataKey: 'countIdOut', nestedKey: 'name' },
+      bottom: { dataKey: 'subCountIdOut', nestedKey: 'name' },
+    },
+  },
+  {
+    id: 5,
+    title: 'Рахунок/IN',
+    subTitle: 'Суб-рахунок/IN',
+    action: 'nestedDbl',
+    width: '200px',
+    titles: {
+      top: { dataKey: 'countIdIn', nestedKey: 'name' },
+      bottom: { dataKey: 'subCountIdIn', nestedKey: 'name' },
+    },
+  },
+  {
+    id: 7,
+    title: 'Категорія',
+    subTitle: 'Під-категорія',
+    action: 'nestedDbl',
+    width: '200px',
+    titles: {
+      top: { dataKey: 'categoryId', nestedKey: 'name' },
+      bottom: { dataKey: 'subCategoryId', nestedKey: 'name' },
+    },
+  },
+  {
+    id: 8,
+    title: 'Сума',
+    subTitle: 'Валюта',
+    action: 'stringDbl',
+    width: '100px',
+    top: { name: 'Сума', dataKey: 'amount', action: 'number' },
+    bottom: { name: 'Валюта', dataKey: 'currency', action: 'string' },
+  },
+  // { id: 7, title: 'Сума', dataKey: 'amount', action: 'number', width: '100px' },
+  // { id: 8, title: 'Валюта', dataKey: 'currency', action: 'string', width: '100px' },
+
+  { id: 9, title: 'Контрагент', dataKey: 'contractor', action: 'string', width: '100px' },
+  { id: 11, title: 'Проект', dataKey: 'project', action: 'string', width: '100px' },
+
+  {
+    id: 12,
+    title: 'Створено',
+    subTitle: 'Оновлено',
+    dataKey: 'documentData',
+    action: 'dateDbl',
+    width: '180px',
+  },
+];
+
 export const transactionsTableTitles = [
   { id: 1, title: 'Дата', dataKey: 'transactionDate', action: 'date', width: '90px' },
   { id: 2, title: 'Тип', dataKey: 'type', action: 'status', width: '150px' },
@@ -102,25 +164,10 @@ export const transactionsTestData = [
   },
 ];
 
-export const transactionsColumns = [
-  { id: 1, title: 'Дата', dataKey: 'transactionDate', action: 'date', width: '150px' },
-  { id: 2, title: 'Тип', dataKey: 'type', action: 'status', width: '150px' },
-
-  { id: 3, title: 'Рахунок/IN', dataKey: 'countIn', action: 'string', width: '150px' },
-  { id: 4, title: 'Суб-рахунок/IN', dataKey: 'subCountIn', action: 'string', width: '150px' },
-
-  { id: 3, title: 'Рахунок/OUT', dataKey: 'countOut', action: 'string', width: '150px' },
-  { id: 4, title: 'Суб-рахунок/OUT', dataKey: 'subCountOut', action: 'string', width: '150px' },
-
-  { id: 6, title: 'Категорія', dataKey: 'category', action: 'string', width: '150px' },
-  { id: 7, title: 'Під-категорія', dataKey: 'subCategory', action: 'string', width: '150px' },
-
-  { id: 5, title: 'Сума', dataKey: 'value', action: 'number', width: '100px' },
-  { id: 8, title: 'Валюта', dataKey: 'currency', action: 'string', width: '100px' },
-
-  { id: 9, title: 'Постачальник', dataKey: 'provider', action: 'string', width: '100px' },
-  { id: 10, title: 'Клієнт', dataKey: 'customer', action: 'string', width: '100px' },
-
-  { id: 11, title: 'Проект', dataKey: 'project', action: 'string', width: '100px' },
-  { id: 12, title: 'Створено/Оновлено', dataKey: 'createdAt/updatedAt', action: 'dateDbl', width: '180px' },
-];
+// {
+//   id: 5,
+//   title: { name: 'Рахунок/IN', dataKey: 'countIdIn', nestedKey: 'name', action: 'string' },
+//   subTitle: { name: 'Суб-рахунок/IN', dataKey: 'subCountIdIn', nestedKey: 'name', action: 'string' },
+//   action: 'nestedDbl',
+//   width: '200px',
+// },

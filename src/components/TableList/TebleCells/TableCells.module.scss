@@ -81,6 +81,11 @@
   max-height: 100%;
   max-width: 100%;
 }
+// .innerNoWrap {
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }
 .empty {
   justify-content: center;
 }
@@ -90,21 +95,60 @@
 .text {
 }
 .status,
-.approvedStatus,
-.availabilityStatus,
-.visibilityStatus,
 .typeStatus {
   justify-content: center;
 }
-.date {
+.date,
+.currency {
   justify-content: center;
 }
 .number {
   justify-content: flex-end;
 }
 
-.collDate {
+.nestedDbl {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.stringDbl,
+.collDate,
+.dateDbl {
   flex-direction: column;
   justify-content: center;
   gap: 2px;
+}
+.transactionDate,
+.documentDate,
+.type {
+}
+.countIdIn,
+.subCountIdIn,
+.countIdOut,
+.subCountIdOut,
+.categoryId,
+.subCategoryId {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.amount {
+  justify-content: flex-end;
+}
+.currency {
+  justify-content: center;
+}
+.contractor,
+.project,
+.document {
 }
