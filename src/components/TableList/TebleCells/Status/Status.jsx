@@ -16,7 +16,7 @@ const Status = ({ status, variant = null }) => {
 
   return (
     <div className={s.statusBox} style={styles} title={descr}>
-      {iconId && <SvgIcon iconId={iconId} size="18px" />}
+      {iconId && <SvgIcon iconId={iconId} size="20px" />}
       <span className={s.inner}>{text || name}</span>
     </div>
   );

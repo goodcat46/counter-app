@@ -52,19 +52,23 @@
 }
 .toggleMenu {
   position: absolute;
-  top: 50%;
+  bottom: 50px;
   left: 0;
   z-index: 50;
 
   padding: 2px;
 
-  // width: 40px;
-  transform: translate(-50%, -50%);
+  opacity: 0.5;
+
+  transform: translate(-50%, 0);
+  transition: all var(--timing-function__main);
   &:hover {
     left: -10px;
+    opacity: 1;
   }
   &.open {
     left: -10px;
+    opacity: 1;
     &:hover {
       left: -5px;
     }

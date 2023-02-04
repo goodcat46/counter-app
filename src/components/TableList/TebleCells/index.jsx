@@ -12,6 +12,8 @@ import CellStatus from './CellStatus';
 import CellCheckBox from './CellCheckBox';
 import CellActions from './CellActions';
 import CellTextNested from './CellTextNested';
+import CellNestedDbl from './CellNestedDbl';
+import CellTextDbl from './CellTextDbl';
 import Cell from './Cell';
 
 export const CellsMap = {
@@ -29,5 +31,7 @@ export const CellsMap = {
   number: CellNumber,
   status: CellStatus,
   cell: Cell,
+  nestedDbl: CellNestedDbl,
   nested: CellTextNested,
+  stringDbl: CellTextDbl,
 };

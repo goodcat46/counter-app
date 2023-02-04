@@ -1,0 +1,10 @@
+.Dark {
+  & .thRow {
+    background-color: var(--brand_clr__4);
+  }
+}
+.Light {
+  & .thRow {
+    background-color: #fff;
+  }
+}

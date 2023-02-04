@@ -1,3 +1,4 @@
+import { iconId } from './iconsId.data';
 export const statusName = {
   approved: 'Узгоджено',
   success: 'Успішно',
@@ -102,6 +103,10 @@ export const iconsId = {
   TRANSFER: 'info',
   default: 'info',
 };
+export const statusData = {
+  name: statusName,
+  iconId: statusIconId,
+};
 const colors = {
   clrLight: '#fff',
   clrDark: '#121212',
@@ -113,23 +118,19 @@ const colors = {
   clrPrimary: '#cdcdcd',
 };
 
-export const statusData = {
-  name: statusName,
-  iconId: statusIconId,
-};
 export const statusSetMap = {
-  noStatus: { name: 'NO_STATUS', color: colors.clrDefault, iconId: iconsId.default, text: 'Без статусу' },
-  INCOME: { name: 'INCOME', color: colors.clrSuccess, iconId: iconsId.INCOME, text: 'Дохід' },
+  noStatus: { name: 'NO_STATUS', color: colors.clrDefault, iconId: iconId.default, text: 'Без статусу' },
+  INCOME: { name: 'INCOME', color: colors.clrSuccess, iconId: iconId.INCOME, text: 'Дохід' },
   EXPENSE: {
     name: 'EXPENSE',
     color: colors.clrError,
-    iconId: iconsId.EXPENSE,
-    text: 'Списання',
+    iconId: iconId.EXPENSE,
+    text: 'Витрата',
   },
   TRANSFER: {
     name: 'TRANSFER',
     color: colors.clrInfo,
-    iconId: iconsId.TRANSFER,
+    iconId: iconId.TRANSFER,
     text: 'Переказ',
   },
 };

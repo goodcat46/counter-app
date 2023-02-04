@@ -8,7 +8,8 @@ const CellTitle = ({ title, idx, className = '', onClick }) => {
 
   return (
     <div style={{ width: title?.width }} className={classNames} title={title?.title || 'Empty'} onClick={onClick}>
-      {title?.title || 'Empty'}
+      <span> {title?.title || 'Empty'}</span>
+      {title?.subTitle && <span> {title?.subTitle || 'Empty'}</span>}
     </div>
   );
 };

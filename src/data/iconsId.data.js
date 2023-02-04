@@ -92,4 +92,7 @@ export const iconId = {
   unArchive: 'unArchive',
   dblArrowRight: 'dblArrowRight',
   openInNew: 'openInNew',
+  INCOME: 'plus',
+  EXPENSE: 'minus',
+  TRANSFER: 'transfer',
 };
