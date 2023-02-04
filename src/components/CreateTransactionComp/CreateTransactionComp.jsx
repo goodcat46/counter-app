@@ -51,7 +51,7 @@ const CreateTransactionComp = props => {
 
     console.log('payload.submitData', payload.submitData);
 
-    dispatch(addTransactionThunk(payload));
+    // dispatch(addTransactionThunk(payload));
   }
 
   return (

@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header className={[s.header, 'theme'].join(' ')}>
       <Link to="/transactions" className={s.logoLink}>
-        <span className={s.logoText}>LOGO</span>
+        <span className={s.logoText}>ACCOUNER lite</span>
       </Link>
 
       <div></div>

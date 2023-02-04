@@ -1,38 +1,39 @@
+import { selects } from './select.data';
 export const transactionsColumns = [
   { id: 1, title: 'Дата', dataKey: 'transactionDate', action: 'date', width: '120px' },
   { id: 2, title: 'Тип', dataKey: 'type', action: 'status', width: '120px' },
 
   {
     id: 6,
-    title: 'Рахунок/OUT',
-    subTitle: 'Суб-рахунок/OUT',
+    title: selects.countOut.label,
+    subTitle: selects.subCountOut.label,
     action: 'nestedDbl',
     width: '200px',
     titles: {
-      top: { dataKey: 'countIdOut', nestedKey: 'name' },
-      bottom: { dataKey: 'subCountIdOut', nestedKey: 'name' },
+      top: { dataKey: selects.countOut.name, nestedKey: 'name' },
+      bottom: { dataKey: selects.subCountOut.name, nestedKey: 'name' },
     },
   },
   {
     id: 5,
-    title: 'Рахунок/IN',
-    subTitle: 'Суб-рахунок/IN',
+    title: selects.countIn.label,
+    subTitle: selects.subCountIn.label,
     action: 'nestedDbl',
     width: '200px',
     titles: {
-      top: { dataKey: 'countIdIn', nestedKey: 'name' },
-      bottom: { dataKey: 'subCountIdIn', nestedKey: 'name' },
+      top: { dataKey: selects.countIn.name, nestedKey: 'name' },
+      bottom: { dataKey: selects.subCountIn.name, nestedKey: 'name' },
     },
   },
   {
     id: 7,
-    title: 'Категорія',
-    subTitle: 'Під-категорія',
+    title: selects.category.label,
+    subTitle: selects.subCategory.label,
     action: 'nestedDbl',
     width: '200px',
     titles: {
-      top: { dataKey: 'categoryId', nestedKey: 'name' },
-      bottom: { dataKey: 'subCategoryId', nestedKey: 'name' },
+      top: { dataKey: selects.category.name, nestedKey: 'name' },
+      bottom: { dataKey: selects.subCategory.name, nestedKey: 'name' },
     },
   },
   {
