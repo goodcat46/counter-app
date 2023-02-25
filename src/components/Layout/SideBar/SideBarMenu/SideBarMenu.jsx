@@ -6,8 +6,9 @@ import Directories from 'components/Layout/SideBar/Directories/Directories';
 import NavMenu from '../NavMenu/NavMenu';
 import Raports from '../Raports/Raports';
 
-// import s from './SideBarMenu.module.scss';
-const SideBarMenu = () => {
+import s from './SideBarMenu.module.scss';
+
+const SideBarMenu = ({ isOpen = false }) => {
   const { handleToggleSideBar } = useSideBar();
   const renderItems = [
     { title: 'Загальна інформація', Item: null, open: false },
@@ -39,26 +40,15 @@ const SideBarMenu = () => {
   }, [handleToggleSideBar]);
   return (
     <>
-      {renderItems.map(({ title, Item, open, ...props }) => (
-        <AccordeonItem key={title} {...{ ...props, title, open }}>
-          {Item && <Item />}
-        </AccordeonItem>
-      ))}
-      {/* <AccordeonItem title="Навігація">
-        <NavMenu />
-      </AccordeonItem>
-      <AccordeonItem title="Створити">
-        <CreateActions />
-      </AccordeonItem>
-      <AccordeonItem title="Транзакції"></AccordeonItem>
-      <AccordeonItem title="Довідники">
-        <Directories />
-      </AccordeonItem>
-      <AccordeonItem title="Звіти">
-        <Raports />
-      </AccordeonItem>
-      <AccordeonItem title="Налаштування"></AccordeonItem>
-      <AccordeonItem title="Далі буде..."></AccordeonItem> */}
+      {isOpen && (
+        <div className={s.sideBarMenu}>
+          {renderItems.map(({ title, Item, open, ...props }) => (
+            <AccordeonItem key={title} {...{ ...props, title, open }}>
+              {Item && <Item />}
+            </AccordeonItem>
+          ))}
+        </div>
+      )}
     </>
   );
 };

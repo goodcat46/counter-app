@@ -1,7 +1,7 @@
 import { selects } from './select.data';
 export const transactionsColumns = [
   { id: 1, title: 'Дата', dataKey: 'transactionDate', action: 'date', width: '120px' },
-  { id: 2, title: 'Тип', dataKey: 'type', action: 'status', width: '120px' },
+  { id: 2, title: 'Тип', dataKey: 'type', action: 'status', width: '120px', search: true, visible: true },
 
   {
     id: 6,
@@ -48,8 +48,8 @@ export const transactionsColumns = [
   // { id: 7, title: 'Сума', dataKey: 'amount', action: 'number', width: '100px' },
   // { id: 8, title: 'Валюта', dataKey: 'currency', action: 'string', width: '100px' },
 
-  { id: 9, title: 'Контрагент', dataKey: 'contractor', action: 'string', width: '100px' },
-  { id: 11, title: 'Проект', dataKey: 'project', action: 'string', width: '100px' },
+  { id: 9, title: 'Контрагент', dataKey: 'contractor', action: 'string', width: '100px', search: true, visible: true },
+  { id: 11, title: 'Проект', dataKey: 'project', action: 'string', width: '100px', search: true, visible: true },
 
   {
     id: 12,

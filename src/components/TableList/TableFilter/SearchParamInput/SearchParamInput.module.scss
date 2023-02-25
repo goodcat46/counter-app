@@ -1,0 +1,74 @@
+.searchParamInput {
+  height: 100%;
+  width: 100%;
+  padding: 4px 30px 4px 8px;
+
+  font-size: 12px;
+  font-family: inherit;
+  color: inherit;
+  background-color: transparent;
+
+  border-radius: 2px;
+  border-style: none;
+  border: 1px solid var(--inputBorder);
+  &:focus {
+    border: 1px solid var(--darkOrange);
+  }
+  &::placeholder {
+    color: var(--inputPlaceholderClr);
+  }
+}
+
+.searchParamInputBox {
+  position: relative;
+
+  height: 100%;
+  width: 100%;
+
+  fill: var(--darkOrange);
+  &.isOpen {
+    & .svgIcon {
+      transform: rotate(-180deg);
+    }
+  }
+}
+
+.svgIconBox {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+
+  pointer-events: none;
+
+  transform: translateY(-50%);
+}
+.list,
+.listOpen {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  width: 100%;
+  height: max-content;
+  max-height: 0;
+  overflow: hidden;
+
+  border-radius: 2px;
+  box-shadow: var(--header-shadow);
+
+  background-color: var(--bckgrndDarkClr_secondary);
+}
+.listOpen {
+  max-height: 500%;
+  overflow: auto;
+}
+.listItem {
+  padding: 8px;
+
+  font-size: 12px;
+
+  &:hover {
+    color: var(--darkOrange);
+    background-color: rgba(254, 254, 254, 0.1);
+  }
+}

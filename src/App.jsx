@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import Layout from 'components/Layout/Layout';
 import AppRoutes from 'components/AppRoutes/AppRoutes';
@@ -11,22 +11,22 @@ import AppLoader from 'components/AppLoader/AppLoader';
 const App = () => {
   const { isDarkTheme } = useSelector(getAppSettings);
 
-  useEffect(() => {
-    const body = document.querySelector('body');
-    if (isDarkTheme) {
-      body.classList.remove('Light');
-      body.classList.add('Dark');
-      return;
-    }
-    if (!isDarkTheme) {
-      body.classList.remove('Dark');
-      body.classList.add('Light');
-      return;
-    }
-  });
+  // useEffect(() => {
+  //   const body = document.querySelector('body');
+  //   if (isDarkTheme) {
+  //     body.classList.remove('Light');
+  //     body.classList.add('Dark');
+  //     return;
+  //   }
+  //   if (!isDarkTheme) {
+  //     body.classList.remove('Dark');
+  //     body.classList.add('Light');
+  //     return;
+  //   }
+  // });
   return (
     <>
-      <div className={[isDarkTheme ? s.appDark : s.app]}>
+      <div className={s.app}>
         <Suspense fallback={<AppLoader isLoading />}>
           <Layout>
             <AppRoutes />

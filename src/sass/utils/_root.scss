@@ -14,6 +14,21 @@
   --zone-special_clr: #f1f1f1;
   --zone-special_clr: rgba(219, 219, 219, 0.2);
 
+  --bckgrndDarkClr_main: #1c1c1e;
+  --bckgrndDarkClr_secondary: #272729;
+
+  --header-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+
+  --inputBorder: #c4c4c481;
+  --inputPlaceholderClr: #7b7b7b;
+
+  --brdrClr_primary: #c4c4c481;
+
+  --darkClr_main: #3a3a3c;
+  --darkClr_secondry: #252527;
+  --darkOrange: #dc851f;
+  --ligthOrange: rgba(220, 133, 31, 0.12);
+
   /* TEXT */
   --text-clr__primary: #1a1a1a;
   --text-clr__secondary: #6b6b6b;
@@ -43,6 +58,10 @@
   --btn_bckgrnd-color: transparent;
   --btn_bckgrnd-color-hover: rgba(219, 219, 219, 0.1);
   --btn_bckgrnd-color-active: rgba(219, 219, 219, 0.05);
+
+  --btnShadow: 0px 1px 6px rgba(86, 87, 117, 0.2);
+  --btnShadow_hover: 0px 1px 6px rgba(86, 87, 117, 0.5);
+  --btnShadow_active: 0px 1px 6px rgba(86, 87, 117, 0.1);
   /* OTHERS */
   --header-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
   --block-shadow: 0 0 8px rgba(0, 0, 0, 0.2);

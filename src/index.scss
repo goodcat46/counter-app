@@ -22,7 +22,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #212121;
   font-size: 14px;
   line-height: 1.2;
@@ -75,7 +75,7 @@ a {
   text-decoration: none;
   color: inherit;
 
-  outline-color: var(--brand_clr__1);
+  outline-color: var(--darkOrange);
 }
 /* АДРЕСИ */
 address {
@@ -91,9 +91,19 @@ img {
 button {
   user-select: none;
 
+  &:focus-visible {
+    border-color: var(--darkOrange);
+    outline-style: none;
+    outline: 2px solid var(--darkOrange);
+  }
+}
+/* ІНПУТИ */
+input {
   &:focus,
   &:focus-visible {
-    outline-color: var(--brand_clr__1);
+    border-color: var(--darkOrange);
+    outline-style: none;
+    outline: 2px solid var(--darkOrange);
   }
 }
 /* ----------------- СКРИТІ ЕЛЕМЕНТИ */

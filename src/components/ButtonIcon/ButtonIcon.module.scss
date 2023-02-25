@@ -5,24 +5,23 @@
   gap: 8px;
 
   text-align: center;
-  font-size: 14px;
+  font-size: inherit;
+  font-family: inherit;
   letter-spacing: 0.05em;
-
-  padding: 0;
-  color: inherit;
-
-  border-style: none;
-  overflow: hidden;
-  border: 1px solid transparent;
-
   color: inherit;
   fill: inherit;
+
+  padding: 0;
+
   cursor: default;
 
+  overflow: hidden;
+  border-style: none;
+  border-radius: 2px;
+  border: 1px solid transparent;
   background-color: var(--btn_bckgrnd-color);
 
   transition: all var(--timing-function__main);
-
   &:hover {
     background-color: var(--btn_bckgrnd-color-hover);
   }
@@ -98,6 +97,74 @@
   &:active {
     border-color: var(--clr-error);
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.filled {
+  fill: #fff;
+  background-color: var(--darkOrange);
+  box-shadow: var(--btnShadow);
+  &:hover {
+    // fill: var(--darkOrange);
+    // border-color: var(--darkOrange);
+    background-color: var(--darkOrange);
+    box-shadow: var(--btnShadow_hover);
+  }
+  &:active {
+    background-color: var(--darkOrange);
+    box-shadow: var(--btnShadow_active);
+  }
+}
+.text {
+  fill: var(--darkOrange);
+  // box-shadow: var(--btnShadow);
+  &:hover {
+    background: var(--ligthOrange);
+    // box-shadow: var(--btnShadow_hover);
+  }
+  &:active {
+    box-shadow: var(--btnShadow_active);
+  }
+}
+.outlined {
+  .text {
+    fill: var(--darkOrange);
+    border-color: var(--darkOrange);
+    box-shadow: var(--btnShadow);
+    &:hover {
+      background: var(ligthOrange);
+      box-shadow: var(--btnShadow_hover);
+    }
+    &:active {
+      box-shadow: var(--btnShadow_active);
+    }
+  }
+}
+.pointerLeft {
+  position: relative;
+  fill: #fff;
+  border-radius: 0;
+
+  border-width: 0;
+  transition: none;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 3px;
+    height: 100%;
+
+    background-color: transparent;
+  }
+  &:hover {
+    &::before {
+      background-color: var(--darkOrange);
+    }
+  }
+  &:active {
+    box-shadow: var(--btnShadow_active);
   }
 }
 
