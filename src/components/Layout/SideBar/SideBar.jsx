@@ -43,7 +43,7 @@ const SideBar = ({ children, size = '30px' }) => {
               <UserMenu />
             </div>
 
-            <div className={s.overflow}>{isOpen && <SideBarMenu />}</div>
+            {isOpen && <SideBarMenu isOpen />}
 
             <div className={s.footer}>
               <Button size="small" onClick={() => {}}>
@@ -52,18 +52,10 @@ const SideBar = ({ children, size = '30px' }) => {
                   <SvgIcon iconId={iconId.logOut} size="24px" svgClass={s.iconExit} />
                 </div>
               </Button>
-
-              {/* <Button size="small" onClick={handleToggleSideBar}>
-                <div className={s.btnInner}>
-                  <span>Сховати меню</span>
-                  <SvgIcon iconId={iconId.arrowDown} size="24px" svgClass={s.arrow} />
-                </div>
-              </Button> */}
             </div>
 
             <ButtonIcon
               styleType="BrandClrBtn"
-              // iconId={isOpen ? iconId.arrowRight : iconId.arrowLeft}
               iconId={iconId.arrowDown}
               className={[s.toggleMenu, isOpen && s.open].join(' ')}
               iconClassName={isOpen ? s.iconLeft : s.iconRight}

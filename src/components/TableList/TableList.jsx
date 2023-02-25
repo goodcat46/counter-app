@@ -6,6 +6,8 @@ import TableBody from './TableBody';
 import AppLoader from 'components/AppLoader/AppLoader';
 
 import s from './TableList.module.scss';
+import QuickActions from './QuickActions/QuickActions';
+import TableOverHead from './TableOverHead/TableOverHead';
 
 const TableList = ({ tableData = [], isLoading = false, rowActions = null, TableActionsComp = () => {}, ...props }) => {
   const ctx = { tableData, isLoading, rowActions, ...props };
@@ -15,7 +17,8 @@ const TableList = ({ tableData = [], isLoading = false, rowActions = null, Table
       <AppLoader isLoading={isLoading} />
 
       <div className={s.container}>
-        <div className={s.scroll}>
+        <TableOverHead />
+        {/* <div className={s.scroll}>
           <div className={s.table}>
             <TableHead />
 
@@ -27,9 +30,9 @@ const TableList = ({ tableData = [], isLoading = false, rowActions = null, Table
               <div className={s.sticky}>Дані відсутні</div>
             </div>
           )}
-        </div>
-        <TableActionsComp />
+        </div> */}
       </div>
+      <QuickActions />
     </TableContext>
   );
 };

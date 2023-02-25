@@ -4,7 +4,7 @@ export const selects = {
     label: 'Тип транзакції',
     options: [
       { label: 'Дохід', value: 'INCOME', name: 'type', dataKey: 'type' },
-      { label: 'Списання', value: 'EXPENSE', name: 'type', dataKey: 'type' },
+      { label: 'Витрата', value: 'EXPENSE', name: 'type', dataKey: 'type' },
       { label: 'Переказ', value: 'TRANSFER', name: 'type', dataKey: 'type' },
     ],
     required: true,

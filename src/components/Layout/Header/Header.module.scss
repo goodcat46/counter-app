@@ -1,22 +1,22 @@
 .header {
-  display: grid;
-  grid-template-columns: min-content 1fr repeat(1, 30px);
-  grid-template-rows: 30px;
+  display: flex;
   align-items: center;
-  justify-items: center;
-  gap: 8px;
 
   position: sticky;
-  top: -1px;
+  top: 0;
   left: 0;
-  z-index: 1001;
+  z-index: 500;
 
+  height: 28px;
   width: 100%;
 
-  padding: 0 8px;
+  box-shadow: var(--header-shadow);
 
-  border-bottom: 1px solid var(--tr-brdr-clr__primary);
+  @media screen and (max-width: 768px) {
+    justify-content: space-between;
+  }
 }
+
 .logo {
   &Link {
     display: flex;
@@ -25,15 +25,16 @@
 
     width: fit-content;
     height: 100%;
-    min-width: 28px;
-    padding: 8px;
+    min-width: 100px;
+    padding: 0 8px;
 
-    background-color: var(--brand_clr__1);
+    // background-color: var(--brand_clr__1);
   }
   &Text {
     text-align: center;
+    white-space: nowrap;
     font-family: 'Ralaway', sans-serif;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 900;
     line-height: 1.2;
     letter-spacing: 0.09em;

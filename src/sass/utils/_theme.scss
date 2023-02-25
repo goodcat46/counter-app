@@ -2,6 +2,14 @@
   color: #fff;
   fill: #fff;
 
+  background-color: var(--bckgrndDarkClr_main);
+
+  & .header {
+    color: #fff;
+    fill: #fff;
+    background-color: var(--bckgrndDarkClr_secondary);
+  }
+
   & .theme {
     color: #fff;
     fill: #fff;

@@ -9,7 +9,7 @@ const ButtonIcon = ({
   size = '',
   title = '',
   styles = {},
-  styleType = '',
+  variant = '',
   className = '',
   iconId = '',
   iconSize = '18px',
@@ -19,11 +19,10 @@ const ButtonIcon = ({
   endIconSize = '18px',
   endIconStyles = {},
   endIconClassName = '',
-  // PrimaryBtn
   onClick,
   ...props
 }) => {
-  const classNames = [s.Btn, s[styleType], className].join(' ');
+  const classNames = [s.Btn, s[variant], className].join(' ');
   const iconClassNames = [s.iconSvg, iconClassName].join(' ');
   const endIconClassNames = [s.iconSvg, endIconClassName].join(' ');
 
@@ -49,7 +48,15 @@ const ButtonIcon = ({
     ...endIconStyles,
   };
   return (
-    <button type={type} className={classNames} disabled={disabled} style={style} title={title && title} onClick={onClick} {...props}>
+    <button
+      type={type}
+      className={classNames}
+      disabled={disabled}
+      style={style}
+      title={title && title}
+      onClick={onClick}
+      {...props}
+    >
       {iconId && (
         <svg className={iconClassNames} style={iconStyle}>
           <use href={`${sprite}#icon-${iconId}`} />
