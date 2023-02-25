@@ -30,7 +30,7 @@ const QuickActions = () => {
       <div className={s.actionsList}>
         <div className={s.top}>
           <ButtonIcon
-            iconId={iconId.copy}
+            iconId={iconId.edit}
             variant="text"
             size="28px"
             iconSize="80%"
@@ -38,7 +38,7 @@ const QuickActions = () => {
             onClick={onMenuBtnClick}
           />
           <ButtonIcon
-            iconId={iconId.edit}
+            iconId={iconId.copy}
             variant="text"
             size="28px"
             iconSize="80%"
@@ -49,7 +49,7 @@ const QuickActions = () => {
             iconId={iconId.delete}
             variant="text"
             size="28px"
-            iconSize="80%"
+            iconSize="90%"
             tabIndex={isShown && -1}
             onClick={onMenuBtnClick}
           />

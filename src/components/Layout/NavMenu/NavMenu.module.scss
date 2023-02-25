@@ -1,7 +1,9 @@
 .navMenu {
   position: relative;
+  flex-basis: 200px;
 
-  min-width: 180px;
+  min-width: 100px;
+  // width: 200px;
   height: 100%;
 
   font-size: 12px;
@@ -52,6 +54,7 @@
 
   width: 100%;
 }
+
 .navLink,
 .activeLink {
   display: flex;
@@ -63,20 +66,50 @@
   height: min-content;
   padding: 4px 16px;
 
-  transition: none;
+  position: relative;
 
+  fill: #fff;
+  font-size: 12px;
+
+  width: 100%;
+
+  border-radius: 0;
+  border-style: none;
+
+  transition: none;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 3px;
+    height: 100%;
+
+    background-color: transparent;
+  }
   &:hover {
-    color: #fff;
-    fill: #fff;
-    background-color: var(--darkOrange);
+    background-color: rgba(254, 254, 254, 0.05);
+    // color: var(--darkOrange);
+    &::before {
+      background-color: var(--darkOrange);
+    }
+  }
+  &:focus,
+  &:active {
+    background-color: rgba(254, 254, 254, 0.05);
+    color: var(--darkOrange);
+    fill: var(--darkOrange);
+    &::before {
+      background-color: var(--darkOrange);
+    }
   }
 }
 .activeLink {
+  background-color: rgba(254, 254, 254, 0.05);
   color: var(--darkOrange);
   fill: var(--darkOrange);
-  background-color: var(--bckgrndDarkClr_secondary);
-
-  color: #fff;
-  fill: #fff;
-  background-color: var(--darkOrange);
+  &::before {
+    background-color: var(--darkOrange);
+  }
 }
