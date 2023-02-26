@@ -1,0 +1,24 @@
+.logo {
+  &Link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+    height: 100%;
+    min-width: max-content;
+    padding: 0 8px;
+
+    // background-color: var(--brand_clr__1);
+  }
+  &Text {
+    text-align: center;
+    white-space: nowrap;
+    font-family: 'Ralaway', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: 0.09em;
+    // color: var(--brand_clr__2);
+  }
+}

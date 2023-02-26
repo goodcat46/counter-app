@@ -1,36 +1,55 @@
+import React from 'react';
 import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
-import { iconId } from 'data';
-import React, { useState } from 'react';
+import SideBarOptions from './SideBarOptions/SideBarOptions';
+import ToggleThemeMode from './ChangeTheme/ChangeTheme';
+import ActionAppExit from './ActionAppExit';
+import { useSideBar } from './SideBarProvider';
 
 import s from './SideBar.module.scss';
 
-const SideBar = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(true);
-  function onTogglerClick() {
-    setIsOpen(!isOpen);
-  }
+const SideBar = () => {
+  const { isOpen, options, onTogglerClick, handleOptionsState, sideBarButtons, settingsOptionsItem } = useSideBar();
+
   return (
-    <div className={s.layoutGrid}>
-      <div className={[s.sideBar, isOpen && s.isOpen].join(' ')}>
-        <button className={s.toggler} onClick={onTogglerClick}></button>
-        <div className={s.container}>
-          <div className={s.content}>
-            <div className={s.top}>
-              <ButtonIcon iconSize="24px" size="44px" iconId={iconId.person} variant="text" />
-            </div>
+    <div className={[s.sideBar, isOpen && s.isOpen].join(' ')} data-sidebar>
+      <button className={s.toggler} onClick={onTogglerClick}></button>
 
-            <div className={s.menu}>
-              <ButtonIcon iconId={iconId.info} iconSize="24px" size="44px" variant="pointerLeft" />
-              <ButtonIcon iconId={iconId.info} iconSize="24px" size="44px" variant="pointerLeft" />
-              <ButtonIcon iconId={iconId.info} iconSize="24px" size="44px" variant="pointerLeft" />
-              <ButtonIcon iconId={iconId.info} iconSize="24px" size="44px" variant="pointerLeft" />
-            </div>
+      <div className={s.container}>
+        <div className={s.content}>
+          <div className={s.top}>
+            <ToggleThemeMode />
+          </div>
 
-            <div></div>
+          <div className={s.menu}>
+            {sideBarButtons.map(item => (
+              <ButtonIcon
+                key={item?.iconId}
+                iconId={item?.iconId}
+                iconSize="20px"
+                size="36px"
+                variant="pointerLeft"
+                className={item?.title === options?.title && s.isActive}
+                onClick={() => handleOptionsState(item)}
+              />
+            ))}
+          </div>
+
+          <div className={s.bottom}>
+            <ButtonIcon
+              iconSize="20px"
+              size="36px"
+              iconId={settingsOptionsItem.iconId}
+              variant="pointerLeft"
+              className={settingsOptionsItem.title === options?.title && s.isActive}
+              onClick={() => handleOptionsState(settingsOptionsItem)}
+            />
+
+            <ActionAppExit />
           </div>
         </div>
+
+        <SideBarOptions {...{ handleOptionsState, ...options, isOpen }} />
       </div>
-      <div className={s.children}>{children}</div>
     </div>
   );
 };

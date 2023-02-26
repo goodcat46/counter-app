@@ -1,13 +1,13 @@
 import React from 'react';
 
 import TableContext from './TableContext';
-import TableHead from './TableHead';
-import TableBody from './TableBody';
+// import TableHead from './TableHead';
+// import TableBody from './TableBody';
 import AppLoader from 'components/AppLoader/AppLoader';
-
-import s from './TableList.module.scss';
 import QuickActions from './QuickActions/QuickActions';
 import TableOverHead from './TableOverHead/TableOverHead';
+
+import s from './TableList.module.scss';
 
 const TableList = ({ tableData = [], isLoading = false, rowActions = null, TableActionsComp = () => {}, ...props }) => {
   const ctx = { tableData, isLoading, rowActions, ...props };

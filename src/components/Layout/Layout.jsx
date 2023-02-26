@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import { categoriesSelector } from 'redux/selectors.store';
 import SideBar from './SideBarLeft/SideBar';
 
-// import s from './Layout.module.scss';
+import s from './Layout.module.scss';
 export const LayoutCTX = createContext();
 export const useLayout = () => useContext(LayoutCTX);
 
@@ -57,8 +57,11 @@ const Layout = ({ children }) => {
     <>
       <LayoutCTX.Provider value={CTX}>
         <Header />
+        <div className={s.layoutGrid}>
+          <SideBar></SideBar>
 
-        <SideBar>{children}</SideBar>
+          <div className={s.children}>{children}</div>
+        </div>
 
         {/* <SideBar>
           <DesktopFooter>

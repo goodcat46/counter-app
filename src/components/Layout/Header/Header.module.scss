@@ -1,6 +1,7 @@
 .header {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
 
   position: sticky;
   top: 0;
@@ -12,32 +13,10 @@
 
   box-shadow: var(--header-shadow);
 
-  @media screen and (max-width: 768px) {
-    justify-content: space-between;
-  }
+  // @media screen and (max-width: 768px) {
+  //   justify-content: space-between;
+  // }
 }
-
-.logo {
-  &Link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: fit-content;
-    height: 100%;
-    min-width: 100px;
-    padding: 0 8px;
-
-    // background-color: var(--brand_clr__1);
-  }
-  &Text {
-    text-align: center;
-    white-space: nowrap;
-    font-family: 'Ralaway', sans-serif;
-    font-size: 16px;
-    font-weight: 900;
-    line-height: 1.2;
-    letter-spacing: 0.09em;
-    // color: var(--brand_clr__2);
-  }
+.rightSide {
+  margin-left: auto;
 }

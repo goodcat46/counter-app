@@ -52,6 +52,8 @@
   grid-template-columns: 1fr;
   align-content: start;
 
+  overflow: auto;
+
   width: 100%;
 }
 
@@ -112,4 +114,17 @@
   &::before {
     background-color: var(--darkOrange);
   }
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  padding: 4px 8px;
+}
+.companyId {
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(122, 122, 122, 0.8);
 }

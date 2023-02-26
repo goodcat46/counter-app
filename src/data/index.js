@@ -8,6 +8,9 @@ import directories from './directories.data';
 import { iconId } from './iconsId.data';
 import { pages } from './pages.data';
 import { raports } from './raports.data';
+import { organizations } from './organizations.data';
+import createActions from './createActions.data';
+import { appSettings } from './appSettings.data';
 import { selects, getParentOptions, getChildOptions, getOwnerOptions } from './select.data';
 
 export {
@@ -25,4 +28,7 @@ export {
   directories,
   pages,
   raports,
+  organizations,
+  appSettings,
+  createActions,
 };

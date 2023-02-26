@@ -122,12 +122,13 @@ input {
 /* ----------------- SCROLLBAR */
 @media screen and (min-width: 768px) {
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 4px;
+    height: 4px;
   }
   ::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 6px;
+    // background-color: var(--bckgrndDarkClr_secondary);
+    background-color: transparent;
+    // border-radius: 6px;
   }
   ::-webkit-scrollbar-button {
     height: 0;
@@ -135,17 +136,18 @@ input {
     overflow: hidden;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 6px;
+    // background-color: var(--bckgrndDarkClr_main);
+    background-color: rgba(122, 122, 122, 0.7);
+    // border-radius: 6px;
   }
   ::-webkit-scrollbar-thumb:active {
-    background-color: var(--brand_clr__1);
+    background-color: var(--darkOrange);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--brand_clr__1);
+    background-color: var(--darkOrange);
   }
   ::-webkit-scrollbar-corner {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--bckgrndDarkClr_main);
   }
 }
 
@@ -158,5 +160,5 @@ input {
 // --scrollbar-left-offset: 0px;
 // --scrollbar-right-offset: 0px; */
 .css-1ptx2yq-MuiInputBase-root-MuiInput-root:after {
-  border-bottom: 2px solid var(--brand_clr__1);
+  border-bottom: 2px solid var(--darkOrange);
 }

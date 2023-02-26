@@ -1,28 +1,26 @@
 import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
-import SvgIcon from 'components/SvgIcon/SvgIcon';
-import { pages } from 'data';
+import { organizations } from 'data';
 import { iconId } from 'data';
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import s from './NavMenu.module.scss';
 
-const NavMenu = ({ onTop, onBottom }) => {
+import s from './SelectOrganization.module.scss';
+
+const SelectOrganization = ({ onTop, onBottom }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activePage, setActivePage] = useState(pages[0]);
+  const [activePage, setActivePage] = useState(organizations[0]);
 
-  function handleOpenNavMenu() {
+  function handleOpenSelect() {
     setIsOpen(!isOpen);
   }
   function onNavLinkClick(item) {
     setActivePage(item);
 
-    handleOpenNavMenu();
+    handleOpenSelect();
   }
-
   useEffect(() => {
     function onMenuClose(ev) {
       const { target, code } = ev;
-      if (!target.closest('[data-nav-menu]')) setIsOpen(false);
+      if (!target.closest('[data-org-menu]')) setIsOpen(false);
       if (code === 'Escape') setIsOpen(false);
     }
     window.addEventListener('click', onMenuClose);
@@ -35,33 +33,31 @@ const NavMenu = ({ onTop, onBottom }) => {
   }, []);
 
   return (
-    <div className={[s.navMenu, isOpen && s.isOpen].join(' ')} data-nav-menu>
+    <div className={[s.navMenu, isOpen && s.isOpen].join(' ')} data-org-menu>
       <div className={s.container}>
         <ButtonIcon
           className={s.navMenuBnt}
           endIconId={iconId.arrowDown}
           endIconClassName={s.svgIcon}
-          onClick={handleOpenNavMenu}
+          onClick={handleOpenSelect}
         >
           {activePage?.title}
         </ButtonIcon>
 
         <div className={s.navList}>
-          {pages.map(item => {
+          {organizations.map(item => {
             return (
-              <NavLink
-                key={item?.path}
-                to={item?.path}
-                className={({ isActive }) => {
-                  return isActive ? s.activeLink : s.navLink;
-                }}
+              <ButtonIcon
+                key={item?.taxCode}
                 onClick={() => {
                   onNavLinkClick(item);
                 }}
               >
-                <SvgIcon iconId={item.iconId} size="18px" />
-                {item?.title || '---'}
-              </NavLink>
+                <div className={s.wrapper}>
+                  <div className={s.title}>{item?.title || 'Company name'}</div>
+                  <div className={s.companyId}>{item?.taxCode || '000000000000'}</div>
+                </div>
+              </ButtonIcon>
             );
           })}
         </div>
@@ -70,4 +66,4 @@ const NavMenu = ({ onTop, onBottom }) => {
   );
 };
 
-export default NavMenu;
+export default SelectOrganization;

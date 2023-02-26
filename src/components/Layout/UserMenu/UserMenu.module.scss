@@ -5,16 +5,16 @@
 
   position: relative;
 
-  &:focus,
-  &:hover {
-    & .list {
-      overflow: auto;
-      opacity: 1;
-      transform: scaleX(1);
-      visibility: visible;
-      pointer-events: all;
-    }
-  }
+  // &:focus,
+  // &:hover {
+  //   & .list {
+  //     overflow: auto;
+  //     opacity: 1;
+  //     transform: scaleX(1);
+  //     visibility: visible;
+  //     pointer-events: all;
+  //   }
+  // }
   &.isOpen {
     & .list {
       overflow: auto;
@@ -51,18 +51,18 @@
   & .openButton {
     padding: 0;
     &:hover {
-      fill: var(--brand_clr__1);
+      fill: var(--darkOrange);
     }
     &:focus {
-      fill: var(--brand_clr__1);
+      fill: var(--darkOrange);
 
-      & + .list {
-        overflow: auto;
-        opacity: 1;
-        transform: scaleX(1);
-        visibility: visible;
-        pointer-events: all;
-      }
+      // & + .list {
+      //   overflow: auto;
+      //   opacity: 1;
+      //   transform: scaleX(1);
+      //   visibility: visible;
+      //   pointer-events: all;
+      // }
     }
   }
 }
