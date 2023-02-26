@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { actionChangeTheme, actionResetAppSettings } from './appSettingsActions';
+import { actionChangeDarkMode, actionResetAppSettings } from './appSettingsActions';
 
 const initialState = {
-  isDarkTheme: true,
+  isDarkMode: true,
 };
 
 export const appSettingsSlice = createSlice({
   name: 'appSettings',
   initialState,
   extraReducers: {
-    [actionChangeTheme]: (state, action) => {
-      state.isDarkTheme = !state.isDarkTheme;
+    [actionChangeDarkMode]: (state, action) => {
+      state.isDarkMode = !state.isDarkMode;
     },
     [actionResetAppSettings]: (state, action) => {
-      state.isDarkTheme = false;
+      state.isDarkMode = false;
       state = initialState;
       console.log('app reset');
     },

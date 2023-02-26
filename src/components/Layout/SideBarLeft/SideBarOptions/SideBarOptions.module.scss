@@ -1,21 +1,20 @@
 .rightSide {
   position: relative;
   height: 100%;
-  // width: 200px;
 
   background-color: var(--bckgrndDarkClr_secondary);
-  // outline: 1px solid tomato;
+
   &.isShown {
     & .rightSideContainer {
       max-width: calc(100vw - 40px);
-      border-left: 1px solid var(--brdrClr_primary);
+      border-right: 1px solid var(--brdrClr_primary);
     }
   }
 }
 .rightSideContainer {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: min-content 1fr;
+  grid-template-rows: 40px 1fr;
 
   position: absolute;
   top: 0;
@@ -35,13 +34,12 @@
   justify-content: space-between;
 
   position: relative;
-
-  padding: 8px;
+  padding: 0 8px;
 
   height: 100%;
   width: 100%;
 
-  border-bottom: 1px solid var(--brdrClr_primary);
+  // border-bottom: 1px solid var(--brdrClr_primary);
   & .title {
     display: flex;
     align-items: center;
@@ -55,6 +53,8 @@
   max-height: 100%;
 
   overflow: auto;
+
+  border-top: 1px solid var(--brdrClr_primary);
 }
 .option {
   justify-content: flex-start;
@@ -66,6 +66,7 @@
   padding: 8px;
 
   width: 100%;
+  height: 36px;
 
   border-radius: 0;
   border-style: none;

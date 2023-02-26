@@ -1,0 +1,130 @@
+.navMenu {
+  position: relative;
+  flex-basis: 200px;
+
+  min-width: 100px;
+  // width: 200px;
+  height: 100%;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  &.isOpen {
+    & .container {
+      background-color: var(--bckgrndDarkClr_main);
+      max-height: 100vh;
+      box-shadow: var(--header-shadow);
+    }
+    & .svgIcon {
+      transform: rotate(-180deg);
+    }
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+  width: 100%;
+  height: max-content;
+  max-width: 100%;
+  max-height: 100%;
+}
+.navMenuBnt {
+  justify-content: space-between;
+  width: 100%;
+  min-height: 30px;
+  padding: 4px 8px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  fill: var(--darkOrange);
+  background-color: transparent;
+}
+.navList {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: start;
+
+  overflow: auto;
+
+  width: 100%;
+}
+
+.navLink,
+.activeLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  width: 100%;
+  min-height: 24px;
+  height: min-content;
+  padding: 4px 16px;
+
+  position: relative;
+
+  fill: #fff;
+  font-size: 12px;
+
+  width: 100%;
+
+  border-radius: 0;
+  border-style: none;
+
+  transition: none;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 3px;
+    height: 100%;
+
+    background-color: transparent;
+  }
+  &:hover {
+    background-color: rgba(254, 254, 254, 0.05);
+    // color: var(--darkOrange);
+    &::before {
+      background-color: var(--darkOrange);
+    }
+  }
+  &:focus,
+  &:active {
+    background-color: rgba(254, 254, 254, 0.05);
+    color: var(--darkOrange);
+    fill: var(--darkOrange);
+    &::before {
+      background-color: var(--darkOrange);
+    }
+  }
+}
+.activeLink {
+  background-color: rgba(254, 254, 254, 0.05);
+  color: var(--darkOrange);
+  fill: var(--darkOrange);
+  &::before {
+    background-color: var(--darkOrange);
+  }
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  padding: 4px 8px;
+}
+.companyId {
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(122, 122, 122, 0.8);
+}

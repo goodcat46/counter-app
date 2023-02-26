@@ -9,7 +9,7 @@ export const presistorConfigs = {
   appSettings: {
     key: 'appSettings',
     storage,
-    whitelist: ['isDarkTheme'],
+    whitelist: ['isDarkMode'],
   },
   pageSettings: {
     key: 'appPage',

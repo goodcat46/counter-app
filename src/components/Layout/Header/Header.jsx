@@ -1,18 +1,23 @@
 import React from 'react';
-import logoIpsum from '../../../img/logoIpsum.png';
-
-import { Link } from 'react-router-dom';
 import NavMenu from '../NavMenu/NavMenu';
+import LogoSvg from './LogoSvg/LogoSvg';
 
 import s from './Header.module.scss';
+import ActionToggleSideBar from '../SideBarLeft/ActionToggleSideBar/ActionToggleSideBar';
+import UserMenu from '../UserMenu/UserMenu';
+
 const Header = () => {
   return (
     <header className={[s.header, 'header'].join(' ')}>
-      <Link to="/transactions" className={s.logoLink}>
-        <img src={logoIpsum} alt="logoIpsum" />
-      </Link>
+      <ActionToggleSideBar />
+
+      <LogoSvg />
 
       <NavMenu onTop />
+
+      <div className={s.rightSide}>
+        <UserMenu />
+      </div>
     </header>
   );
 };

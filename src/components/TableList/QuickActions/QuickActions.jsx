@@ -34,7 +34,7 @@ const QuickActions = () => {
             variant="text"
             size="28px"
             iconSize="80%"
-            tabIndex={isShown && -1}
+            tabIndex={isShown ? -1 : 0}
             onClick={onMenuBtnClick}
           />
           <ButtonIcon
@@ -42,7 +42,7 @@ const QuickActions = () => {
             variant="text"
             size="28px"
             iconSize="80%"
-            tabIndex={isShown && -1}
+            tabIndex={isShown ? -1 : 0}
             onClick={onMenuBtnClick}
           />
           <ButtonIcon
@@ -50,7 +50,7 @@ const QuickActions = () => {
             variant="text"
             size="28px"
             iconSize="90%"
-            tabIndex={isShown && -1}
+            tabIndex={isShown ? -1 : 0}
             onClick={onMenuBtnClick}
           />
         </div>
@@ -60,7 +60,7 @@ const QuickActions = () => {
             variant="filled"
             size="28px"
             iconSize="80%"
-            tabIndex={isShown && -1}
+            tabIndex={isShown ? -1 : 0}
             onClick={onMenuBtnClick}
           />
           <ButtonIcon
@@ -68,7 +68,7 @@ const QuickActions = () => {
             variant="filled"
             size="28px"
             iconSize="80%"
-            tabIndex={isShown && -1}
+            tabIndex={isShown ? -1 : 0}
             onClick={onMenuBtnClick}
           />
           <ButtonIcon
@@ -76,7 +76,7 @@ const QuickActions = () => {
             variant="filled"
             size="28px"
             iconSize="80%"
-            tabIndex={isShown && -1}
+            tabIndex={isShown ? -1 : 0}
             onClick={onMenuBtnClick}
           />
         </div>
