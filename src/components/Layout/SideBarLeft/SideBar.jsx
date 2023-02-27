@@ -26,9 +26,8 @@ const SideBar = () => {
                 key={item?.iconId}
                 iconId={item?.iconId}
                 iconSize="20px"
-                size="36px"
                 variant="pointerLeft"
-                className={item?.title === options?.title && s.isActive}
+                className={[s.option, item?.title === options?.title && s.isActive].join(' ')}
                 onClick={() => handleOptionsState(item)}
               />
             ))}

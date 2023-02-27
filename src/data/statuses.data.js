@@ -1,4 +1,4 @@
-import { iconId } from './iconsId.data';
+import { iconId } from './iconId.data';
 export const statusName = {
   approved: 'Узгоджено',
   success: 'Успішно',

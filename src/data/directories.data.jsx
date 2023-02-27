@@ -1,5 +1,5 @@
 import ModalTableCounts from 'components/ModalTableCounts/ModalTableCounts';
-import { iconId } from './iconsId.data';
+import { iconId } from './iconId.data';
 
 const directories = [
   { title: 'Рахунки', iconId: iconId.bank, ModalChildren: ModalTableCounts, modalChildrenProps: null, disabled: false },

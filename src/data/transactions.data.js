@@ -2,7 +2,6 @@ import { selects } from './select.data';
 export const transactionsColumns = [
   { id: 1, title: 'Дата', dataKey: 'transactionDate', action: 'date', width: '120px' },
   { id: 2, title: 'Тип', dataKey: 'type', action: 'status', width: '120px', search: true, visible: true },
-
   {
     id: 6,
     title: selects.countOut.label,
@@ -45,12 +44,10 @@ export const transactionsColumns = [
     top: { name: 'Сума', dataKey: 'amount', action: 'number' },
     bottom: { name: 'Валюта', dataKey: 'currency', action: 'string' },
   },
-  // { id: 7, title: 'Сума', dataKey: 'amount', action: 'number', width: '100px' },
-  // { id: 8, title: 'Валюта', dataKey: 'currency', action: 'string', width: '100px' },
-
   { id: 9, title: 'Контрагент', dataKey: 'contractor', action: 'string', width: '100px', search: true, visible: true },
   { id: 11, title: 'Проект', dataKey: 'project', action: 'string', width: '100px', search: true, visible: true },
-
+  { id: 11, title: 'Мітка', dataKey: 'mark', action: 'string', width: '100px', search: true, visible: true },
+  { id: 11, title: 'Статус', dataKey: 'status', action: 'string', width: '100px', search: true, visible: true },
   {
     id: 12,
     title: 'Створено',
@@ -59,6 +56,20 @@ export const transactionsColumns = [
     action: 'dateDbl',
     width: '180px',
   },
+];
+
+export const transactionsSearchParams = [
+  { title: selects.countOut.label, dataKey: selects.countOut.name },
+  { title: selects.subCountOut.label, dataKey: selects.subCountOut.name },
+  { title: selects.countIn.label, dataKey: selects.countIn.name },
+  { title: selects.subCountIn.label, dataKey: selects.subCountIn.name },
+  { title: selects.category.label, dataKey: selects.category.name },
+  { title: selects.subCategory.label, dataKey: selects.subCategory.name },
+  { title: 'Сума', dataKey: 'amount' },
+  { title: 'Контрагент', dataKey: 'contractor' },
+  { title: 'Проект', dataKey: 'project' },
+  { title: 'Мітка', dataKey: 'mark' },
+  { title: 'Статус', dataKey: 'status' },
 ];
 
 export const transactionsTableTitles = [

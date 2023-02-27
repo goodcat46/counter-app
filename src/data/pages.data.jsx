@@ -1,12 +1,19 @@
-import { iconId } from './iconsId.data';
+import { iconId } from './iconId.data';
+
+export const appPages = {
+  home: { title: 'Головна', path: 'home', iconId: iconId.bank },
+  transactions: { title: 'Рух коштів', path: 'transactions', iconId: iconId.cashFlow },
+  sales: { title: 'Повернення', path: 'refunds', iconId: iconId.assignmentBackOutlined },
+  refunds: { title: 'Головна', path: 'home', iconId: iconId.bank },
+  supliment: { title: 'Постачання', path: 'suppliment', iconId: iconId.addtoCart },
+  storage: { title: 'Склад', path: 'storage', iconId: iconId.storage },
+};
+
 export const pages = [
-  { title: 'Транзакції', path: 'transactions', iconId: iconId.bank },
-  { title: 'Проекти', path: 'projects', iconId: iconId.list },
-  { title: 'Продажі', path: 'sales', iconId: iconId.assignmentOk },
-  { title: 'Повернення', path: 'refunds', iconId: iconId.assignmentError },
-  { title: 'Закупівлі', path: 'suppliment', iconId: iconId.addtoCart },
-  { title: 'Котракти', path: 'contracts', iconId: iconId.assignmentIn },
-  { title: 'Документи', path: 'documents', iconId: iconId.assignment },
-  { title: 'Склад', path: 'storage', iconId: iconId.storage },
-  { title: 'Довідники', path: 'directories', iconId: iconId.folder },
+  appPages.home,
+  appPages.transactions,
+  appPages.sales,
+  appPages.refunds,
+  appPages.supliment,
+  appPages.storage,
 ];

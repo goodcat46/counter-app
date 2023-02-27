@@ -1,13 +1,13 @@
 import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
 import { iconId } from 'data';
 import React, { useState } from 'react';
+import { useTable } from '../TableContext';
 import SearchParamInput from './SearchParamInput/SearchParamInput';
 import s from './TableFilter.module.scss';
 
-import { transactionsColumns } from 'data/transactions.data';
-
 const TableFilter = () => {
   const [searchParam, setSearchParam] = useState({});
+  const { tableSearchParams } = useTable();
 
   function onSelect(item) {
     console.log(item);
@@ -19,7 +19,7 @@ const TableFilter = () => {
 
       <input type="text" className={s.searchInput} placeholder="Пошук" />
 
-      <SearchParamInput {...{ data: transactionsColumns, onSelect, searchParam, defaultValue: searchParam?.title }} />
+      <SearchParamInput {...{ data: tableSearchParams, onSelect, searchParam, defaultValue: searchParam?.title }} />
 
       <ButtonIcon iconId={iconId.search} size="28px" variant="filled"></ButtonIcon>
     </div>

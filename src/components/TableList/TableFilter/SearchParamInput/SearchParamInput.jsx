@@ -22,9 +22,8 @@ const SearchParamInput = ({ data = [], defaultValue, selectedItem = { title: '' 
     if (data.length === 0) {
       return;
     }
-    const dataForFiltering = data.filter(el => el?.search && el?.visible);
 
-    const filteredData = dataForFiltering.filter(el => {
+    const filteredData = data.filter(el => {
       if (inputValue?.searchParam)
         return !(inputValue?.searchParam && !el?.title.toLowerCase().includes(inputValue?.searchParam.toLowerCase()));
 

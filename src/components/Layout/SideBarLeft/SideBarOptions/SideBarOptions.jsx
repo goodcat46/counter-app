@@ -27,7 +27,7 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
 
           <ButtonIcon
             iconSize="18px"
-            size="24px"
+            size="22px"
             iconId={iconId.close}
             variant="outlined"
             onClick={() => handleOptionsState()}

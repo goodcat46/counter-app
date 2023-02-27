@@ -13,8 +13,11 @@ const NavMenu = ({ onTop, onBottom }) => {
   function handleOpenNavMenu() {
     setIsOpen(!isOpen);
   }
+  function handleSetActivePage(page) {
+    setActivePage(page);
+  }
   function onNavLinkClick(item) {
-    setActivePage(item);
+    handleSetActivePage(item);
 
     handleOpenNavMenu();
   }
@@ -53,7 +56,11 @@ const NavMenu = ({ onTop, onBottom }) => {
                 key={item?.path}
                 to={item?.path}
                 className={({ isActive }) => {
-                  return isActive ? s.activeLink : s.navLink;
+                  if (isActive) {
+                    handleSetActivePage(item);
+                    return s.activeLink;
+                  }
+                  return s.navLink;
                 }}
                 onClick={() => {
                   onNavLinkClick(item);
