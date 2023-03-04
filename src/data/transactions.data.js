@@ -98,7 +98,7 @@ export const transactionsSearchParams = [
   { title: 'Сума', dataKey: 'amount' },
   { title: 'Контрагент', dataKey: 'contractor' },
   { title: 'Документ', dataKey: 'document' },
-  { title: 'Проект', dataKey: 'project' },
+  { title: 'Проєкт', dataKey: 'project' },
   { title: 'Мітка', dataKey: 'mark' },
   { title: 'Статус', dataKey: 'status' },
 ];

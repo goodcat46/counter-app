@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
 
-  padding: 2px 8px;
+  padding: 0 8px;
 
   height: 100%;
 
@@ -35,7 +35,7 @@
     font-size: 11px;
     font-weight: 400;
   }
-  // border-left: 1px solid #59595a;
+  border-right: 1px solid #59595a;
 }
 .coll {
   white-space: nowrap;
@@ -67,6 +67,8 @@
   padding: 0;
 
   background-color: inherit;
+
+  border-right: 1px solid #59595a;
 
   // border-left: 1px solid var(--tr-brdr-clr__primary);
   // border-right: 1px solid var(--tr-brdr-clr__primary);

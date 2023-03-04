@@ -18,6 +18,11 @@
 }
 .rowContainer,
 .thRow {
+  display: flex;
+  align-items: center;
+
+  padding: 2px 0;
+
   min-width: 100%;
 }
 .thRow,
@@ -34,7 +39,10 @@
 }
 .thRow {
   font-size: 12px;
+
   height: 100%;
+
+  padding: 4px 0;
 }
 .row {
   font-size: 12px;
