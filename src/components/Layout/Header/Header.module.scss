@@ -4,7 +4,7 @@
 
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 
   position: sticky;
   top: 0;
@@ -20,6 +20,22 @@
   //   justify-content: space-between;
   // }
 }
+.leftSide {
+  display: grid;
+  grid-template-columns: 40px min-content 150px;
+  align-items: center;
+
+  height: 100%;
+  & .box {
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #3a3a3c;
+
+    height: 100%;
+  }
+}
+
 .rightSide {
-  margin-left: auto;
+  display: flex;
+  align-items: center;
 }

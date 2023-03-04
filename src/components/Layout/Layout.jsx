@@ -59,7 +59,7 @@ const Layout = ({ children }) => {
         <div className={s.layoutGrid}>
           <Header />
 
-          <SideBar></SideBar>
+          <SideBar />
 
           <div className={s.children}>{children}</div>
         </div>

@@ -20,7 +20,7 @@ const DateInfo = ({ dateInfo, wrap = false }) => {
 
   return (
     <div className={wrap ? s.wrapper : null}>
-      <span>{dateInfo ? `${day}.${month}.${year}` : `00.00.0000`}</span>
+      <span>{dateInfo ? `${day}.${month}.${year} ` : `00.00.0000 `}</span>
       <span>{dateInfo ? `(${hours}:${minutes}:${seconds})` : `(00:00:00)`}</span>
     </div>
   );

@@ -106,6 +106,18 @@
     <symbol id="icon-arrowLeft" viewBox="0 0 24 24">
       <path d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"></path>
     </symbol>
+    <symbol id="icon-SmallArrowDown" viewBox="0 0 24 24">
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+    </symbol>
+    <symbol id="icon-SmallArrowUp" viewBox="0 0 24 24">
+      <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path>
+    </symbol>
+    <symbol id="icon-SmallArrowLeft" viewBox="0 0 24 24">
+      <path d="M15.41 16.59 10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
+    </symbol>
+    <symbol id="icon-SmallArrowRight" viewBox="0 0 24 24">
+      <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
+    </symbol>
     <symbol id="icon-home" viewBox="0 0 24 24">
       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
     </symbol>

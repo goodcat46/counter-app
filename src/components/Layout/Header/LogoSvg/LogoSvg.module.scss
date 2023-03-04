@@ -5,11 +5,9 @@
     justify-content: center;
 
     width: fit-content;
-    height: 100%;
+    height: 28px;
     min-width: max-content;
     padding: 0 8px;
-
-    // background-color: var(--brand_clr__1);
   }
   &Text {
     text-align: center;
@@ -19,6 +17,5 @@
     font-weight: 900;
     line-height: 1.2;
     letter-spacing: 0.09em;
-    // color: var(--brand_clr__2);
   }
 }
