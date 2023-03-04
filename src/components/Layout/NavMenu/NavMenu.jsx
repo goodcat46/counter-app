@@ -3,12 +3,13 @@ import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { pages } from 'data';
 import { iconId } from 'data';
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import s from './NavMenu.module.scss';
 
 const NavMenu = ({ onTop, onBottom }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activePage, setActivePage] = useState(pages[0]);
+  const location = useLocation();
 
   function handleOpenNavMenu() {
     setIsOpen(!isOpen);
@@ -21,6 +22,14 @@ const NavMenu = ({ onTop, onBottom }) => {
 
     handleOpenNavMenu();
   }
+
+  useEffect(() => {
+    const currentPathName = location.pathname.replace('/', '');
+
+    const currentPageData = pages.find(page => page.path === currentPathName);
+
+    setActivePage(currentPageData);
+  }, [location.pathname]);
 
   useEffect(() => {
     function onMenuClose(ev) {
@@ -57,7 +66,7 @@ const NavMenu = ({ onTop, onBottom }) => {
                 to={item?.path}
                 className={({ isActive }) => {
                   if (isActive) {
-                    handleSetActivePage(item);
+                    // handleSetActivePage(item);
                     return s.activeLink;
                   }
                   return s.navLink;

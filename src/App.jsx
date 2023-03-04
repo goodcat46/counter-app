@@ -35,21 +35,21 @@ const App = () => {
             </Layout>
           </SideBarProvider>
         </Suspense>
-
-        <ToastContainer
-          position="bottom-left"
-          autoClose={2000}
-          limit={7}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme={isDarkMode ? 'light' : 'dark'}
-        />
       </div>
+
+      <ToastContainer
+        position="bottom-left"
+        autoClose={2000}
+        limit={7}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={isDarkMode ? 'light' : 'dark'}
+      />
     </>
   );
 };

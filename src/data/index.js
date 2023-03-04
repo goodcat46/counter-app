@@ -1,5 +1,4 @@
-import { statusData } from './statuses.data';
-import { statusSetMap } from './statuses.data';
+import { statusSetMap, colors, statusData } from './statuses.data';
 import { transactionsColumns } from './transactions.data';
 import { transactionsSearchParams } from './transactions.data';
 import { transactionsTestData } from './transactions.data';
@@ -19,6 +18,7 @@ export {
   trCategories,
   addButtons,
   statusSetMap,
+  colors,
   selects,
   iconId,
   getParentOptions,

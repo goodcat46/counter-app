@@ -15,10 +15,10 @@ const CellTextDbl = ({ title, idx, className = '', onClick }) => {
   const classNames = [s.coll, actionClassName, ...className].join(' ');
 
   return (
-    <div className={classNames} title={''} onClick={onClick}>
-      <span className={s.cellInnerWrap}>{contentTop}</span>
+    <div className={classNames} title={null} onClick={onClick}>
+      <span className={[s.cellInnerWrap, s.top].join(' ')}>{contentTop}</span>
 
-      {contentBottom && <span className={s.cellInnerWrap}>{contentBottom || 'UAH'}</span>}
+      {contentBottom && <span className={[s.cellInnerWrap, s.bottom].join(' ')}>{contentBottom || 'UAH'}</span>}
     </div>
   );
 };

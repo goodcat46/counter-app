@@ -1,22 +1,21 @@
 import React from 'react';
-
 import TableRow from './TableRows/TableRow';
 import { useTable } from './TableContext';
 
 import s from './TableList.module.scss';
 
 const TableBody = () => {
-  const { tableData, onRowClick, rowRef } = useTable();
+  const { tableData, rowRef, onRowClick } = useTable();
 
   function handleOnRowClick(ev) {
     const { target } = ev;
     let rowEl;
 
-    if (!target.closest('[data="row"]')) {
+    if (!target.closest('[data-row]')) {
       rowRef.current && rowRef.current.classList.remove([s.selected]);
       return;
     }
-    rowEl = target.closest('[data="row"]');
+    rowEl = target.closest('[data-row]');
 
     if (onRowClick) {
       let rowData = tableData.find(el => el?._id === rowEl?.id);
@@ -43,6 +42,18 @@ const TableBody = () => {
       {tableData.map((rowData, idx) => {
         return <TableRow key={idx} {...{ rowData, idx }} />;
       })}
+
+      {/* {tableData.map((rowData, idx) => {
+        return <TableRow key={idx} {...{ rowData, idx }} />;
+      })}
+
+      {tableData.map((rowData, idx) => {
+        return <TableRow key={idx} {...{ rowData, idx }} />;
+      })}
+
+      {tableData.map((rowData, idx) => {
+        return <TableRow key={idx} {...{ rowData, idx }} />;
+      })} */}
     </div>
   );
 };

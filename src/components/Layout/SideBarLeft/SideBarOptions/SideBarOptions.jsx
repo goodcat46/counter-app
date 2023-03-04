@@ -39,6 +39,7 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
             options.map(el => (
               <li key={el?.title}>
                 <ButtonIcon
+                  variant="pointerLeft"
                   className={s.option}
                   // onClick={() => handleOptionsState()}
                 >

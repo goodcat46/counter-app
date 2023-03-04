@@ -107,30 +107,36 @@ export const statusData = {
   name: statusName,
   iconId: statusIconId,
 };
-const colors = {
+export const colors = {
   clrLight: '#fff',
   clrDark: '#121212',
-  clrDefault: ' rgb(154, 154, 154)',
+  default: ' rgb(154, 154, 154)',
   clrInfo: '#3498db',
   clrSuccess: '#07bc0c',
   clrWarning: '#f1c40f',
   clrError: '#e74c3c',
   clrPrimary: '#cdcdcd',
+  expense: '#FF3B30',
+  income: '#30D158',
+  transfer: '#5E5CE6',
+  textPrimary: '#EFEFEF',
 };
 
 export const statusSetMap = {
-  noStatus: { name: 'NO_STATUS', color: colors.clrDefault, iconId: iconId.default, text: 'Без статусу' },
-  INCOME: { name: 'INCOME', color: colors.clrSuccess, iconId: iconId.INCOME, text: 'Дохід' },
+  noStatus: { name: 'NO_STATUS', color: colors.default, iconId: iconId.default, text: 'Без статусу' },
+  INCOME: {
+    name: 'INCOME',
+    color: colors.clrSuccess,
+    text: 'Дохід',
+  },
   EXPENSE: {
     name: 'EXPENSE',
     color: colors.clrError,
-    iconId: iconId.EXPENSE,
     text: 'Витрата',
   },
   TRANSFER: {
     name: 'TRANSFER',
     color: colors.clrInfo,
-    iconId: iconId.TRANSFER,
     text: 'Переказ',
   },
 };

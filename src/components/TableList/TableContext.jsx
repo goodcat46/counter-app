@@ -10,15 +10,13 @@ export const TableCNTXT = createContext();
 export const useTable = () => useContext(TableCNTXT);
 
 const TableContext = ({ children, value }) => {
-  const { tableTitles = [], tableData = [], prepeareRowData, rowActions = true } = value;
+  const { tableTitles = [], tableData = [], prepeareRowData } = value;
   const rowRef = useRef();
 
   const rowGrid = {
     display: 'grid',
 
-    gridTemplateColumns: rowActions
-      ? `min-content repeat(${tableTitles.length}, min-content)`
-      : `repeat(${tableTitles.length}, min-content)`,
+    gridTemplateColumns: `min-content repeat(${tableTitles.length}, min-content)`,
   };
 
   return (

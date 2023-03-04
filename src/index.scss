@@ -15,6 +15,9 @@ html {
 *::before {
   box-sizing: inherit;
 }
+:root {
+  // height: 100%;
+}
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -30,10 +33,12 @@ body {
 
   // background-color: #ffffff;
   margin: 0;
-  height: 100%;
+  // height: 100%;
+  // max-height: 100vh;
 }
 #root {
-  height: 100%;
+  // height: 100%;
+  // max-height: 100vh;
 }
 .NotScroll {
   overflow: hidden;
@@ -122,8 +127,8 @@ input {
 /* ----------------- SCROLLBAR */
 @media screen and (min-width: 768px) {
   ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    width: 8px;
+    height: 8px;
   }
   ::-webkit-scrollbar-track {
     // background-color: var(--bckgrndDarkClr_secondary);
@@ -138,7 +143,7 @@ input {
   ::-webkit-scrollbar-thumb {
     // background-color: var(--bckgrndDarkClr_main);
     background-color: rgba(122, 122, 122, 0.7);
-    // border-radius: 6px;
+    border-radius: 2px;
   }
   ::-webkit-scrollbar-thumb:active {
     background-color: var(--darkOrange);

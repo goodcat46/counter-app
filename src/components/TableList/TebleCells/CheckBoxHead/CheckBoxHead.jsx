@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 
 import s from './CheckBoxHead.module.scss';
+import { iconId } from 'data';
 
 const CheckBoxHead = ({ onChange }) => {
   // const [status, setStatus] = useState('checkBoxMinus');
@@ -26,9 +27,13 @@ const CheckBoxHead = ({ onChange }) => {
   }
 
   return (
-    <label htmlFor="checkboxHead" className={[s.ChekBoxHead, (some && s.checked) || (everyOn && s.checked)].join(' ')} onChange={handleChange}>
-      <input className="visually-hidden" id="checkboxHead" type="checkbox" />
-      <SvgIcon size="100%" iconId={(everyOn && 'checkBoxOn') || (some && 'checkBoxMinus') || (everyOff && 'checkBoxOff')} />
+    <label htmlFor="checkboxHead" className={[s.ChekBoxHead, !everyOff && s.checked].join(' ')}>
+      <input className="visually-hidden" id="checkboxHead" type="checkbox" onChange={handleChange} />
+
+      <SvgIcon
+        size="24px"
+        iconId={(everyOn && iconId.checkBoxOn) || (some && iconId.checkBoxMinus) || (everyOff && iconId.checkBoxOff)}
+      />
     </label>
   );
 };

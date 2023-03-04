@@ -3,8 +3,8 @@ import { iconId } from './iconId.data';
 export const appPages = {
   home: { title: 'Головна', path: 'home', iconId: iconId.bank },
   transactions: { title: 'Рух коштів', path: 'transactions', iconId: iconId.cashFlow },
-  sales: { title: 'Повернення', path: 'refunds', iconId: iconId.assignmentBackOutlined },
-  refunds: { title: 'Головна', path: 'home', iconId: iconId.bank },
+  sales: { title: 'Повернення', path: 'sales', iconId: iconId.assignmentBackOutlined },
+  refunds: { title: 'Повернення', path: 'refunds', iconId: iconId.bank },
   supliment: { title: 'Постачання', path: 'suppliment', iconId: iconId.addtoCart },
   storage: { title: 'Склад', path: 'storage', iconId: iconId.storage },
 };

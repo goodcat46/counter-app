@@ -1,45 +1,27 @@
 import React from 'react';
 import CellTitle from '../TebleCells/CellTitle';
 import CellCheckBoxHead from '../TebleCells/CellCheckBoxHead';
-// import CellActions from '../TebleCells/CellActions';
 import { useTable } from '../TableContext';
+
 import s from './TableRow.module.scss';
 import './TableRow.theme.scss';
 
 const TableHeadRow = () => {
-  const { tableTitles = [], rowGrid, rowActions = true } = useTable();
+  const { tableTitles = [], rowGrid } = useTable();
 
   const styles = {
     ...rowGrid,
   };
 
-  const CellsMap = {
-    title: CellTitle,
-    string: CellTitle,
-    actions: CellTitle,
-    checkbox: CellCheckBoxHead,
-  };
-
-  let Cell = CellTitle;
   return (
     <div style={styles} className={[s.thRow, 'thRow'].join(' ')}>
-      {rowActions && (
-        <div className={s.rowStickyEl}>
-          <CellTitle title={{ title: 'Дії' }} />
+      <div className={s.rowStickyEl}>
+        <CellCheckBoxHead />
+      </div>
 
-          <CellCheckBoxHead />
-        </div>
-      )}
-
-      {tableTitles.map((item, idx) => {
-        if (CellsMap[item.action]) {
-          Cell = CellsMap[item.action];
-
-          return <Cell key={idx} title={item} idx={idx} />;
-        }
-        Cell = CellsMap.title;
-        return <Cell key={idx} title={item} idx={idx} />;
-      })}
+      {tableTitles.map((item, idx) => (
+        <CellTitle key={idx} title={item} idx={idx} />
+      ))}
     </div>
   );
 };

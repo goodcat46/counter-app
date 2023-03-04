@@ -56,8 +56,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <LayoutCTX.Provider value={CTX}>
-        <Header />
         <div className={s.layoutGrid}>
+          <Header />
+
           <SideBar></SideBar>
 
           <div className={s.children}>{children}</div>

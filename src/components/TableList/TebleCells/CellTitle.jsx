@@ -3,13 +3,14 @@ import React from 'react';
 
 import s from './TableCells.module.scss';
 
-const CellTitle = ({ title, idx, className = '', onClick }) => {
+const CellTitle = ({ title, idx, className = '', onClick = null }) => {
   const classNames = [s.title, s[title?.action], ...className].join(' ');
 
   return (
-    <div style={{ width: title?.width }} className={classNames} title={title?.title || 'Empty'} onClick={onClick}>
-      <span> {title?.title || 'Empty'}</span>
-      {title?.subTitle && <span> {title?.subTitle || 'Empty'}</span>}
+    <div style={{ width: title?.width }} className={classNames} onClick={onClick}>
+      <span className={s.top}> {title?.title || 'Empty'}</span>
+
+      {title?.subTitle && <span className={s.bottom}> {title?.subTitle || 'Empty'}</span>}
     </div>
   );
 };
