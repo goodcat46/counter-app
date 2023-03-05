@@ -8,7 +8,14 @@ import { useSideBar } from './SideBarProvider';
 import s from './SideBar.module.scss';
 
 const SideBar = () => {
-  const { isOpen, options, onTogglerClick, handleOptionsState, sideBarButtons, settingsOptionsItem } = useSideBar();
+  const {
+    isOpen,
+    options,
+    onTogglerClick,
+    handleOptionsState,
+    sideBarButtons = [],
+    settingsOptionsItem,
+  } = useSideBar();
 
   return (
     <div className={[s.SideBar, isOpen && s.isOpen].join(' ')} data-sidebar>
@@ -25,6 +32,7 @@ const SideBar = () => {
               <ButtonIcon
                 key={item?.iconId}
                 iconId={item?.iconId}
+                title={item?.title}
                 iconSize="20px"
                 variant="pointerLeft"
                 className={[s.option, item?.title === options?.title && s.isActive].join(' ')}

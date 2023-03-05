@@ -170,6 +170,12 @@
   &:active {
     box-shadow: var(--btnShadow_active);
   }
+  &:focus {
+    &::before {
+      height: 100%;
+      background-color: var(--darkOrange);
+    }
+  }
 }
 
 .BorderBtn {
