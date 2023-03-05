@@ -30,7 +30,7 @@ const UserMenu = () => {
   return (
     <div className={[s.backdrop, isOpen && s.isOpen].join(' ')} data-user-menu>
       <ButtonIcon
-        iconId={iconId.person}
+        iconId={iconId.personOutlined}
         size="30px"
         iconSize="80%"
         className={s.openButton}

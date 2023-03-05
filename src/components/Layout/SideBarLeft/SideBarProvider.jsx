@@ -8,7 +8,7 @@ const sideBarButtons = [
   { iconId: iconId.folder, options: directories, title: 'Довідники' },
   { iconId: iconId.assignmentOutlined, options: raports, title: 'Звіти' },
   { iconId: iconId.statistics, options: [], title: 'Статистика' },
-  { iconId: iconId.list, options: createActions, title: 'Створення' },
+  { iconId: iconId.plus, options: createActions, title: 'Створення' },
   // { iconId: iconId.settings, options: [], title: 'Налаштування' },
 ];
 const settingsOptionsItem = { iconId: iconId.settings, options: appSettings, title: 'Налаштування' };

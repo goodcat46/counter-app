@@ -2,7 +2,8 @@
   position: relative;
   height: 100%;
 
-  background-color: var(--bckgrndDarkClr_secondary);
+  // background-color: var(--bckgrndDarkClr_secondary);
+  background-color: #2e2e30;
 
   &.isShown {
     & .rightSideContainer {
@@ -23,7 +24,7 @@
 
   height: 100%;
   overflow: hidden;
-  width: 200px;
+  width: 201px;
   max-width: 0;
 
   background-color: var(--bckgrndDarkClr_secondary);
@@ -53,6 +54,7 @@
 
   overflow: auto;
 
+  background-color: #2e2e30;
   border-top: 1px solid var(--borderClr_light);
 }
 .option {
@@ -61,5 +63,5 @@
   padding: 8px;
 
   width: 100%;
-  height: 26px;
+  height: 32px;
 }
