@@ -11,10 +11,12 @@
   left: 0;
   z-index: 500;
 
-  height: 28px;
+  height: 100%;
   width: 100%;
 
-  box-shadow: var(--header-shadow);
+  border-bottom: 1px solid var(--borderClr_light);
+
+  // box-shadow: var(--header-shadow);
 
   // @media screen and (max-width: 768px) {
   //   justify-content: space-between;
@@ -29,7 +31,7 @@
   & .box {
     display: flex;
     align-items: center;
-    border-right: 1px solid #3a3a3c;
+    border-right: 1px solid var(--borderClr_light);
 
     height: 100%;
   }

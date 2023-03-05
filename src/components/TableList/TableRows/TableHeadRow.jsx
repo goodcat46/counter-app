@@ -9,19 +9,17 @@ import './TableRow.theme.scss';
 const TableHeadRow = () => {
   const { tableTitles = [], rowGrid } = useTable();
 
-  const styles = {
-    ...rowGrid,
-  };
-
   return (
-    <div style={styles} className={[s.thRow, 'thRow'].join(' ')}>
+    <div className={[s.thRow, 'thRow'].join(' ')}>
       <div className={s.rowStickyEl}>
         <CellCheckBoxHead />
       </div>
 
-      {tableTitles.map((item, idx) => (
-        <CellTitle key={idx} title={item} idx={idx} />
-      ))}
+      <div className={s.thRowData} style={{ ...rowGrid }}>
+        {tableTitles.map((item, idx) => (
+          <CellTitle key={idx} title={item} idx={idx} />
+        ))}
+      </div>
     </div>
   );
 };

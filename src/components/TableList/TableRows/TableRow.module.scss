@@ -21,13 +21,13 @@
   display: flex;
   align-items: center;
 
-  padding: 2px 0;
-
   min-width: 100%;
 }
 .thRow,
 .row {
   display: grid;
+  grid-template-columns: 40px max-content;
+
   position: relative;
 
   width: fit-content;
@@ -41,13 +41,25 @@
   font-size: 12px;
 
   height: 100%;
-
-  padding: 4px 0;
 }
 .row {
+  position: relative;
+
+  width: fit-content;
+  height: 100%;
+
   font-size: 12px;
   font-weight: 400;
   min-height: 28px;
+
+  background-color: #1c1c1e;
+
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid var(--tr-brdr-clr__primary);
+
+  &:hover {
+    border-color: var(--darkOrange);
+  }
 }
 .rowStickyEl {
   display: flex;

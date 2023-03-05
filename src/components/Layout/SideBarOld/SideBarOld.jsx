@@ -6,21 +6,21 @@ import { iconId } from 'data';
 import { Button } from '@mui/material';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 
-import s from './SideBar.module.scss';
+import s from './SideBarOld.module.scss';
 import UserMenu from '../UserMenu/UserMenu';
-import SideBarMenu from './SideBarMenu/SideBarMenu';
+import SideBarOldMenu from './SideBarOldMenu/SideBarOldMenu';
 import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
 
-export const SideBarCTX = createContext();
-export const useSideBar = () => useContext(SideBarCTX);
+export const SideBarOldCTX = createContext();
+export const useSideBarOldOld = () => useContext(SideBarOldCTX);
 
-const SideBar = ({ children, size = '30px' }) => {
+const SideBarOld = ({ children, size = '30px' }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  function handleToggleSideBar() {
+  function handleToggleSideBarOld() {
     setIsOpen(!isOpen);
   }
-  function handleCloseSideBarByClickOnBackdrop(ev) {
+  function handleCloseSideBarOldByClickOnBackdrop(ev) {
     const { target, currentTarget } = ev;
 
     if (target !== currentTarget) return;
@@ -29,21 +29,21 @@ const SideBar = ({ children, size = '30px' }) => {
   }
 
   const CTX = {
-    handleToggleSideBar,
+    handleToggleSideBarOld,
     isOpen,
   };
 
   return (
-    <SideBarCTX.Provider value={CTX}>
+    <SideBarOldCTX.Provider value={CTX}>
       {children}
       <Portal id="navMenu">
-        <div className={isOpen ? s.backdropOpen : s.backdrop} onClick={handleCloseSideBarByClickOnBackdrop}>
+        <div className={isOpen ? s.backdropOpen : s.backdrop} onClick={handleCloseSideBarOldByClickOnBackdrop}>
           <div className={[s.menuContainer, 'theme'].join(' ')}>
             <div className={s.header}>
               <UserMenu />
             </div>
 
-            {isOpen && <SideBarMenu isOpen />}
+            {isOpen && <SideBarOldMenu isOpen />}
 
             <div className={s.footer}>
               <Button size="small" onClick={() => {}}>
@@ -60,13 +60,13 @@ const SideBar = ({ children, size = '30px' }) => {
               className={[s.toggleMenu, isOpen && s.open].join(' ')}
               iconClassName={isOpen ? s.iconLeft : s.iconRight}
               iconSize="40px"
-              onClick={handleToggleSideBar}
+              onClick={handleToggleSideBarOld}
             ></ButtonIcon>
           </div>
         </div>
       </Portal>
-    </SideBarCTX.Provider>
+    </SideBarOldCTX.Provider>
   );
 };
 
-export default SideBar;
+export default SideBarOld;

@@ -13,10 +13,12 @@
   z-index: 100;
 
   background-color: var(--bckgrndDarkClr_secondary);
+
+  border-right: 1px solid var(--borderClr_light);
   &.isOpen {
     & .content {
       max-width: 100%;
-      border-right: 1px solid var(--borderClr_light);
+      // border-right: 1px solid var(--borderClr_light);
     }
   }
 }
@@ -33,7 +35,7 @@
   border-style: none;
 
   background-color: var(--bckgrndDarkClr_secondary);
-  box-shadow: var(--header-shadow);
+  // box-shadow: var(--header-shadow);
 }
 .container {
   display: grid;
@@ -42,7 +44,7 @@
   height: 100%;
   width: 100%;
 
-  box-shadow: var(--header-shadow);
+  // box-shadow: var(--header-shadow);
 }
 .content {
   display: grid;

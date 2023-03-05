@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import AccordeonItem from 'components/AccordeonItem/AccordeonItem';
 import CreateActions from '../CreateActions/CreateActions';
-import { useSideBar } from '../SideBar';
+import { useSideBar } from '../SideBarOld';
 import Directories from 'components/Layout/SideBar/Directories/Directories';
 import NavMenu from '../NavMenu/NavMenu';
 import Raports from '../Raports/Raports';

@@ -1,4 +1,4 @@
-import { useContext, createContext, useRef } from 'react';
+import { useContext, createContext, useRef, useState } from 'react';
 // import cloneDeep from 'lodash.clonedeep';
 // import { useSelector } from 'react-redux';
 // import { selectPosts } from 'redux/selectors';
@@ -10,30 +10,33 @@ export const TableCNTXT = createContext();
 export const useTable = () => useContext(TableCNTXT);
 
 const TableContext = ({ children, value }) => {
-  const { tableTitles = [], tableData = [], prepeareRowData } = value;
+  const { tableTitles = [] } = value;
+  const [selectedRows, setSelectedRows] = useState([]);
   const rowRef = useRef();
 
   const rowGrid = {
     display: 'grid',
-
-    gridTemplateColumns: `min-content repeat(${tableTitles.length}, min-content)`,
+    gridTemplateColumns: `repeat(${tableTitles.length}, min-content)`,
   };
 
-  return (
-    <TableCNTXT.Provider
-      value={{
-        ts,
-        rowGrid: rowGrid,
-        tableData,
-        tableTitles,
-        prepeareRowData,
-        rowRef,
-        ...value,
-      }}
-    >
-      {children}
-    </TableCNTXT.Provider>
-  );
+  function onSelectRow({ ev, rowData }) {
+    setSelectedRows(prev => [rowData, ...prev]);
+  }
+  function onUnselectRow({ ev, rowData }) {
+    setSelectedRows(prev => prev.filter(row => row?._id !== rowData?._id));
+  }
+
+  const CTX = {
+    ts,
+    rowGrid: rowGrid,
+    rowRef,
+    selectedRows,
+    onSelectRow,
+    onUnselectRow,
+    ...value,
+  };
+
+  return <TableCNTXT.Provider value={CTX}>{children}</TableCNTXT.Provider>;
 };
 
 export default TableContext;

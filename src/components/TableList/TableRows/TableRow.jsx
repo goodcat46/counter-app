@@ -14,10 +14,6 @@ const TableRow = props => {
   const { tableTitles = [], rowGrid } = useTable();
   const [isActionsOpen, setIsActionsOpen] = useState(false);
 
-  const styles = {
-    ...rowGrid,
-  };
-
   function handleToggleActions(ev) {
     setIsActionsOpen(!isActionsOpen);
   }
@@ -34,12 +30,12 @@ const TableRow = props => {
 
   return (
     <RowContext value={ctxValue}>
-      <div className={s.rowContainer} data-row id={props?.rowData?._id || null}>
-        <div style={styles} className={s.row}>
-          <div className={[s.rowStickyEl].join(' ')}>
-            <CellCheckBox />
-          </div>
+      <div className={s.row} data-row id={props?.rowData?._id || null}>
+        <div className={s.rowStickyEl}>
+          <CellCheckBox />
+        </div>
 
+        <div className={s.rowData} style={{ ...rowGrid }}>
           {tableTitles.map((item, idx) => {
             let CellComp = CellText;
 
@@ -62,6 +58,8 @@ const TableRow = props => {
           })}
         </div>
       </div>
+      {/* <div className={s.rowContainer} >
+      </div> */}
     </RowContext>
   );
 };
