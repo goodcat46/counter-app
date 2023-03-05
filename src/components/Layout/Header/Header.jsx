@@ -6,17 +6,44 @@ import s from './Header.module.scss';
 import ActionToggleSideBar from '../SideBarLeft/ActionToggleSideBar/ActionToggleSideBar';
 import UserMenu from '../UserMenu/UserMenu';
 
+const HeaderLeftSideItems = [
+  {
+    id: '1',
+    Component: ActionToggleSideBar,
+  },
+  {
+    id: '2',
+    Component: LogoSvg,
+  },
+  {
+    id: '3',
+    Component: NavMenu,
+    props: { onTop: true },
+  },
+];
+const HeaderRightSideItems = [
+  {
+    id: '1',
+    Component: UserMenu,
+  },
+];
 const Header = () => {
   return (
     <header className={[s.header, 'header'].join(' ')}>
-      <ActionToggleSideBar />
-
-      <LogoSvg />
-
-      <NavMenu onTop />
+      <div className={s.leftSide}>
+        {HeaderLeftSideItems.map(({ Component, id, props = {} }) => (
+          <div key={id} className={s.box}>
+            <Component {...props} />
+          </div>
+        ))}
+      </div>
 
       <div className={s.rightSide}>
-        <UserMenu />
+        {HeaderRightSideItems.map(({ Component, id, props = {} }) => (
+          <div key={id} className={s.box}>
+            <Component {...props} />
+          </div>
+        ))}
       </div>
     </header>
   );

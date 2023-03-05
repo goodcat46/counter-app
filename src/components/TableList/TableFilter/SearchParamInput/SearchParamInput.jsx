@@ -22,9 +22,8 @@ const SearchParamInput = ({ data = [], defaultValue, selectedItem = { title: '' 
     if (data.length === 0) {
       return;
     }
-    const dataForFiltering = data.filter(el => el?.search && el?.visible);
 
-    const filteredData = dataForFiltering.filter(el => {
+    const filteredData = data.filter(el => {
       if (inputValue?.searchParam)
         return !(inputValue?.searchParam && !el?.title.toLowerCase().includes(inputValue?.searchParam.toLowerCase()));
 
@@ -68,14 +67,15 @@ const SearchParamInput = ({ data = [], defaultValue, selectedItem = { title: '' 
         {filteredData.length > 0 &&
           filteredData.map(item => (
             <div
-              key={item?.id}
+              key={item?.dataKey}
               className={s.listItem}
+              title={item?.title}
               onClick={() => {
                 onSelect && onSelect(item);
                 handleToggleList();
               }}
             >
-              <div>{item?.title}</div>
+              <span className={s.inner}>{item?.title}</span>
             </div>
           ))}
       </div>

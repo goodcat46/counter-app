@@ -15,9 +15,10 @@ const CellNestedDbl = ({ title, idx, className = '', onClick }) => {
   const classNames = [s.coll, s[action], className].join(' ');
 
   return (
-    <div className={classNames} title={''} onClick={onClick}>
-      <span className={s.innerNoWrap}>{contentTop[top?.nestedKey] || '---'}</span>
-      <span className={s.innerNoWrap}>{contentBottom[bottom?.nestedKey] || '---'}</span>
+    <div className={classNames} title={null} onClick={onClick}>
+      <span className={[s.innerNoWrap, s.top].join(' ')}>{contentTop[top?.nestedKey] || '---'}</span>
+
+      <span className={[s.innerNoWrap, s.bottom].join(' ')}>{contentBottom[bottom?.nestedKey] || '---'}</span>
     </div>
   );
 };

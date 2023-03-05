@@ -34,4 +34,5 @@ export const CellsMap = {
   nestedDbl: CellNestedDbl,
   nested: CellTextNested,
   stringDbl: CellTextDbl,
+  cellDbl: CellTextDbl,
 };

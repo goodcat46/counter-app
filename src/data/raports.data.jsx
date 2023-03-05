@@ -1,8 +1,8 @@
-import { iconId } from './iconsId.data';
+import { iconId } from './iconId.data';
 
 export const raports = [
   { title: 'Рух коштів', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
-  { title: 'Доходи/Витрати', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
+  // { title: 'Доходи/Витрати', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
   // { title: 'По працівниках', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
   { title: 'Проекти', iconId: iconId.info, ModalChildren: () => null, modalChildrenProps: null, disabled: true },
   {

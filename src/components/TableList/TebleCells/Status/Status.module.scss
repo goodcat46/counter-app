@@ -5,7 +5,7 @@
   gap: 8px;
 
   font-size: 14px;
-  font-weight: 700;
+
   // padding: 4px 4px;
 
   min-width: 100%;
@@ -47,7 +47,6 @@
   color: var(--clr-warning);
 }
 .notAvailable,
-.expense,
 .rejected,
 .problem {
   fill: var(--clr-error);
@@ -75,4 +74,11 @@
   // border-color: var(--clr-default);
   fill: var(--clr-default);
   color: var(--clr-default);
+}
+
+.INCOME,
+.EXPENSE,
+.TRANSFER {
+  // font-weight: 700;
+  text-transform: uppercase;
 }

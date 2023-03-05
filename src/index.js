@@ -6,10 +6,10 @@ import { persistor } from 'redux/store.store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import { store } from 'redux/store.store';
+import ModalProvider from 'components/ModalCustom/ModalProvider';
 
 import './index.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import ModalProvider from 'components/ModalCustom/ModalProvider';
 
 // import reportWebVitals from './reportWebVitals';
 

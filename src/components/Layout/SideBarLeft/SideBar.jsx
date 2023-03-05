@@ -11,7 +11,7 @@ const SideBar = () => {
   const { isOpen, options, onTogglerClick, handleOptionsState, sideBarButtons, settingsOptionsItem } = useSideBar();
 
   return (
-    <div className={[s.sideBar, isOpen && s.isOpen].join(' ')} data-sidebar>
+    <div className={[s.SideBar, isOpen && s.isOpen].join(' ')} data-sidebar>
       <button className={s.toggler} onClick={onTogglerClick}></button>
 
       <div className={s.container}>
@@ -26,9 +26,8 @@ const SideBar = () => {
                 key={item?.iconId}
                 iconId={item?.iconId}
                 iconSize="20px"
-                size="36px"
                 variant="pointerLeft"
-                className={item?.title === options?.title && s.isActive}
+                className={[s.option, item?.title === options?.title && s.isActive].join(' ')}
                 onClick={() => handleOptionsState(item)}
               />
             ))}
@@ -37,7 +36,7 @@ const SideBar = () => {
           <div className={s.bottom}>
             <ButtonIcon
               iconSize="20px"
-              size="36px"
+              styles={{ width: '100%', height: '26px' }}
               iconId={settingsOptionsItem.iconId}
               variant="pointerLeft"
               className={settingsOptionsItem.title === options?.title && s.isActive}

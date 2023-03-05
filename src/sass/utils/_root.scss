@@ -22,7 +22,8 @@
   --inputBorder: #c4c4c481;
   --inputPlaceholderClr: #7b7b7b;
 
-  --brdrClr_primary: #c4c4c481;
+  --borderClr_primary: #c4c4c481;
+  --borderClr_light: #3a3a3c;
 
   --darkClr_main: #3a3a3c;
   --darkClr_secondry: #252527;
@@ -35,6 +36,8 @@
   /* ICONS */
   --icon-clr__primary: #808080;
   /* TABLES */
+  --tHead-backgrnd-crl: #3a3a3c;
+  --tFooter-backgrnd-clr: #3a3a3c;
   --tr-cell-bckgrnd_clr__even: #dadada7e;
   --tr-bckgrnd_clr__even: #dadada7e;
   --tr-brdr-clr__primary: #c4c4c481;
@@ -71,6 +74,7 @@
   --button-shadow-active: 0px 1px 5px rgba(0, 0, 0, 0.1);
 
   --timing-function__main: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --timing-function__long: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
   --test-outline_d: 1px dashed tomato;
   --test-outline_s: 1px solid tomato;

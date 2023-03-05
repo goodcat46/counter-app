@@ -8,9 +8,10 @@ const ActionToggleSideBar = () => {
 
   return (
     <ButtonIcon
-      iconId={isOpen ? iconId.arrowLeft : iconId.arrowRight}
-      size="30px"
+      iconId={isOpen ? iconId.burgerOpen : iconId.burger}
+      styles={{ width: '100%', height: '28px' }}
       iconSize="80%"
+      variant="text"
       onClick={onTogglerClick}
     />
   );

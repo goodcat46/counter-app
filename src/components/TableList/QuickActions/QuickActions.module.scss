@@ -1,8 +1,9 @@
 .actions,
 .shownActions {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  z-index: 65;
 
   width: 48px;
   height: 48px;
@@ -33,11 +34,15 @@
       background-color: var(--darkClr_secondry);
     }
   }
+  & .icon {
+    transform: rotate(0deg);
+  }
 }
 .toggleBtn {
   position: sticky;
   bottom: 0;
   left: 0;
+  // z-index: 65;
 
   border-radius: 50%;
   fill: var(--darkOrange);
@@ -49,6 +54,9 @@
   &:active {
     background-color: var(--darkClr_main);
   }
+}
+.icon {
+  transform: rotate(180deg);
 }
 .trAction {
   border-radius: 2px;
@@ -69,6 +77,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
+  // z-index: 60;
   width: 100%;
 
   overflow: hidden;

@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
 
-  padding: 4px 8px;
+  padding: 0 8px;
 
   height: 100%;
 
@@ -22,19 +22,39 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
+  height: 100%;
+
   background-color: inherit;
+
+  & .top {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  & .bottom {
+    font-size: 11px;
+    font-weight: 400;
+  }
+  border-right: 1px solid #59595a;
 }
 .coll {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: #efefef;
+
+  & .top {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  & .bottom {
+    font-size: 11px;
+    font-weight: 400;
+  }
   &:hover {
-    background-color: rgba(103, 202, 255, 0.1);
-  }
-  &.selected {
-    background-color: rgba(103, 202, 255, 0.8);
-  }
-  & .cellInner {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    background-color: var(--ligthOrange);
   }
 }
 
@@ -46,8 +66,12 @@
   height: 100%;
   padding: 0;
 
-  border-left: 1px solid var(--tr-brdr-clr__primary);
-  border-right: 1px solid var(--tr-brdr-clr__primary);
+  background-color: inherit;
+
+  border-right: 1px solid #59595a;
+
+  // border-left: 1px solid var(--tr-brdr-clr__primary);
+  // border-right: 1px solid var(--tr-brdr-clr__primary);
 }
 .actionsBtn {
   width: 40px;
@@ -96,11 +120,15 @@
 }
 .status,
 .typeStatus {
+  justify-content: flex-start;
+}
+.date {
+  flex-direction: column;
   justify-content: center;
 }
-.date,
+.amount,
 .currency {
-  justify-content: center;
+  justify-content: flex-end;
 }
 .number {
   justify-content: flex-end;
@@ -118,10 +146,14 @@
 }
 .stringDbl,
 .collDate,
+.cellDbl,
 .dateDbl {
   flex-direction: column;
   justify-content: center;
   gap: 2px;
+}
+.cellDbl {
+  align-items: flex-end;
 }
 .transactionDate,
 .documentDate,
@@ -141,12 +173,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-.amount {
-  justify-content: flex-end;
-}
-.currency {
-  justify-content: center;
 }
 .contractor,
 .project,

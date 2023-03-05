@@ -1,4 +1,5 @@
 import storage from 'redux-persist/lib/storage';
+import storageSession from 'redux-persist/lib/storage/session';
 
 export const presistorConfigs = {
   auth: {
@@ -10,6 +11,11 @@ export const presistorConfigs = {
     key: 'appSettings',
     storage,
     whitelist: ['isDarkMode'],
+  },
+  organization: {
+    key: 'organization',
+    storage: storageSession,
+    whitelist: ['organization'],
   },
   pageSettings: {
     key: 'appPage',

@@ -3,7 +3,6 @@
   flex-basis: 200px;
 
   min-width: 100px;
-  // width: 200px;
   height: 100%;
 
   font-size: 12px;
@@ -38,8 +37,10 @@
 .navMenuBnt {
   justify-content: space-between;
   width: 100%;
-  min-height: 30px;
-  padding: 4px 8px;
+  min-height: 28px;
+
+  padding: 0 8px 0 16px;
+  border-radius: 0;
 
   font-size: 12px;
   font-weight: 600;
@@ -80,27 +81,21 @@
   &::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
 
     width: 3px;
-    height: 100%;
+    height: 0;
 
     background-color: transparent;
+
+    transform: translateY(-50%);
+    transition: all var(--timing-function__long);
   }
   &:hover {
     background-color: rgba(254, 254, 254, 0.05);
-    // color: var(--darkOrange);
     &::before {
-      background-color: var(--darkOrange);
-    }
-  }
-  &:focus,
-  &:active {
-    background-color: rgba(254, 254, 254, 0.05);
-    color: var(--darkOrange);
-    fill: var(--darkOrange);
-    &::before {
+      height: 100%;
       background-color: var(--darkOrange);
     }
   }
@@ -110,6 +105,7 @@
   color: var(--darkOrange);
   fill: var(--darkOrange);
   &::before {
+    height: 80%;
     background-color: var(--darkOrange);
   }
 }

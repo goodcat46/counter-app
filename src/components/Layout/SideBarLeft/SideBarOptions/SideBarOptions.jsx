@@ -27,7 +27,7 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
 
           <ButtonIcon
             iconSize="18px"
-            size="24px"
+            size="22px"
             iconId={iconId.close}
             variant="outlined"
             onClick={() => handleOptionsState()}
@@ -39,6 +39,7 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
             options.map(el => (
               <li key={el?.title}>
                 <ButtonIcon
+                  variant="pointerLeft"
                   className={s.option}
                   // onClick={() => handleOptionsState()}
                 >

@@ -5,55 +5,66 @@
   position: relative;
 
   width: fit-content;
-
   height: 100%;
 
-  background-color: inherit;
+  background-color: #1c1c1e;
 
+  border-top: 1px solid transparent;
   border-bottom: 1px solid var(--tr-brdr-clr__primary);
 
   &:hover {
-    // background-color: rgba(103, 202, 255, 0.15);
-    // background-color: rgba(122, 122, 122, 0.3);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5), 0 0 8px rgba(254, 254, 254, 0.5);
+    border-color: var(--darkOrange);
   }
-} //var(--tr-backgrnd-clr__hover);
+}
 .rowContainer,
 .thRow {
+  display: flex;
+  align-items: center;
+
   min-width: 100%;
 }
 .thRow,
 .row {
   display: grid;
+  grid-template-columns: 40px max-content;
+
   position: relative;
 
   width: fit-content;
+  height: 100%;
 
   cursor: default;
-}
-.thRow {
-  font-size: 14px;
-  // font-weight: 700;
-
-  min-height: 50px;
-
-  // color: #fff;
-  // background-color: rgb(96, 96, 96);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5), 0 0 8px rgba(254, 254, 254, 0.5);
-}
-.row {
-  font-size: 12px;
-  font-weight: 400;
-
-  min-height: 28px;
 
   background-color: inherit;
-  // border-bottom: 1px solid var(--tr-brdr-clr__primary);
-  // transition: all var(--timing-function__main);
+}
+.thRow {
+  font-size: 12px;
+
+  height: 100%;
+}
+.row {
+  position: relative;
+
+  width: fit-content;
+  height: 100%;
+
+  font-size: 12px;
+  font-weight: 400;
+  min-height: 28px;
+
+  background-color: #1c1c1e;
+
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid var(--tr-brdr-clr__primary);
+
+  &:hover {
+    border-color: var(--darkOrange);
+  }
 }
 .rowStickyEl {
-  display: grid;
-  grid-template-columns: 40px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   position: sticky;
   top: 0;
@@ -62,6 +73,8 @@
   height: 100%;
 
   background-color: inherit;
+  // background-color: #1c1c1e;
+
   @media print {
     width: 0;
     overflow: hidden;

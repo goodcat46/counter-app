@@ -18,7 +18,7 @@ const ToggleThemeMode = () => {
   return (
     <ButtonIcon
       iconSize="20px"
-      size="36px"
+      size="26px"
       iconId={isDarkMode ? iconId.darkMode : iconId.lightMode}
       onClick={toggleDarkMode}
     />

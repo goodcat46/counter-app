@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TableList from 'components/TableList/TableList';
 import { useSelector } from 'react-redux';
 import { transactionsSelector } from 'redux/selectors.store';
-import { transactionsColumns } from 'data/transactions.data';
+import { transactionsColumns, transactionsSearchParams } from 'data';
 import { createRowData } from 'data/transactions.data';
 import TableActions from '../../TableList/TableActions/TableActions';
 import s from './PageTransactions.module.scss';
@@ -17,6 +17,7 @@ const PageTransactions = () => {
   const tableSettings = {
     // tableTitles: transactionsState?.tableTitles || [],
     tableTitles: transactionsColumns,
+    tableSearchParams: transactionsSearchParams,
     tableData: transactionsState?.transactions || [],
     onRowClick,
     createRowData,

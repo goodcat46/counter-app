@@ -1,8 +1,16 @@
 import { selects } from './select.data';
 export const transactionsColumns = [
-  { id: 1, title: 'Дата', dataKey: 'transactionDate', action: 'date', width: '120px' },
-  { id: 2, title: 'Тип', dataKey: 'type', action: 'status', width: '120px', search: true, visible: true },
-
+  { id: 1, title: 'Дата', subTitle: 'Час', dataKey: 'transactionDate', action: 'date', width: '90px' },
+  { id: 2, title: 'Тип', dataKey: 'type', action: 'status', width: '95px' },
+  {
+    id: 8,
+    title: 'Сума',
+    subTitle: 'Валюта',
+    action: 'cellDbl',
+    width: '120px',
+    top: { name: 'Сума', dataKey: 'amount' },
+    bottom: { name: 'Валюта', dataKey: 'currency' },
+  },
   {
     id: 6,
     title: selects.countOut.label,
@@ -37,28 +45,62 @@ export const transactionsColumns = [
     },
   },
   {
-    id: 8,
-    title: 'Сума',
-    subTitle: 'Валюта',
-    action: 'stringDbl',
-    width: '100px',
-    top: { name: 'Сума', dataKey: 'amount', action: 'number' },
-    bottom: { name: 'Валюта', dataKey: 'currency', action: 'string' },
+    id: 9,
+    title: 'Контрагент',
+    subTitle: 'Тип',
+    action: 'nestedDbl',
+    width: '200px',
+    titles: {
+      top: { dataKey: 'contractor', nestedKey: 'name' },
+    },
   },
-  // { id: 7, title: 'Сума', dataKey: 'amount', action: 'number', width: '100px' },
-  // { id: 8, title: 'Валюта', dataKey: 'currency', action: 'string', width: '100px' },
-
-  { id: 9, title: 'Контрагент', dataKey: 'contractor', action: 'string', width: '100px', search: true, visible: true },
-  { id: 11, title: 'Проект', dataKey: 'project', action: 'string', width: '100px', search: true, visible: true },
-
   {
-    id: 12,
+    id: 10,
+    title: 'Проект',
+    subTitle: 'Тип',
+    action: 'nestedDbl',
+    width: '100px',
+    titles: {
+      top: { dataKey: 'project', nestedKey: 'name' },
+    },
+  },
+  {
+    id: 11,
+    title: 'Документ',
+    subTitle: 'Номер',
+    action: 'nestedDbl',
+    width: '100px',
+    titles: {
+      top: { dataKey: 'document', nestedKey: 'name' },
+      bottom: { dataKey: 'document', nestedKey: 'number' },
+    },
+  },
+  { id: 12, title: 'Мітка', dataKey: 'mark', action: 'string', width: '100px' },
+  { id: 13, title: 'Коментар', dataKey: 'comment', action: 'string', width: '100px' },
+  { id: 14, title: 'Статус', dataKey: 'status', action: 'string', width: '100px' },
+  {
+    id: 20,
     title: 'Створено',
     subTitle: 'Оновлено',
     dataKey: 'documentData',
     action: 'dateDbl',
     width: '180px',
   },
+];
+
+export const transactionsSearchParams = [
+  { title: selects.countOut.label, dataKey: selects.countOut.name },
+  { title: selects.subCountOut.label, dataKey: selects.subCountOut.name },
+  { title: selects.countIn.label, dataKey: selects.countIn.name },
+  { title: selects.subCountIn.label, dataKey: selects.subCountIn.name },
+  { title: selects.category.label, dataKey: selects.category.name },
+  { title: selects.subCategory.label, dataKey: selects.subCategory.name },
+  { title: 'Сума', dataKey: 'amount' },
+  { title: 'Контрагент', dataKey: 'contractor' },
+  { title: 'Документ', dataKey: 'document' },
+  { title: 'Проєкт', dataKey: 'project' },
+  { title: 'Мітка', dataKey: 'mark' },
+  { title: 'Статус', dataKey: 'status' },
 ];
 
 export const transactionsTableTitles = [

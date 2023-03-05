@@ -6,11 +6,10 @@ import {
   deleteTransactionThunk,
   editTransactionThunk,
 } from 'redux/transactions/transactions.thunks';
-import { transactionsTableTitles as tableTitles, transactionsTestData } from 'data';
+import { transactionsTestData } from 'data';
 const initialState = {
   isLoading: false,
   error: null,
-  tableTitles,
   transactions: [...transactionsTestData],
 };
 
