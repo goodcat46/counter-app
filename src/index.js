@@ -10,6 +10,7 @@ import ModalProvider from 'components/ModalCustom/ModalProvider';
 
 import './index.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import AppThemeProvider from 'components/AppThemeProvider/AppThemeProvider';
 
 // import reportWebVitals from './reportWebVitals';
 
@@ -19,9 +20,11 @@ root.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <BrowserRouter basename="/counter-app">
-        <ModalProvider>
-          <App />
-        </ModalProvider>
+        <AppThemeProvider>
+          <ModalProvider>
+            <App />
+          </ModalProvider>
+        </AppThemeProvider>
       </BrowserRouter>
     </PersistGate>
   </Provider>
