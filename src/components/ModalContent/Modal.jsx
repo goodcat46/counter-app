@@ -11,7 +11,7 @@ import s from './Modal.module.scss';
 export const ModalContext = createContext();
 export const useModal = () => useContext(ModalContext);
 
-const ModalCustom = ({ handleToggleModal, defaultBtn = true, children, modalStyle }) => {
+const ModalCustom = ({ handleToggleModal, closeBtn, children, modalStyle }) => {
   function handleToggleModalBackdrop(evt) {
     let { target, currentTarget } = evt;
     if (target === currentTarget) {
@@ -43,7 +43,7 @@ const ModalCustom = ({ handleToggleModal, defaultBtn = true, children, modalStyl
       <ModalContext.Provider value={{ handleToggleModal }}>
         <div className={s.Backdrop} onClick={handleToggleModalBackdrop}>
           <div className={s.Modal} style={modalStyle}>
-            {defaultBtn && (
+            {closeBtn && (
               <button className={s.closeModal} onClick={handleToggleModal}>
                 <SvgIconClose size={'100%'} />
               </button>

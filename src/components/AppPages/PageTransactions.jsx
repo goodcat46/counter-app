@@ -6,8 +6,8 @@ import { transactionsColumns, transactionsSearchParams } from 'data';
 import { createRowData } from 'data/transactions.data';
 import TableActions from '../TableList/TableActions/TableActions';
 
-// import ModalContent from 'components/ModalContent/ModalContent';
-// import ModalDefault from 'components/ModalDefault/ModalDefault';
+import ModalContent from 'components/ModalContent/ModalContent';
+import ModalDefault from 'components/ModalDefault/ModalDefault';
 import styled from 'styled-components';
 // import CreatingList from 'components/CreatingList/CreatingList';
 
@@ -44,11 +44,9 @@ const PageTransactions = () => {
       <Page>
         <TableList {...tableSettings} />
 
-        {/* <ModalContent isOpen>
-          <ModalDefault filterOptions={countTypes}>
-            <CreatingList />
-          </ModalDefault>
-        </ModalContent> */}
+        <ModalContent isOpen>
+          <ModalDefault filterOptions={countTypes}>{/* <CreatingList /> */}</ModalDefault>
+        </ModalContent>
       </Page>
     </>
   );

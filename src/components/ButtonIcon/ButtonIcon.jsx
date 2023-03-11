@@ -1,7 +1,19 @@
 import React from 'react';
 import sprite from 'img/sprite';
 import s from './ButtonIcon.module.scss';
-
+export const ButtonIconVariants = {
+  filledLarge: 'filledLarge',
+  filled: 'filled',
+  outlined: 'outlined',
+  outlinedLarge: 'outlinedLarge',
+  onlyText: 'text',
+  pointerLeft: 'pointerLeft',
+  ColoredBtn: 'ColoredBtn',
+  BrandClrBtn: 'BrandClrBtn',
+  ErrorClrBtn: 'ErrorClrBtn',
+  BorderBtn: 'BorderBtn',
+  transparent: 'transparent',
+};
 const ButtonIcon = ({
   children,
   type = 'button',
