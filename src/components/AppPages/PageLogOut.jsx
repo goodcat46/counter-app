@@ -1,4 +1,15 @@
-.PageLogOut {
+import React from 'react';
+import styled from 'styled-components';
+
+const PageLogOut = props => {
+  return (
+    <Page>
+      <p>Goodbye!</p>
+    </Page>
+  );
+};
+
+const Page = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,15 +24,6 @@
 
   width: 80%;
   height: 50%;
-  // @media screen and (min-width: 768px) {
-  //   grid-column: 3/9;
-  //   grid-row: 3/9;
+`;
 
-  //   font-size: 24px;
-
-  //   margin: 0;
-
-  //   width: 100%;
-  //   height: 100%;
-  // }
-}
+export default PageLogOut;
