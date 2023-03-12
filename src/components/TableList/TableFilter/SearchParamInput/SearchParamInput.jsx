@@ -34,7 +34,6 @@ const SearchParamInput = ({ data = [], defaultValue, selectedItem = { title: '' 
   }, [data, inputValue, inputValue?.searchParam]);
 
   useEffect(() => {
-    if (!isOpen) return;
     function onMenuClose(ev) {
       const { target, code } = ev;
       if (!target.closest('[data-select]')) setIsOpen(false);

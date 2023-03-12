@@ -11,8 +11,6 @@ const QuickActions = () => {
   }
 
   useEffect(() => {
-    if (!isShown) return;
-
     function onMenuClose(ev) {
       const { target, code } = ev;
       if (!target.closest('[data-burger]')) setIsShown(false);

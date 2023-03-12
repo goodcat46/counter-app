@@ -19,7 +19,7 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
     // setDisableForClose(false);
   }
   function beforeClose(isModalOpen) {
-    console.log('beforeClose', 'isModalOpen', isModalOpen);
+    // console.log('beforeClose', 'isModalOpen', isModalOpen);
     setDisableForClose(false);
   }
 
@@ -33,12 +33,14 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
       if (code === 'Escape') return handleOptionsState();
       console.log('FROM SIDEBAR OPTIONS');
     }
-    window.addEventListener('click', onMenuClose);
-    window.addEventListener('keydown', onMenuClose);
+    const rootEl = document.getElementById('root');
+
+    rootEl.addEventListener('click', onMenuClose);
+    rootEl.addEventListener('keydown', onMenuClose);
 
     return () => {
-      window.removeEventListener('click', onMenuClose);
-      window.removeEventListener('keydown', onMenuClose);
+      rootEl.removeEventListener('click', onMenuClose);
+      rootEl.removeEventListener('keydown', onMenuClose);
     };
   }, [disableForClose, handleOptionsState, options]);
 
