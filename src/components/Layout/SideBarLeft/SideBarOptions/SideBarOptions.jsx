@@ -1,30 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
 import { iconId } from 'data';
 import s from './SideBarOptions.module.scss';
 import ModalContent from 'components/ModalContent/ModalContent';
+import { useModalProvider } from 'components/ModalCustom/ModalProvider';
 
 const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
-  const [disableForClose, setDisableForClose] = useState(false);
+  const modal = useModalProvider();
 
   function handleCloseMenu(_ev) {
     handleOptionsState();
   }
   function beforeOpen(_isModalOpen) {
     // console.log('beforeOpen', 'isModalOpen', isModalOpen);
-    setDisableForClose(true);
+  }
+  function afterOpen(_isModalOpen) {
+    // console.log('afterOpen', 'isModalOpen', isModalOpen);
   }
   function afterClose(_isModalOpen) {
     // console.log('afterClose', 'isModalOpen', isModalOpen);
     // setDisableForClose(false);
   }
-  function beforeClose(isModalOpen) {
+  function beforeClose(_isModalOpen) {
     // console.log('beforeClose', 'isModalOpen', isModalOpen);
-    setDisableForClose(false);
   }
 
   useEffect(() => {
-    if (disableForClose) return;
+    if (modal.isOpen) return;
     if (!options) return;
 
     function onMenuClose(ev) {
@@ -42,7 +44,7 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
       rootEl.removeEventListener('click', onMenuClose);
       rootEl.removeEventListener('keydown', onMenuClose);
     };
-  }, [disableForClose, handleOptionsState, options]);
+  }, [handleOptionsState, modal.isOpen, options]);
 
   return (
     <div className={[s.rightSide, isOpen && options && s.isShown].join(' ')}>
@@ -60,12 +62,10 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
               // console.log(modalChildrenProps);
               return (
                 <li key={item?.title}>
-                  {ModalChildren && (
+                  {/* {ModalChildren && (
                     <ModalContent
                       beforeOpen={beforeOpen}
-                      afterOpen={_isModalOpen => {
-                        // console.log('afterOpen', 'isModalOpen', isModalOpen);
-                      }}
+                      afterOpen={afterOpen}
                       beforeClose={beforeClose}
                       afterClose={afterClose}
                       trigger={props => (
@@ -76,11 +76,20 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
                     >
                       <ModalChildren {...modalChildrenProps} />
                     </ModalContent>
-                  )}
+                  )} */}
 
-                  {/* <ButtonIcon variant="pointerLeft" className={s.option}>
+                  <ButtonIcon
+                    variant="pointerLeft"
+                    className={s.option}
+                    onClick={() => {
+                      modal.handleOpenModal({
+                        ModalChildren,
+                        modalChildrenProps: { ...modalChildrenProps, beforeOpen, afterOpen, beforeClose, afterClose },
+                      });
+                    }}
+                  >
                     {item?.title}
-                  </ButtonIcon> */}
+                  </ButtonIcon>
                 </li>
               );
             })}

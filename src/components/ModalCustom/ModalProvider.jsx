@@ -1,109 +1,86 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import ModalPortal from './ModalPortal/ModalPortal';
+import ModalPortal from './ModalPortal';
 // import SvgIconClose from './SvgIconClose/SvgIconClose';
 import ModalComponent from './ModalComponent';
 import { nanoid } from '@reduxjs/toolkit';
 
-import s from './ModalCustom.module.scss';
-
-//* ""handleToggle"" функція яка тоглить стейт модалки
-//* ""defaultBtn"" BOOLEAN чи потрібна дефолтна кнопка закриття
-//* ""children"" вміст модалки
-export const ModalContext = createContext();
-export const useModal = () => useContext(ModalContext);
-
-const modalInitialSettings = {
-  style: null,
-  backdropClass: s.Backdrop,
-  backdropStyle: null,
-  modalClass: s.Modal,
-  modalStyle: null,
-  closeBtnClass: '',
-  closeBtnStyle: null,
-  closeBtn: true,
-};
+export const ModalProviderContext = createContext();
+export const useModalProvider = () => useContext(ModalProviderContext);
 
 const ModalProvider = ({ children, portal = 'modal' }) => {
-  const [modalContent, setModalContent] = useState(null);
+  const [modalContent, setModalContent] = useState([]);
 
-  function handleOpenModal({ ev, content, settings = modalInitialSettings }) {
-    if (!content) {
-      setModalContent(null);
+  function handleOpenModal({ ModalChildren, modalChildrenProps, settings }) {
+    if (typeof ModalChildren === 'function') {
+      const modalItem = { ModalChildren, modalChildrenProps, settings, id: nanoid(8) };
+      setModalContent(prev => [...prev, modalItem]);
       return;
     }
-    setModalContent(content);
-    const contendId = nanoid(8);
-    // if (!content) {
-    //   setModalSettings(modalInitialSettings);
-    //   setModalContent(prev => [...prev, { RenderItem: content, id: '' }]);
-    //   return;
-    // }
-    // setModalContent(prev => [...prev, { RenderContent: content, id: contendId }]);
-    return contendId;
   }
   function handleCloseModal(id) {
     setModalContent(prev => prev.filter(el => el.id !== id));
   }
-  function handleCloseModalByBackdrop({ ev, id }) {
-    let { target, currentTarget } = ev;
 
-    if (target === currentTarget) {
-      // setModalContent(prev => prev.filter(el => el.id !== id));
-      setModalContent(null);
+  const CTX = { handleCloseModal, handleOpenModal, isOpen: modalContent.length > 0 };
+
+  useEffect(() => {
+    function handleToggleModalByEsc(evt) {
+      if (evt?.code === 'Escape') {
+        if (modalContent.length === 0) document.querySelector('body').classList.remove('NotScroll');
+
+        setModalContent(prev => {
+          const arr = [...prev];
+          arr.splice(-1);
+          return arr;
+        });
+      }
     }
-  }
+    if (modalContent.length > 0) {
+      document.querySelector('body').classList.add('NotScroll');
+      window.addEventListener('keydown', handleToggleModalByEsc);
+    }
 
-  // useEffect(() => {
-  //   window.addEventListener('keydown', handleToggleModalByEsc);
-
-  //   function handleToggleModalByEsc(evt) {
-  //     let { code } = evt;
-
-  //     if (code === 'Escape') {
-  //       setModalSettings(modalInitialSettings);
-  //       setModalContent([]);
-  //       console.log('Escape');
-  //       document.querySelector('body').classList.remove('NotScroll');
-  //       window.removeEventListener('keydown', handleToggleModalByEsc);
-  //     }
-  //   }
-
-  //   if (modalContent) {
-  //     document.querySelector('body').classList.add('NotScroll');
-  //   }
-
-  //   return () => {
-  //     document.querySelector('body').classList.remove('NotScroll');
-  //     window.removeEventListener('keydown', handleToggleModalByEsc);
-  //   };
-  // }, [modalContent]);
+    return () => {
+      document.querySelector('body').classList.remove('NotScroll');
+      window.removeEventListener('keydown', handleToggleModalByEsc);
+    };
+  }, [children, modalContent]);
 
   return (
     <>
-      <ModalContext.Provider value={{ handleCloseModal, handleOpenModal, handleCloseModalByBackdrop }}>
+      <ModalProviderContext.Provider value={CTX}>
         <>{children}</>
-        {modalContent && (
-          <ModalPortal portal={'modal'}>
-            <ModalComponent {...{ handleCloseModalByBackdrop }}>{modalContent}</ModalComponent>
 
-            {/* {modalContent.length > 0 &&
-            modalContent.map((Item, idx) => (
-              <ModalComponent key={Item.id} {...{ handleCloseModal, handleOpenModal, handleCloseModalByBackdrop }}>
-                <Item />
-              </ModalComponent>
-            ))} */}
-          </ModalPortal>
-        )}
-      </ModalContext.Provider>
+        <ModalPortal portal={portal}>
+          {modalContent?.length > 0 &&
+            modalContent.map((Item, idx) => {
+              return (
+                <ModalComponent
+                  key={Item.id}
+                  {...{
+                    ...Item,
+                    idx,
+                    id: Item.id,
+                    totalLength: modalContent.length,
+                    isLast: idx === modalContent.length - 1,
+                    onClose: () => {
+                      handleCloseModal(Item.id);
+                    },
+                  }}
+                >
+                  {Item?.ModalChildren && <Item.ModalChildren {...Item?.modalChildrenProps} />}
+                </ModalComponent>
+              );
+            })}
+        </ModalPortal>
+      </ModalProviderContext.Provider>
     </>
   );
 };
 
 ModalProvider.propTypes = {
-  isOpenModal: PropTypes.bool,
-  handleToggle: PropTypes.func,
-  defaultBtn: PropTypes.bool,
+  portal: PropTypes.string,
   // ! children: PropTypes.typeOf([]),
 };
 

@@ -1,11 +1,12 @@
 import React from 'react';
-import { useModal } from 'components/ModalContent/Modal';
+import ModalHeader from './ModalHeader';
+import ModalFilter from './ModalFilter';
 import ModalFooter from './ModalFooter';
+import { useModalCTX } from 'components/ModalCustom/ModalComponent';
+// import { useModal } from 'components/ModalContent/Modal';
 import theme from 'theme/theme';
 
 import styled from 'styled-components';
-import ModalHeader from './ModalHeader';
-import ModalFilter from './ModalFilter';
 
 const ModalDefault = ({
   title = 'default modal title',
@@ -19,18 +20,20 @@ const ModalDefault = ({
   afterClose,
   onSelect,
 }) => {
-  const { onCloseModal } = useModal();
+  const modal = useModalCTX();
+
+  console.log(modal);
 
   function handleSubmit(ev) {
     ev.preventDefault();
     if (!onSubmit) return console.log('No passed "onSubmit" handler');
-    onCloseModal();
+    modal.onCloseModal();
     if (typeof beforeSubmit === 'function') beforeSubmit();
     if (typeof onSubmit === 'function') onSubmit();
     if (typeof afterSubmit === 'function') afterSubmit();
   }
-  function handleClose(ev) {
-    onCloseModal();
+  function handleClose(_ev) {
+    modal.onCloseModal();
     if (!onClose) return console.log('No passed "onClose" handler');
     if (typeof beforeClose === 'function') beforeClose();
     if (typeof onClose === 'function') {
@@ -42,6 +45,7 @@ const ModalDefault = ({
     if (!onSelect) console.log('No passed "onSelect" handler', option);
     if (typeof onSelect === 'function') onSelect(option);
   }
+
   return (
     <ModalDefaultContainer onSubmit={handleSubmit}>
       <ModalHeader onClose={handleClose} title={title} />

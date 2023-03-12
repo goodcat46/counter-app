@@ -1,67 +1,114 @@
-import React, { useState, useEffect } from 'react';
-
-import SvgIconClose from './SvgIconClose/SvgIconClose';
-
-import s from './ModalCustom.module.scss';
+import React, { useState, useEffect, createContext, useContext } from 'react';
+import SvgIconClose from './SvgIconClose';
+import styled from 'styled-components';
 
 //* ""handleToggle"" функція яка тоглить стейт модалки
 //* ""defaultBtn"" BOOLEAN чи потрібна дефолтна кнопка закриття
 //* ""children"" вміст модалки
 
-const modalInitialSettings = {
+const initialSettings = {
   style: null,
-  backdropClass: s.Backdrop,
+  backdropColor: 'rgba(0, 0, 0, 0.5)',
   backdropStyle: null,
-  modalClass: s.Modal,
   modalStyle: null,
-  closeBtnClass: '',
   closeBtnStyle: null,
-  closeBtn: true,
+  closeBtn: false,
 };
+export const ModalContext = createContext();
+export const useModalCTX = () => useContext(ModalContext);
 
-const ModalComponent = ({ idx, children, settings, handleCloseModalByBackdrop, handleToggleModal }) => {
-  const [modalSettins] = useState(settings || modalInitialSettings);
+const ModalComponent = ({ children, idx, settings, onClose, id, totalLength, isLast }) => {
+  const [modalSettings] = useState(settings || initialSettings);
 
   function onBackdropClick(ev) {
-    handleCloseModalByBackdrop({ ev: ev });
+    if (ev.target !== ev.currentTarget) return;
+    if (typeof onClose === 'function') onClose();
   }
+
+  const CTX = { onCloseModal: onClose, modalIdx: idx, modalSettings: modalSettings, id, totalLength, isLast };
+
   useEffect(() => {
-    function handleToggleModalByEsc(evt) {
-      let { code } = evt;
-      if (code === 'Escape') {
-        handleToggleModal(idx);
-
-        console.log('Escape');
-        document.querySelector('body').classList.remove('NotScroll');
-        window.removeEventListener('keydown', handleToggleModalByEsc);
-      }
-    }
-
-    if (children) {
-      document.querySelector('body').classList.add('NotScroll');
-      window.addEventListener('keydown', handleToggleModalByEsc);
-    }
-
-    return () => {
-      document.querySelector('body').classList.remove('NotScroll');
-      window.removeEventListener('keydown', handleToggleModalByEsc);
-    };
-  }, [children, handleToggleModal, idx]);
+    // console.log(idx);
+  }, [children, idx]);
 
   return (
-    <>
-      <div key={idx} className={modalSettins?.backdropClass} onClick={onBackdropClick}>
-        <div className={modalSettins?.modalClass} style={modalSettins?.modalStyle}>
-          {modalSettins.defaultBtn && (
-            <button className={s.closeModal} onClick={handleToggleModal}>
+    <ModalContext.Provider value={CTX}>
+      <Backdrop key={idx} idx={idx} onClick={onBackdropClick}>
+        <Modal style={modalSettings?.modalStyle}>
+          {modalSettings?.closeBtn && (
+            <CloseButton type="button" onClick={onClose}>
               <SvgIconClose size={'100%'} />
-            </button>
+            </CloseButton>
           )}
           {children}
-        </div>
-      </div>
-    </>
+        </Modal>
+      </Backdrop>
+    </ModalContext.Provider>
   );
 };
+const Backdrop = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1300;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: ${({ idx }) => (idx === 0 ? initialSettings.backdropColor : '')};
+
+  animation: BackdropAnimation 1 100ms linear;
+`;
+const Modal = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  min-width: 200px;
+
+  min-height: 200px;
+  max-width: 98%;
+  max-height: 98%;
+
+  // color: inherit;
+  // fill: inherit;
+
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.5);
+
+  animation: ModalAnimation 100ms linear;
+`;
+const CloseButton = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 150;
+
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.1);
+  fill: rgba(0, 0, 0, 0.5);
+
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  border-style: none;
+  border: 1px solid transparent;
+
+  background-color: rgba(0, 0, 0, 0);
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+`;
 export default ModalComponent;
