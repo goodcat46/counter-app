@@ -30,6 +30,7 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
     if (!options) return;
 
     function onMenuClose(ev) {
+      if (modal.isOpen) return;
       const { target, code } = ev;
       if (!target.closest('[data-sidebar]')) return handleOptionsState();
       if (code === 'Escape') return handleOptionsState();
