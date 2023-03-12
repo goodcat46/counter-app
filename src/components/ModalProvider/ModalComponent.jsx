@@ -9,6 +9,8 @@ import styled from 'styled-components';
 const initialSettings = {
   style: null,
   backdropColor: 'rgba(0, 0, 0, 0.5)',
+  backdropAnimation: `ModalAnimation 100ms linear`,
+  backdropNonAnimation: `ModalAnimation 0ms linear`,
   backdropStyle: null,
   modalStyle: null,
   closeBtnStyle: null,
@@ -33,7 +35,7 @@ const ModalComponent = ({ children, idx, settings, onClose, id, totalLength, isL
 
   return (
     <ModalContext.Provider value={CTX}>
-      <Backdrop key={idx} idx={idx} onClick={onBackdropClick}>
+      <Backdrop key={idx} isLast={isLast} onClick={onBackdropClick}>
         <Modal style={modalSettings?.modalStyle}>
           {modalSettings?.closeBtn && (
             <CloseButton type="button" onClick={onClose}>
@@ -59,9 +61,8 @@ const Backdrop = styled.div`
   width: 100%;
   height: 100%;
 
-  background-color: ${({ idx }) => (idx === 0 ? initialSettings.backdropColor : '')};
-
-  animation: BackdropAnimation 1 100ms linear;
+  background-color: ${({ isLast }) => (isLast ? initialSettings.backdropColor : '')};
+  animation: ${({ isLast }) => (!isLast ? initialSettings.backdropNonAnimation : '')};
 `;
 const Modal = styled.div`
   display: flex;
@@ -83,7 +84,7 @@ const Modal = styled.div`
   // fill: inherit;
 
   transform: translate(-50%, -50%);
-  border-radius: 4px;
+  border-radius: 2px;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.5);
 

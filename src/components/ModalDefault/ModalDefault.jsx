@@ -2,7 +2,7 @@ import React from 'react';
 import ModalHeader from './ModalHeader';
 import ModalFilter from './ModalFilter';
 import ModalFooter from './ModalFooter';
-import { useModalCTX } from 'components/ModalCustom/ModalComponent';
+import { useModalCTX } from 'components/ModalProvider/ModalComponent';
 // import { useModal } from 'components/ModalContent/Modal';
 import theme from 'theme/theme';
 
@@ -10,6 +10,7 @@ import styled from 'styled-components';
 
 const ModalDefault = ({
   title = 'default modal title',
+  style,
   children,
   beforeSubmit,
   filterOptions,
@@ -21,8 +22,6 @@ const ModalDefault = ({
   onSelect,
 }) => {
   const modal = useModalCTX();
-
-  console.log(modal);
 
   function handleSubmit(ev) {
     ev.preventDefault();
@@ -47,10 +46,10 @@ const ModalDefault = ({
   }
 
   return (
-    <ModalDefaultContainer onSubmit={handleSubmit}>
+    <ModalDefaultContainer onSubmit={handleSubmit} style={style}>
       <ModalHeader onClose={handleClose} title={title} />
 
-      <ModalMain>
+      <ModalMain filter={filterOptions}>
         {filterOptions && <ModalFilter onSelect={handleSelect} options={filterOptions} />}
 
         <MainScroll>{children}</MainScroll>
@@ -68,10 +67,10 @@ const ModalDefaultContainer = styled.form`
 
   position: relative;
 
-  height: 550px;
+  /* height: 550px; */
   min-height: 350px;
   max-height: 100%;
-  width: 350px;
+  /* width: 350px; */
   min-width: 250px;
   max-width: 100%;
 
@@ -87,22 +86,25 @@ const ModalDefaultContainer = styled.form`
 const ModalMain = styled.main`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: min-content 1fr;
+  grid-template-rows: ${({ filter }) => (filter ? 'min-content 1fr' : '1fr')};
 
   overflow: hidden;
   position: relative;
 
   height: 100%;
+  min-width: min-content;
 
   background-color: ${theme.dark.backgroundColorMain};
 
   border-right: 1px solid ${theme.dark.borderColor};
   border-left: 1px solid ${theme.dark.borderColor};
 `;
+
 const MainScroll = styled.div`
   overflow: auto;
 
   width: 100%;
+  min-width: min-content;
   height: 100%;
 
   background-color: ${theme.dark.backgroundColorMain};

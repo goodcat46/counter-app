@@ -9,9 +9,27 @@ export const getAllUsers = state => state.users.users;
 
 export const categoriesSelector = state => state.categories;
 export const getAllCategories = state => state.categories.categories;
+export const getCategoriesByOwnerId = ownerId => state =>
+  state.categories.categories.filter(category => category?.owner === ownerId || category?.owner?._id === ownerId);
+export const getFilteredCategories = state => {
+  const { categories = [], isLoading, error } = state.categories;
+
+  const mainCategories = categories.filter(category => !category.owner);
+  const subCategories = categories.filter(category => category.owner);
+  return { mainCategories, subCategories, isLoading, error };
+};
 
 export const countsSelector = state => state.counts;
 export const getAllCounts = state => state.counts.counts;
+export const getCountsByOwnerId = ownerId => state =>
+  state.counts.counts.filter(count => count?.owner === ownerId || count?.owner?._id === ownerId);
+export const getFilteredCounts = state => {
+  const { counts = [], isLoading, error } = state.counts;
+
+  const mainCounts = counts.filter(count => !count.owner);
+  const subCounts = counts.filter(count => count.owner);
+  return { mainCounts, subCounts, isLoading, error };
+};
 
 export const contractorsSelector = state => state.contractors;
 export const getAllContractors = state => state.contractors.contractors;

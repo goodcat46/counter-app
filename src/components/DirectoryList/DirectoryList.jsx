@@ -2,15 +2,16 @@ import ModalDefault from 'components/ModalDefault/ModalDefault';
 import React from 'react';
 import styled from 'styled-components';
 
-import { useSelector } from 'react-redux';
-import { getAllCounts } from 'redux/selectors.store';
+import ListItem from './ListItem';
 
-const CreatingList = () => {
-  const counts = useSelector(getAllCounts);
-  console.table(counts);
+const DirectoryList = ({ list = [], subList, title }) => {
   return (
-    <ModalDefault>
-      <List>CreatingList</List>
+    <ModalDefault title={title}>
+      <List>
+        {list.map((count, idx) => (
+          <ListItem key={count?._id} {...count} isLast={list.length - 1 === idx} idx={idx} />
+        ))}
+      </List>
     </ModalDefault>
   );
 };
@@ -18,7 +19,6 @@ const CreatingList = () => {
 const List = styled.ul`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: 8px;
 
   padding: 4px;
@@ -30,4 +30,4 @@ const List = styled.ul`
     padding: 16px;
   }
 `;
-export default CreatingList;
+export default DirectoryList;

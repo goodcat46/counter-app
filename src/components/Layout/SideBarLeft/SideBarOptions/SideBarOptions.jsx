@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
-import { useModalProvider } from 'components/ModalCustom/ModalProvider';
+import { useModalProvider } from 'components/ModalProvider/ModalProvider';
 import { iconId } from 'data';
 import s from './SideBarOptions.module.scss';
 

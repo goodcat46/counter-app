@@ -11,7 +11,9 @@ export const useModalProvider = () => useContext(ModalProviderContext);
 const ModalProvider = ({ children, portal = 'modal' }) => {
   const [modalContent, setModalContent] = useState([]);
 
-  function handleOpenModal({ ModalChildren, modalChildrenProps, settings }) {
+  function handleOpenModal({ ModalChildren, modalChildrenProps, settings } = {}) {
+    if (!ModalChildren) return console.error('ModalChildren is undefined');
+
     if (typeof ModalChildren === 'function') {
       const modalItem = { ModalChildren, modalChildrenProps, settings, id: nanoid(8) };
       setModalContent(prev => [...prev, modalItem]);
@@ -55,6 +57,8 @@ const ModalProvider = ({ children, portal = 'modal' }) => {
         <ModalPortal portal={portal}>
           {modalContent?.length > 0 &&
             modalContent.map((Item, idx) => {
+              console.log(Item?.modalChildrenProps);
+
               return (
                 <ModalComponent
                   key={Item.id}

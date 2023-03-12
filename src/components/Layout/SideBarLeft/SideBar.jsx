@@ -4,11 +4,11 @@ import SideBarOptions from './SideBarOptions/SideBarOptions';
 import ToggleThemeMode from './ChangeTheme/ChangeTheme';
 import ActionAppExit from './ActionAppExit';
 import { useSideBar } from './SideBarProvider';
+import OpenNotifications from './Notifications';
+import styled from 'styled-components';
+import theme from 'theme/theme';
 
 import s from './SideBar.module.scss';
-import theme from 'theme/theme';
-import styled from 'styled-components';
-import { iconId } from 'data';
 
 const SideBar = () => {
   const {
@@ -45,15 +45,8 @@ const SideBar = () => {
           </div>
 
           <div className={s.bottom}>
-            {' '}
-            <ButtonIcon
-              iconSize="20px"
-              styles={{ width: '100%', height: '32px' }}
-              iconId={iconId.notifications}
-              variant="pointerLeft"
-              // className={settingsOptionsItem.title === options?.title && s.isActive}
-              onClick={() => handleOptionsState()}
-            />
+            <OpenNotifications />
+
             <ButtonIcon
               iconSize="20px"
               styles={{ width: '100%', height: '32px' }}

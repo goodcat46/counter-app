@@ -1,4 +1,5 @@
-import CreatingList from 'components/CreatingList/CreatingList';
+import DirectoryOfCounts from 'components/Directories/DirectoryOfCounts';
+import DirectoryOfCategories from 'components/Directories/DirectoryOfCategories';
 import ModalDefault from 'components/ModalDefault/ModalDefault';
 import { iconId } from './iconId.data';
 
@@ -6,14 +7,14 @@ const directories = [
   {
     title: 'Рахунки',
     iconId: iconId.bank,
-    ModalChildren: CreatingList,
+    ModalChildren: DirectoryOfCounts,
     modalChildrenProps: { title: 'Рахунки' },
     disabled: false,
   },
   {
     title: 'Категорії',
     iconId: iconId.folder,
-    ModalChildren: ModalDefault,
+    ModalChildren: DirectoryOfCategories,
     modalChildrenProps: { title: 'Категорії' },
     disabled: true,
   },

@@ -9,15 +9,6 @@
       border-right: 1px solid var(--borderClr_light);
     }
   }
-  @media screen and (max-width: 480px) {
-    &.isShown {
-      & .rightSideContainer {
-        // max-width: calc(100vw - 40px);
-        // border-right: 1px solid var(--borderClr_light);
-        width: 100vh;
-      }
-    }
-  }
 }
 .rightSideContainer {
   display: grid;
