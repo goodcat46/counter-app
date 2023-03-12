@@ -10,28 +10,28 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
   function handleCloseMenu(_ev) {
     handleOptionsState();
   }
-  function beforeOpen(isModalOpen) {
-    console.log('beforeOpen', 'isModalOpen', isModalOpen);
+  function beforeOpen(_isModalOpen) {
+    // console.log('beforeOpen', 'isModalOpen', isModalOpen);
     setDisableForClose(true);
   }
-  function afterClose(isModalOpen) {
-    console.log('afterClose', 'isModalOpen', isModalOpen);
+  function afterClose(_isModalOpen) {
+    // console.log('afterClose', 'isModalOpen', isModalOpen);
     // setDisableForClose(false);
+  }
+  function beforeClose(isModalOpen) {
+    console.log('beforeClose', 'isModalOpen', isModalOpen);
+    setDisableForClose(false);
   }
 
   useEffect(() => {
-    if (disableForClose) {
-      console.log('disableForClose', disableForClose);
-      return;
-    }
+    if (disableForClose) return;
+    if (!options) return;
 
     function onMenuClose(ev) {
       const { target, code } = ev;
-      // if (disableForClose) return;
-
-      console.log('CLOSED SIDEBAR OPTIONS');
       if (!target.closest('[data-sidebar]')) return handleOptionsState();
       if (code === 'Escape') return handleOptionsState();
+      console.log('FROM SIDEBAR OPTIONS');
     }
     window.addEventListener('click', onMenuClose);
     window.addEventListener('keydown', onMenuClose);
@@ -40,7 +40,7 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
       window.removeEventListener('click', onMenuClose);
       window.removeEventListener('keydown', onMenuClose);
     };
-  }, [disableForClose, handleOptionsState]);
+  }, [disableForClose, handleOptionsState, options]);
 
   return (
     <div className={[s.rightSide, isOpen && options && s.isShown].join(' ')}>
@@ -61,12 +61,10 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
                   {ModalChildren && (
                     <ModalContent
                       beforeOpen={beforeOpen}
-                      afterOpen={isModalOpen => {
-                        console.log('afterOpen', 'isModalOpen', isModalOpen);
+                      afterOpen={_isModalOpen => {
+                        // console.log('afterOpen', 'isModalOpen', isModalOpen);
                       }}
-                      beforeClose={isModalOpen => {
-                        console.log('beforeClose', 'isModalOpen', isModalOpen);
-                      }}
+                      beforeClose={beforeClose}
                       afterClose={afterClose}
                       trigger={props => (
                         <ButtonIcon variant="pointerLeft" className={s.option} {...props}>

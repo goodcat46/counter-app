@@ -23,9 +23,8 @@ const SideBarProvider = ({ children }) => {
   }
 
   function handleOptionsState(newOptions) {
-    if (!newOptions) {
-      return setOptions(null);
-    }
+    if (!newOptions) return setOptions(null);
+
     setOptions(prev => (prev === newOptions ? null : newOptions));
   }
 

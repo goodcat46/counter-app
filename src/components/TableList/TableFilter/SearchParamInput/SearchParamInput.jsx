@@ -34,6 +34,7 @@ const SearchParamInput = ({ data = [], defaultValue, selectedItem = { title: '' 
   }, [data, inputValue, inputValue?.searchParam]);
 
   useEffect(() => {
+    if (!isOpen) return;
     function onMenuClose(ev) {
       const { target, code } = ev;
       if (!target.closest('[data-select]')) setIsOpen(false);
@@ -51,7 +52,7 @@ const SearchParamInput = ({ data = [], defaultValue, selectedItem = { title: '' 
   return (
     <div className={[s.searchParamInputBox, isOpen && s.isOpen].join(' ')} onClick={handleToggleList} data-select>
       <div className={s.svgIconBox} onClick={handleToggleList}>
-        <SvgIcon iconId={iconId.arrowDown} className={s.svgIcon} size="18px" />
+        <SvgIcon iconId={iconId.SmallArrowDown} className={s.svgIcon} size="24px" />
       </div>
 
       <input
