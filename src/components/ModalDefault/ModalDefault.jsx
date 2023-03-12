@@ -19,21 +19,21 @@ const ModalDefault = ({
   afterClose,
   onSelect,
 }) => {
-  const { handleToggleModal } = useModal();
+  const { onCloseModal } = useModal();
 
   function handleSubmit(ev) {
     ev.preventDefault();
     if (!onSubmit) return console.log('No passed "onSubmit" handler');
-    handleToggleModal();
+    onCloseModal();
     if (typeof beforeSubmit === 'function') beforeSubmit();
     if (typeof onSubmit === 'function') onSubmit();
     if (typeof afterSubmit === 'function') afterSubmit();
   }
   function handleClose(ev) {
+    onCloseModal();
     if (!onClose) return console.log('No passed "onClose" handler');
     if (typeof beforeClose === 'function') beforeClose();
     if (typeof onClose === 'function') {
-      handleToggleModal();
       onClose();
     }
     if (typeof afterClose === 'function') afterClose();
@@ -44,7 +44,7 @@ const ModalDefault = ({
   }
   return (
     <ModalDefaultContainer onSubmit={handleSubmit}>
-      <ModalHeader onClose={handleClose} />
+      <ModalHeader onClose={handleClose} title={title} />
 
       <ModalMain>
         <ModalFilter onSelect={handleSelect} options={filterOptions} />

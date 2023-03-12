@@ -6,6 +6,9 @@ import ActionAppExit from './ActionAppExit';
 import { useSideBar } from './SideBarProvider';
 
 import s from './SideBar.module.scss';
+import theme from 'theme/theme';
+import styled from 'styled-components';
+import { iconId } from 'data';
 
 const SideBar = () => {
   const {
@@ -19,7 +22,7 @@ const SideBar = () => {
 
   return (
     <div className={[s.SideBar, isOpen && s.isOpen].join(' ')} data-sidebar>
-      <button className={s.toggler} onClick={onTogglerClick}></button>
+      <MenuToggler isOpen={isOpen} onClick={onTogglerClick}></MenuToggler>
 
       <div className={s.container}>
         <div className={s.content}>
@@ -42,15 +45,23 @@ const SideBar = () => {
           </div>
 
           <div className={s.bottom}>
+            {' '}
             <ButtonIcon
               iconSize="20px"
-              styles={{ width: '100%', height: '26px' }}
+              styles={{ width: '100%', height: '32px' }}
+              iconId={iconId.notifications}
+              variant="pointerLeft"
+              // className={settingsOptionsItem.title === options?.title && s.isActive}
+              onClick={() => handleOptionsState()}
+            />
+            <ButtonIcon
+              iconSize="20px"
+              styles={{ width: '100%', height: '32px' }}
               iconId={settingsOptionsItem.iconId}
               variant="pointerLeft"
               className={settingsOptionsItem.title === options?.title && s.isActive}
               onClick={() => handleOptionsState(settingsOptionsItem)}
             />
-
             <ActionAppExit />
           </div>
         </div>
@@ -60,5 +71,20 @@ const SideBar = () => {
     </div>
   );
 };
+
+const MenuToggler = styled.button`
+  width: 4px;
+  height: 100%;
+  padding: 0;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  border-style: none;
+
+  background-color: ${({ isOpen }) => (isOpen ? theme.dark.trBorderClr : theme.dark.backgroundColorBlack)};
+`;
 
 export default SideBar;

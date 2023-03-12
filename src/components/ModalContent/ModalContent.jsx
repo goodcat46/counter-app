@@ -5,20 +5,43 @@ const ModalContent = ({
   children,
   trigger,
   className,
-  closeBtn = true,
+  closeBtn = false,
   style,
   isOpen = false,
+  beforeOpen,
+  afterOpen,
   beforeClose,
-  afeterClose,
+  afterClose,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(isOpen);
 
-  function handleToggleModal(ev) {
-    if (typeof beforeClose === 'function') beforeClose();
+  // function handleToggleModal(ev) {
+  //   setIsModalOpen(prev => {
+  //     if (typeof beforeOpen === 'function' && !prev) beforeOpen(prev);
+  //     if (typeof beforeClose === 'function' && prev) beforeClose(prev);
 
-    setIsModalOpen(!isModalOpen);
+  //     return !prev;
+  //   });
 
-    if (typeof afeterClose === 'function') afeterClose();
+  //   if (typeof afterOpen === 'function' && !isModalOpen) afterOpen(!isModalOpen);
+  //   if (typeof afterClose === 'function' && isModalOpen) afterClose(!isModalOpen);
+  // }
+  function onOpenModal(ev) {
+    setIsModalOpen(prev => {
+      if (typeof beforeOpen === 'function' && !prev) beforeOpen(prev);
+
+      return true;
+    });
+
+    if (typeof afterOpen === 'function' && !isModalOpen) afterOpen(!isModalOpen);
+  }
+  function onCloseModal(ev) {
+    setIsModalOpen(prev => {
+      if (typeof afterClose === 'function' && prev) afterClose(!prev);
+
+      return false;
+    });
+    if (typeof beforeClose === 'function' && isModalOpen) beforeClose(isModalOpen);
   }
 
   useEffect(() => {
@@ -28,8 +51,11 @@ const ModalContent = ({
   let Trigger = trigger;
   return (
     <>
-      {trigger && <Trigger onClick={handleToggleModal} />}
-      {isModalOpen && <Modal {...{ isModalOpen, className, closeBtn, style, handleToggleModal }}>{children}</Modal>}
+      {trigger && <Trigger onClick={onOpenModal} />}
+
+      {isModalOpen && (
+        <Modal {...{ isModalOpen, className, closeBtn, style, onCloseModal, onOpenModal }}>{children}</Modal>
+      )}
     </>
   );
 };

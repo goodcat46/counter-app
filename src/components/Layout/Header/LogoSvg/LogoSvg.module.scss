@@ -22,4 +22,8 @@
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.09em;
+
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 }

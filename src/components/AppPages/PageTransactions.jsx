@@ -44,7 +44,7 @@ const PageTransactions = () => {
       <Page>
         <TableList {...tableSettings} />
 
-        <ModalContent isOpen>
+        <ModalContent>
           <ModalDefault filterOptions={countTypes}>{/* <CreatingList /> */}</ModalDefault>
         </ModalContent>
       </Page>

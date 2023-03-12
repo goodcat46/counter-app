@@ -19,8 +19,12 @@
 
   --darkClr_main: #3a3a3c;
   --darkClr_secondry: #252527;
-  --darkOrange: #dc851f;
-  --ligthOrange: rgba(220, 133, 31, 0.12);
+  --darkOrange: rgb(220, 133, 31);
+  --darkOrange_hover: rgb(227, 156, 73);
+  --darkOrange_pressed: rgb(205, 133, 50);
+  --lightGray: rgb(92, 92, 92);
+  --mainWhite: rgb(239, 239, 239);
+  --ligthOrange: rgba(220, 133, 31, 0.05);
 
   /* TEXT */
   --text-clr__primary: #1a1a1a;

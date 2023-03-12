@@ -11,40 +11,36 @@ import s from './Modal.module.scss';
 export const ModalContext = createContext();
 export const useModal = () => useContext(ModalContext);
 
-const ModalCustom = ({ handleToggleModal, closeBtn, children, modalStyle }) => {
-  function handleToggleModalBackdrop(evt) {
-    let { target, currentTarget } = evt;
-    if (target === currentTarget) {
-      handleToggleModal();
-    }
+const ModalCustom = ({ closeBtn, children, modalStyle, onCloseModal, onOpenModal, isModalOpen }) => {
+  function handleCloseModalByBackdrop(evt) {
+    if (evt.target === evt.currentTarget) onCloseModal();
   }
 
   useEffect(() => {
-    function handleToggleModalByEsc(evt) {
-      let { code } = evt;
-      if (code === 'Escape') {
-        handleToggleModal();
-        console.log('Escape modal');
-        window.removeEventListener('keydown', handleToggleModalByEsc);
+    function handleCloseModalByEsc(evt) {
+      if (evt.code === 'Escape') {
+        onCloseModal();
+        console.log('Escape modal close');
+        window.removeEventListener('keydown', handleCloseModalByEsc);
       }
     }
     if (children) {
       document.querySelector('body').classList.add('NotScroll');
-      window.addEventListener('keydown', handleToggleModalByEsc);
+      window.addEventListener('keydown', handleCloseModalByEsc);
     }
     return () => {
       document.querySelector('body').classList.remove('NotScroll');
-      window.removeEventListener('keydown', handleToggleModalByEsc);
+      window.removeEventListener('keydown', handleCloseModalByEsc);
     };
-  }, [children, handleToggleModal]);
+  }, [children, onCloseModal]);
 
   return (
     <ModalPortal>
-      <ModalContext.Provider value={{ handleToggleModal }}>
-        <div className={s.Backdrop} onClick={handleToggleModalBackdrop}>
+      <ModalContext.Provider value={{ onCloseModal, onOpenModal, isModalOpen }}>
+        <div className={s.Backdrop} onClick={handleCloseModalByBackdrop}>
           <div className={s.Modal} style={modalStyle}>
             {closeBtn && (
-              <button className={s.closeModal} onClick={handleToggleModal}>
+              <button className={s.closeModal} onClick={onCloseModal}>
                 <SvgIconClose size={'100%'} />
               </button>
             )}
