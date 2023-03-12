@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkcounter_app=self.webpackChunkcounter_app||[]).push([[695],{7179:function(n,e,r){r.r(e),r.d(e,{default:function(){return t}});var u="PageNotFound_PageNotFound__P2Js-",a=r(184),t=function(n){var e=n.children;return(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)("div",{className:u,children:(0,a.jsx)("span",{children:"Page Not Found"})}),e]})}}}]);
-//# sourceMappingURL=695.55769846.chunk.js.map
