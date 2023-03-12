@@ -40,6 +40,7 @@ export const iconId = {
   home: 'home',
   persons: 'persons',
   person: 'person',
+  personOutlined: 'personOutlined',
   person2: 'person-2',
   lock: 'lock',
   logOut: 'logOut',

@@ -51,7 +51,8 @@ const NavMenu = ({ onTop, onBottom }) => {
       <div className={s.container}>
         <ButtonIcon
           className={s.navMenuBnt}
-          endIconId={iconId.arrowDown}
+          endIconSize="24px"
+          endIconId={iconId.SmallArrowDown}
           endIconClassName={s.svgIcon}
           onClick={handleOpenNavMenu}
         >

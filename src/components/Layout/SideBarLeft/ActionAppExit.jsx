@@ -28,7 +28,7 @@ const ActionAppExit = () => {
     <ButtonIcon
       iconId={iconId.logOut}
       iconSize="20px"
-      styles={{ width: '100%', height: '26px' }}
+      styles={{ width: '100%', height: '32px' }}
       onClick={handleExitApp}
     />
   );

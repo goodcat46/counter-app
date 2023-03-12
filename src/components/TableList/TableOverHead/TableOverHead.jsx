@@ -1,13 +1,22 @@
 import React from 'react';
-import s from './TableOverHead.module.scss';
 import TableFilter from '../TableFilter/TableFilter';
+import styled from 'styled-components';
 
 const TableOverHead = () => {
   return (
-    <div className={s.TableOverHead}>
+    <STableOverHead>
       <TableFilter />
-    </div>
+    </STableOverHead>
   );
 };
 
+const STableOverHead = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px;
+  @media screen and (min-width: 480px) {
+    padding: 20px 8px 16px;
+  }
+`;
 export default TableOverHead;

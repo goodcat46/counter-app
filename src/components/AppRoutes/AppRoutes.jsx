@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import AppGridPage from 'components/AppPages/AppGridPage/AppGridPage';
+
 // import { useSelector } from 'react-redux';
 // import { getUserData } from 'redux/selectors';
 import AppPages from 'components/AppPages';
@@ -9,6 +9,7 @@ import { appPages } from 'data';
 // import DesktopFooter from 'components/Layout/DesktopFooter/DesktopFooter';
 // import PrivateRoute from './PrivateRoute';
 // import PublicRoute from './PublicRoute';
+
 const { PageError, PageNotFound } = AppPages;
 
 const AppRoutes = () => {
@@ -18,7 +19,11 @@ const AppRoutes = () => {
     <>
       <Routes>
         <Route index element={<Navigate to={appPages.transactions.path} />} errorElement={<PageError />} />
-        <Route path="/" element={<AppGridPage path={appPages.transactions.path} />} errorElement={<PageError />}>
+        <Route
+          path="/"
+          element={<AppPages.AppGridPage path={appPages.transactions.path} />}
+          errorElement={<PageError />}
+        >
           <Route
             index
             element={<AppPages.PageTransactions path={appPages.transactions.path} />}
@@ -29,11 +34,6 @@ const AppRoutes = () => {
             element={<AppPages.PageTransactions path={appPages.transactions.path} />}
             errorElement={<PageError />}
           />
-          {/* <Route
-            path="directories"
-            element={<AppPages.PageDirectories path="directories" />}
-            errorElement={<PageError />}
-          /> */}
         </Route>
 
         <Route path="*" element={<PageNotFound />} errorElement={<PageError />} />

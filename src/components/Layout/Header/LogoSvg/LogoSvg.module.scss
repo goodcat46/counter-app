@@ -1,21 +1,29 @@
-.logo {
-  &Link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
-    width: fit-content;
-    height: 28px;
-    min-width: max-content;
-    padding: 0 8px;
-  }
-  &Text {
-    text-align: center;
-    white-space: nowrap;
-    font-family: 'Ralaway', sans-serif;
-    font-size: 16px;
-    font-weight: 900;
-    line-height: 1.2;
-    letter-spacing: 0.09em;
+  width: fit-content;
+  height: 28px;
+  min-width: max-content;
+
+  padding: 0 8px;
+}
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.09em;
+
+  @media screen and (max-width: 480px) {
+    display: none;
   }
 }

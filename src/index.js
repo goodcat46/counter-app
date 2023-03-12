@@ -6,10 +6,11 @@ import { persistor } from 'redux/store.store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import { store } from 'redux/store.store';
-import ModalProvider from 'components/ModalCustom/ModalProvider';
+import ModalProvider from 'components/ModalProvider/ModalProvider';
 
 import './index.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import AppThemeProvider from 'components/AppThemeProvider/AppThemeProvider';
 
 // import reportWebVitals from './reportWebVitals';
 
@@ -19,9 +20,11 @@ root.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <BrowserRouter basename="/counter-app">
-        <ModalProvider>
-          <App />
-        </ModalProvider>
+        <AppThemeProvider>
+          <ModalProvider>
+            <App />
+          </ModalProvider>
+        </AppThemeProvider>
       </BrowserRouter>
     </PersistGate>
   </Provider>

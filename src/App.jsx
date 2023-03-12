@@ -1,13 +1,12 @@
 import { Suspense } from 'react';
-import { ToastContainer } from 'react-toastify';
 import Layout from 'components/Layout/Layout';
 import AppRoutes from 'components/AppRoutes/AppRoutes';
-
-import s from './App.module.scss';
-import { useSelector } from 'react-redux';
-import { getAppSettings } from 'redux/selectors.store';
 import AppLoader from 'components/AppLoader/AppLoader';
 import SideBarProvider from 'components/Layout/SideBarLeft/SideBarProvider';
+import { ToastContainer } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { getAppSettings } from 'redux/selectors.store';
+import styled from 'styled-components';
 
 const App = () => {
   const { isDarkMode } = useSelector(getAppSettings);
@@ -27,7 +26,7 @@ const App = () => {
   // });
   return (
     <>
-      <div className={s.app}>
+      <AppContainer>
         <Suspense fallback={<AppLoader isLoading />}>
           <SideBarProvider>
             <Layout>
@@ -35,7 +34,7 @@ const App = () => {
             </Layout>
           </SideBarProvider>
         </Suspense>
-      </div>
+      </AppContainer>
 
       <ToastContainer
         position="bottom-left"
@@ -54,4 +53,11 @@ const App = () => {
   );
 };
 
+const AppContainer = styled.div`
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+  max-height: 100%;
+`;
 export default App;

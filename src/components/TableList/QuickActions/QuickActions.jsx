@@ -83,9 +83,8 @@ const QuickActions = () => {
       </div>
 
       <ButtonIcon
-        iconId={isShown ? iconId.SmallArrowDown : iconId.SmallArrowUp}
+        iconId={isShown ? iconId.close : iconId.actionsV}
         className={s.toggleBtn}
-        // iconClassName={s.icon}
         iconSize="70%"
         size="48px"
         onClick={onMenuBtnClick}

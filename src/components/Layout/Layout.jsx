@@ -33,6 +33,8 @@ const Layout = ({ children }) => {
   };
 
   useEffect(() => {
+    if (window.location.hostname !== 'localhost') return;
+
     if (window.location.hostname === 'localhost') return;
 
     const payload = thunkName => {
@@ -63,12 +65,6 @@ const Layout = ({ children }) => {
 
           <div className={s.children}>{children}</div>
         </div>
-
-        {/* <SideBar>
-          <DesktopFooter>
-            <>{footerChildren}</>
-          </DesktopFooter>
-        </SideBar> */}
       </LayoutCTX.Provider>
     </>
   );

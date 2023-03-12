@@ -4,15 +4,25 @@ import SideBarOptions from './SideBarOptions/SideBarOptions';
 import ToggleThemeMode from './ChangeTheme/ChangeTheme';
 import ActionAppExit from './ActionAppExit';
 import { useSideBar } from './SideBarProvider';
+import OpenNotifications from './Notifications';
+import styled from 'styled-components';
+import theme from 'theme/theme';
 
 import s from './SideBar.module.scss';
 
 const SideBar = () => {
-  const { isOpen, options, onTogglerClick, handleOptionsState, sideBarButtons, settingsOptionsItem } = useSideBar();
+  const {
+    isOpen,
+    options,
+    onTogglerClick,
+    handleOptionsState,
+    sideBarButtons = [],
+    settingsOptionsItem,
+  } = useSideBar();
 
   return (
     <div className={[s.SideBar, isOpen && s.isOpen].join(' ')} data-sidebar>
-      <button className={s.toggler} onClick={onTogglerClick}></button>
+      <MenuToggler isOpen={isOpen} onClick={onTogglerClick}></MenuToggler>
 
       <div className={s.container}>
         <div className={s.content}>
@@ -25,6 +35,7 @@ const SideBar = () => {
               <ButtonIcon
                 key={item?.iconId}
                 iconId={item?.iconId}
+                title={item?.title}
                 iconSize="20px"
                 variant="pointerLeft"
                 className={[s.option, item?.title === options?.title && s.isActive].join(' ')}
@@ -34,15 +45,16 @@ const SideBar = () => {
           </div>
 
           <div className={s.bottom}>
+            <OpenNotifications />
+
             <ButtonIcon
               iconSize="20px"
-              styles={{ width: '100%', height: '26px' }}
+              styles={{ width: '100%', height: '32px' }}
               iconId={settingsOptionsItem.iconId}
               variant="pointerLeft"
               className={settingsOptionsItem.title === options?.title && s.isActive}
               onClick={() => handleOptionsState(settingsOptionsItem)}
             />
-
             <ActionAppExit />
           </div>
         </div>
@@ -52,5 +64,20 @@ const SideBar = () => {
     </div>
   );
 };
+
+const MenuToggler = styled.button`
+  width: 4px;
+  height: 100%;
+  padding: 0;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  border-style: none;
+
+  background-color: ${({ isOpen }) => (isOpen ? theme.dark.trBorderClr : theme.dark.backgroundColorBlack)};
+`;
 
 export default SideBar;

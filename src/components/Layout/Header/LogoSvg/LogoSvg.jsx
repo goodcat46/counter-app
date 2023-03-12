@@ -10,7 +10,7 @@ const LogoSvg = () => {
   };
 
   return (
-    <Link to="/transactions" className={s.logoLink}>
+    <Link to="/transactions" className={s.link}>
       <div className={s.iconBox} style={styles}>
         <svg
           className={s.svg}
@@ -25,6 +25,8 @@ const LogoSvg = () => {
           <path d="M0 0.669434V19.9998H5.08561V13.9128L11.0188 19.9998H18.8422L0 0.669434Z" fill="#64C2DB" />
         </svg>
       </div>
+
+      <span className={s.text}>Logoipsum</span>
     </Link>
   );
 };

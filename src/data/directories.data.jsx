@@ -1,10 +1,30 @@
-import ModalTableCounts from 'components/ModalTableCounts/ModalTableCounts';
+import DirectoryOfCounts from 'components/Directories/DirectoryOfCounts';
+import DirectoryOfCategories from 'components/Directories/DirectoryOfCategories';
+import ModalDefault from 'components/ModalDefault/ModalDefault';
 import { iconId } from './iconId.data';
 
 const directories = [
-  { title: 'Рахунки', iconId: iconId.bank, ModalChildren: ModalTableCounts, modalChildrenProps: null, disabled: false },
-  { title: 'Категорії', iconId: iconId.folder, modalChildrenProps: null, disabled: true },
-  { title: 'Котракти', iconId: iconId.assignment, modalChildrenProps: null, disabled: true },
+  {
+    title: 'Рахунки',
+    iconId: iconId.bank,
+    ModalChildren: DirectoryOfCounts,
+    modalChildrenProps: { title: 'Рахунки' },
+    disabled: false,
+  },
+  {
+    title: 'Категорії',
+    iconId: iconId.folder,
+    ModalChildren: DirectoryOfCategories,
+    modalChildrenProps: { title: 'Категорії' },
+    disabled: true,
+  },
+  {
+    title: 'Котракти',
+    iconId: iconId.assignment,
+    ModalChildren: ModalDefault,
+    modalChildrenProps: { title: 'Контракти' },
+    disabled: true,
+  },
   { title: 'Проекти', iconId: iconId.folder, modalChildrenProps: null, disabled: true },
   { title: 'Контрагенти', iconId: iconId.partners, modalChildrenProps: null, disabled: true },
   { title: 'Користувачі', iconId: iconId.persons, modalChildrenProps: null, disabled: true },
