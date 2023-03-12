@@ -51,7 +51,7 @@ const ModalDefault = ({
       <ModalHeader onClose={handleClose} title={title} />
 
       <ModalMain>
-        <ModalFilter onSelect={handleSelect} options={filterOptions} />
+        {filterOptions && <ModalFilter onSelect={handleSelect} options={filterOptions} />}
 
         <MainScroll>{children}</MainScroll>
       </ModalMain>

@@ -1,3 +1,4 @@
+import CreatingList from 'components/CreatingList/CreatingList';
 import ModalDefault from 'components/ModalDefault/ModalDefault';
 import { iconId } from './iconId.data';
 
@@ -5,7 +6,7 @@ const directories = [
   {
     title: 'Рахунки',
     iconId: iconId.bank,
-    ModalChildren: ModalDefault,
+    ModalChildren: CreatingList,
     modalChildrenProps: { title: 'Рахунки' },
     disabled: false,
   },

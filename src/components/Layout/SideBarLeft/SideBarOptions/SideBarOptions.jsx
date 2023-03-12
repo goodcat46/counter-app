@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
+import { useModalProvider } from 'components/ModalCustom/ModalProvider';
 import { iconId } from 'data';
 import s from './SideBarOptions.module.scss';
-import ModalContent from 'components/ModalContent/ModalContent';
-import { useModalProvider } from 'components/ModalCustom/ModalProvider';
 
 const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
   const modal = useModalProvider();
@@ -89,7 +88,7 @@ const SideBarOptions = ({ handleOptionsState, options, isOpen, title }) => {
                       });
                     }}
                   >
-                    {item?.title}
+                    {title}
                   </ButtonIcon>
                 </li>
               );
