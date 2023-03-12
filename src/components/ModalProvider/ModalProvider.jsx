@@ -57,8 +57,6 @@ const ModalProvider = ({ children, portal = 'modal' }) => {
         <ModalPortal portal={portal}>
           {modalContent?.length > 0 &&
             modalContent.map((Item, idx) => {
-              console.log(Item?.modalChildrenProps);
-
               return (
                 <ModalComponent
                   key={Item.id}

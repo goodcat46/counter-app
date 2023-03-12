@@ -11,6 +11,7 @@ const ModalFilter = ({ options = [], onSelect }) => {
           <FilterBtn
             key={opt?.title || idx}
             isActive={idx === current}
+            type="button"
             onClick={() => {
               setCurrent(idx);
               if (typeof onSelect === 'function') onSelect(opt);

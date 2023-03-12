@@ -24,7 +24,7 @@ const ModalDefault = ({
   const modal = useModalCTX();
 
   function handleSubmit(ev) {
-    ev.preventDefault();
+    // ev.preventDefault();
     if (!onSubmit) return console.log('No passed "onSubmit" handler');
     modal.onCloseModal();
     if (typeof beforeSubmit === 'function') beforeSubmit();
