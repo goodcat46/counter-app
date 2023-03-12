@@ -15,8 +15,8 @@ const STableOverHead = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 8px;
-  @media screen and (min-width: 960px) {
-    padding: 28px 12px 20px;
+  @media screen and (min-width: 480px) {
+    padding: 20px 8px 16px;
   }
 `;
 export default TableOverHead;

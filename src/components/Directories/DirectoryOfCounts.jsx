@@ -7,24 +7,24 @@ const filterOptions = [
   { title: 'Активні', value: 'ACTIVE' },
   { title: 'Пасивні', value: 'PASSIVE' },
 ];
-// onSelect
+
 const DirectoryOfCounts = props => {
   const { mainCounts = [], subCounts = [] } = useSelector(getFilteredCounts);
-  const [counts, setCounts] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
 
   function onSelect(option) {
     console.log('option', option);
 
-    setCounts(mainCounts.filter(count => count.type === option.value));
+    setFilteredList(mainCounts.filter(count => count.type === option.value));
   }
 
   useEffect(() => {
-    setCounts(mainCounts.filter(count => count.type === filterOptions[0].value));
+    setFilteredList(mainCounts.filter(count => count.type === filterOptions[0].value));
   }, [mainCounts]);
 
   return (
     <ModalDefault {...{ ...props, filterOptions, onSelect }}>
-      <DirectoryList list={counts} subList={subCounts} />
+      <DirectoryList list={filteredList} subList={subCounts} />
     </ModalDefault>
   );
 };

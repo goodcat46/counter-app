@@ -67,11 +67,10 @@ const ModalDefaultContainer = styled.form`
 
   position: relative;
 
-  /* height: 550px; */
   min-height: 350px;
   max-height: 100%;
-  /* width: 350px; */
   min-width: 250px;
+
   max-width: 100%;
 
   border-radius: 2px;
@@ -81,6 +80,15 @@ const ModalDefaultContainer = styled.form`
   background-color: ${theme.dark.backgroundColorMain};
 
   resize: both;
+
+  @media screen and (max-width: 480px) {
+    width: 98vw;
+  }
+
+  @media screen and (min-width: 480px) {
+    min-height: 350px;
+    min-width: 450px;
+  }
 `;
 
 const ModalMain = styled.main`
