@@ -1,11 +1,14 @@
 import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
+import { useModalProvider } from 'components/ModalProvider/ModalProvider';
 import { iconId } from 'data';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTable } from '../TableContext';
+import Filter from './Filter/Filter';
 import SearchParamInput from './SearchParamInput/SearchParamInput';
 
 const TableFilter = () => {
+  const modal = useModalProvider();
   const [searchParam, setSearchParam] = useState({});
   const { tableSearchParams } = useTable();
 
@@ -13,20 +16,28 @@ const TableFilter = () => {
     console.log(item);
     setSearchParam(item);
   }
+
   return (
-    <Filter>
-      <ButtonIcon iconId={iconId.filterOff} size="28px" variant="text" />
+    <FilterContainer>
+      <ButtonIcon
+        iconId={iconId.filterOff}
+        size="28px"
+        variant="text"
+        onClick={() => {
+          modal.handleOpenModal({ ModalChildren: Filter });
+        }}
+      />
 
       <SearchInput type="text" placeholder="Пошук" />
 
       <SearchParamInput {...{ data: tableSearchParams, onSelect, searchParam, defaultValue: searchParam?.title }} />
 
       <ButtonIcon iconId={iconId.search} size="28px" variant="filled" />
-    </Filter>
+    </FilterContainer>
   );
 };
 
-const Filter = styled.div`
+const FilterContainer = styled.div`
   display: grid;
   grid-template-columns: min-content 1.2fr 1fr min-content;
   grid-template-rows: 28px;
