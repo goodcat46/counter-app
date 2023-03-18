@@ -13,11 +13,11 @@ const contractors = [
   { _id: 'ds6d5vs6sd6f1v4sd', name: 'ТОВ "Рога і копита"' },
   { _id: 'ds6d5vf6sd6f1v6sd', name: 'ТОВ "Дикі крила"' },
 ];
-const categoriesArr = [
-  { _id: 'ds6d5vf6sd5f1v6sd', name: 'Офісні витрати', type: 'EXPENSE' },
-  { _id: 'ds6d5vf6sd6f1v7sd', name: 'Транспорт', type: 'EXPENSE' },
-  { _id: 'ds6d5vf6sd6f1v5sd', name: 'Обладнання', type: 'EXPENSE' },
-];
+// const categoriesArr = [
+//   { _id: 'ds6d5vf6sd5f1v6sd', name: 'Офісні витрати', type: 'EXPENSE' },
+//   { _id: 'ds6d5vf6sd6f1v7sd', name: 'Транспорт', type: 'EXPENSE' },
+//   { _id: 'ds6d5vf6sd6f1v5sd', name: 'Обладнання', type: 'EXPENSE' },
+// ];
 const documents = [
   { _id: 'ds6d5vf6sd5f1v6sd', name: 'Чек №351351321' },
   { _id: 'ds6d5vf6sd6f1v3sd', name: 'Накладна №351351321' },
@@ -44,7 +44,9 @@ const Filter = () => {
     setCurrent(prev => (prev === idx ? null : idx));
   }
 
-  function onChange() {}
+  function onChange() {
+    false && setSelectors();
+  }
 
   return (
     <ModalDefault title="Фільтрація транзакцій">
@@ -73,7 +75,7 @@ const Filter = () => {
           <RightSide>
             <div>{selectors[current]?.title}</div>
 
-            <SelectedItemsList list={selectors[current]?.list} isOpen />
+            <SelectedItemsList list={selectors[current]?.list} onChange={onChange} isOpen />
           </RightSide>
         </Bottom>
       </FilterContainer>
@@ -138,6 +140,10 @@ const RightSide = styled.div`
   padding: 8px;
 
   background-color: ${theme.dark.backgroundColorBlack};
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 const SelectorsList = styled.div`
   display: grid;
